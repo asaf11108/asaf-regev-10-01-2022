@@ -26,7 +26,7 @@ const Toolbar: React.FC = () => {
   const menuItems: IMenuItem[] = [
     {
       label: 'Home',
-      navigatePath: '/home'
+      navigatePath: '/'
     },
     {
       label: 'Favorites',
