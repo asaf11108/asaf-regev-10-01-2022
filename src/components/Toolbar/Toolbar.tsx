@@ -37,9 +37,9 @@ const Toolbar: React.FC = () => {
   return (
     <MuiToolbar className="toolbar">
       <span className="toolbar__title">
-        <span>Herolo Weather Task</span>
+        <span>Weather Task</span>
         <a href="https://cors-anywhere.herokuapp.com/corsdemo">CORS</a>
-        <a href="https://asaf11108.github.io/asaf-regev-06-03-2021/">GitHub</a>
+        <a href="https://github.com/asaf11108/asaf-regev-10-01-2022">GitHub</a>
       </span>
 
       <span className="toolbar__actions">
