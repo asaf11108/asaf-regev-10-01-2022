@@ -2,10 +2,14 @@
 
 .home {
     text-align: center;
-    &__card.card {
-        background-color: rgba(255, 255, 255, 0.6);
-        width: 100%;
-        box-sizing: border-box;
+    &__card {
+        background-color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    &__autocomplete {
+        @include vendors.spread(width, 90%, 50%);
+        margin: 0 auto;
+        @include vendors.spread(margin-bottom, 20px, 30px);
     }
 
     &__title {

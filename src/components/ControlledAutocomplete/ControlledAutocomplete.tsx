@@ -9,7 +9,7 @@ import { ControlledAutocompleteProps } from './ControlledAutocomplete.model';
 const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ selected, handleChange }) => {
   const [options, setOptions] = useState<Location[]>([]);
   const [inputValue, setInputValue] = React.useState(selected.localizedName);
-  
+
   const getOptionsDelayed = useCallback(
     debounce((query, callback) => {
       getLocations(query).then(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName }))).then(callback);
@@ -29,9 +29,9 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ selecte
         options={options}
         getOptionLabel={(option) => option.localizedName}
         defaultValue={selected}
-        onInputChange={(_, newInputValue) => {setInputValue(newInputValue)}}
-        renderInput={(params) => <TextField {...params} placeholder="Search location"/>}
+        onInputChange={(_, newInputValue) => setInputValue(newInputValue)}
         onChange={(_, location) => location && handleChange(location.key)}
+        renderInput={(params) => <TextField {...params} placeholder="Search location"/>}
       />
 
     </div>

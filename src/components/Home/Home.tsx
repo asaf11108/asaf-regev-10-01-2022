@@ -6,6 +6,7 @@ import { useQueries, useQuery, useQueryClient, UseQueryResult } from 'react-quer
 import { Location } from '../../interfaces/location';
 import { format } from 'date-fns';
 import { Forecast as IForecast } from '../../interfaces/forecast';
+import { Card, CardContent, Typography } from '@mui/material';
 
 const Home: React.FC = () => {
   const queryClient = useQueryClient()
@@ -34,7 +35,7 @@ const Home: React.FC = () => {
     localizedName: "Tel Aviv",
   };
 
-  const FavoriteDataQuery = (selectedOption: Location): UseQueryResult<IForecast> => {
+  const FavoriteLocationQuery = (selectedOption: Location): UseQueryResult<IForecast> => {
     return useQuery(['FavoriteData', selectedOption.key], () => Promise.all([
       getCurrentConditions(selectedOption.key),
       getForecasts(selectedOption.key)
@@ -57,15 +58,34 @@ const Home: React.FC = () => {
     );
   };
 
-  const favoriteData = FavoriteDataQuery(selectedOption);
+  const favoriteLocation = FavoriteLocationQuery(selectedOption);
 
   return (
     <div className="home">
-      <ControlledAutocomplete handleChange={() => {}} selected={selectedOption}/>
+      <Card className="home__autocomplete home__card">
+        <CardContent>
+          <ControlledAutocomplete handleChange={() => {}} selected={selectedOption}/>
+        </CardContent>
+      </Card>
 
-      <div>
-        {JSON.stringify(favoriteData.data)}
-      </div>
+      {
+        favoriteLocation.data &&
+        <Card className="home__card">
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Lizard
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Lizards are a widespread group of squamate reptiles, with over 6,000
+              species, ranging across all continents except Antarctica
+            </Typography>
+          </CardContent>
+        </Card>
+      }
+
+      {/* <div>
+        {JSON.stringify()}
+      </div> */}
 
   {/* <div className="home__card card" v-if="favoriteLocation">
 
@@ -90,7 +110,7 @@ const Home: React.FC = () => {
       </div>
 
   </div> */}
-</div>
+    </div>
   );
 };
 
