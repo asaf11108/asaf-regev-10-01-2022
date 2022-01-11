@@ -1,9 +1,9 @@
 import axios from "axios";
+import { Dispatch, SetStateAction } from "react";
 
 const API_KEY = "gRf4KNnswLuVm8mG3puAI1GUOGeJTu1v";
-const BAD_REQUEST = " Unable to retrieve data. Switched to mock data.";
 
-export function httpInterceptor(): void {
+export function httpInterceptor(setOpen: Dispatch<SetStateAction<boolean>>): void {
     // Add a request interceptor
     axios.interceptors.request.use(function (config) {
         config.params = { ...config.params, apikey: API_KEY };
@@ -16,7 +16,7 @@ export function httpInterceptor(): void {
     axios.interceptors.response.use(function (response) {
         return response;
     }, function (error) {
-    console.log("🚀 ~ file: http.interceptor.ts ~ line 19 ~ error", error)
+        setOpen(true);
         return Promise.reject(error);
     });
 }

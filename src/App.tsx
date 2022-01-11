@@ -5,16 +5,26 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Favorites from './pages/Favorites/Favorites';
 import { httpInterceptor } from './interceptors/http.interceptor';
-
-httpInterceptor();
+import { Snackbar } from '@mui/material';
 
 const App: React.FC = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  httpInterceptor(setOpen);
+
   return (
     <div className="app">
       <Toolbar />
 
       <div className="app__content-wrapper">
-          <div className="app__content">
+        <div className="app__content">
 
           <Routes>
             <Route path="/" element={<Home />} />
@@ -22,8 +32,16 @@ const App: React.FC = () => {
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
 
-          </div>
         </div>
+      </div>
+
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={open}
+        autoHideDuration={5000}
+        onClose={handleClose}
+        message="Unable to retrieve data. Switched to mock data."
+      />
     </div>
   );
 }
