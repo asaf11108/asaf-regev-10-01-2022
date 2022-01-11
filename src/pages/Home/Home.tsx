@@ -51,13 +51,13 @@ const Home: React.FC = () => {
       }));
 
       return {
-        id: selectedOption.key,
-        locationName: selectedOption.localizedName,
+        key: selectedOption.key,
+        localizedName: selectedOption.localizedName,
         temperature: currentConditions.Temperature.Metric.Value,
         weatherText: currentConditions.WeatherText,
         icon: currentConditions.WeatherIcon.toString(),
         forecasts,
-      }
+      } as FavoriteLocation
     })
     );
   };
@@ -90,12 +90,12 @@ const Home: React.FC = () => {
               </Button>
             </Typography>
             <div className="home__body">
-          <div className="home__body-header">{favoriteLocation.data.weatherText}</div>
-        <div className="home__forecasts">
-          {
-            favoriteLocation.data.forecasts.map((forecast, i) => <Forecast key={i} forecast={forecast} />)
-          }
-      </div>
+              <div className="home__body-header">{favoriteLocation.data.weatherText}</div>
+              <div className="home__forecasts">
+                {
+                  favoriteLocation.data.forecasts.map((forecast, i) => <Forecast key={i} forecast={forecast} />)
+                }
+              </div>
             </div>
           </CardContent>
         </Card>
