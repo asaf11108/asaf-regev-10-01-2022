@@ -1,4 +1,4 @@
-import { ISOString } from "../general";
+import { ISOString } from "../../interfaces/general";
 
 export interface Area {
     ID: string;

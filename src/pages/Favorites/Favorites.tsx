@@ -5,9 +5,9 @@
 // import { useRouter } from "vue-router";
 // import { useStore } from "vuex";
 
+import Forecast from '../../components/Forecast/Forecast';
+import { _Forecast } from '../../components/Forecast/forecast.model';
 import { FavoriteLocation } from '../../interfaces/favorite-location.interface';
-import Forecast from '../Forecast/Forecast';
-import { _Forecast } from '../Forecast/forecast.model';
 import './Favorites.scss';
 
 // export default defineComponent({

@@ -1,6 +1,6 @@
-import { Forecasts } from './../interfaces/api/forecasts';
-import { CurrentConditions } from './../interfaces/api/current-conditions';
-import { AutocompleteOption } from '../interfaces/api/autocomplete';
+import { Forecasts } from './interfaces/forecasts';
+import { CurrentConditions } from './interfaces/current-conditions';
+import { AutocompleteOption } from './interfaces/autocomplete';
 
 export function getMockLocations(query: string): Promise<AutocompleteOption[]> {
   if ('tel aviv'.toLowerCase().includes(query.toLowerCase())) {

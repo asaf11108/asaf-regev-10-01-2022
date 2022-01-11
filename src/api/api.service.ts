@@ -1,7 +1,7 @@
-import { CurrentConditions } from './../interfaces/api/current-conditions';
+import { CurrentConditions } from './interfaces/current-conditions';
 import { getMockCurrentConditions, getMockForecasts, getMockLocations } from "./api.mock.service";
-import { Forecasts } from '../interfaces/api/forecasts';
-import { AutocompleteOption } from '../interfaces/api/autocomplete';
+import { Forecasts } from './interfaces/forecasts';
+import { AutocompleteOption } from './interfaces/autocomplete';
 // import { MatSnackBar } from '@angular/material/snack-bar';
 
 const API_KEY = "gRf4KNnswLuVm8mG3puAI1GUOGeJTu1v";

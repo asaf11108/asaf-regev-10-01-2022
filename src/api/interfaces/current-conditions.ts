@@ -1,4 +1,4 @@
-import { ISOString } from "../general";
+import { ISOString } from "../../interfaces/general";
 import { Temperature } from "./shared";
 
 export interface CurrentCondition {

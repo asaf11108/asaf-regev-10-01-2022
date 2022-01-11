@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.scss';
-import ControlledAutocomplete from '../ControlledAutocomplete/ControlledAutocomplete';
+import ControlledAutocomplete from '../../components/ControlledAutocomplete/ControlledAutocomplete';
 import { getCurrentConditions, getForecasts, getLocations } from '../../api/api.service';
 import { useQueries, useQuery, useQueryClient, UseQueryResult } from 'react-query';
 import { format } from 'date-fns';
@@ -8,8 +8,8 @@ import { Button, Card, CardContent, Typography } from '@mui/material';
 import { FavoriteLocation } from '../../interfaces/favorite-location.interface';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import Forecast from '../Forecast/Forecast';
-import { _Forecast } from '../Forecast/forecast.model';
+import Forecast from '../../components/Forecast/Forecast';
+import { _Forecast } from '../../components/Forecast/forecast.model';
 import { Location } from "../../interfaces/favorite-location.interface";
 
 const Home: React.FC = () => {
