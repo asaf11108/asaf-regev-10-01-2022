@@ -93,41 +93,13 @@ const Home: React.FC = () => {
           <div className="home__body-header">{favoriteLocation.data.weatherText}</div>
         <div className="home__forecasts">
           {
-            favoriteLocation.data.forecasts.map((forecast, i) => <Forecast key={i} forecast={{ ...forecast }} />)
+            favoriteLocation.data.forecasts.map((forecast, i) => <Forecast key={i} forecast={forecast} />)
           }
       </div>
             </div>
           </CardContent>
         </Card>
       }
-
-      {/* <div>
-        {JSON.stringify()}
-      </div> */}
-
-      {/* <div className="home__card card" v-if="favoriteLocation">
-
-      <h5 className="home__title card-title">
-        <span>
-          <span>{{favoriteLocation.locationName}}</span>
-          <span>{{favoriteLocation.temperature}}&#176;C</span>
-        </span>
-        <button className="btn btn-primary" :disabled="selectLoading"
-          @click="handleFavorite(favoriteLocation.id, !favoriteLocation.isFavorite)">
-          {{ favoriteLocation.isFavorite ? 'Remove from favorites' : 'Add to favorites' }}
-        </button>
-      </h5>
-
-      <div className="home__body card-body">
-        <div>
-          <h1 className="home__body-header">{{favoriteLocation.weatherText}}</h1>
-        </div>
-        <div className="home__forecasts">
-          <Forecast v-for="forecast in favoriteLocation.forecasts" :key="forecast.title" :forecastProp="forecast"></Forecast>
-        </div>
-      </div>
-
-  </div> */}
     </div>
   );
 };
