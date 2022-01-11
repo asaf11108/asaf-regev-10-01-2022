@@ -3,6 +3,7 @@ import './App.scss';
 import Toolbar from './components/Toolbar/Toolbar';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
+import Favorites from './components/Favorites/Favorites';
 
 const App: React.FC = () => {
   return (
@@ -14,7 +15,7 @@ const App: React.FC = () => {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="users/*" element={<Users />} /> */}
+            <Route path="/favorites" element={<Favorites />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
 

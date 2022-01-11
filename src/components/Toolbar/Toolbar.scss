@@ -21,6 +21,10 @@ $toolbar-height-mobile: 56px;
     }
 
     &__actions {
+        .MuiButton-root {
+            width: 80px;
+        }
+
         @include vendors.media('<=xs') {
             display: none;
         }
