@@ -45,6 +45,7 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ selecte
           defaultValue={selected}
           onInputChange={(_, newInputValue) => handleInputChange(newInputValue)}
           onChange={(_, location) => location && handleChange(location.key)}
+          isOptionEqualToValue={(Option, value) => Option.key === value.key}
           renderInput={(params) =>
             <TextField
               {...params}

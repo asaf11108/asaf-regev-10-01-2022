@@ -4,6 +4,9 @@ import Toolbar from './components/Toolbar/Toolbar';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Favorites from './pages/Favorites/Favorites';
+import { httpInterceptor } from './interceptors/http.interceptor';
+
+httpInterceptor();
 
 const App: React.FC = () => {
   return (
