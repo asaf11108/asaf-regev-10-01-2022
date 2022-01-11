@@ -3,14 +3,14 @@ import './Home.scss';
 import ControlledAutocomplete from '../ControlledAutocomplete/ControlledAutocomplete';
 import { getCurrentConditions, getForecasts, getLocations } from '../../api/api.service';
 import { useQueries, useQuery, useQueryClient, UseQueryResult } from 'react-query';
-import { Location } from '../../interfaces/location';
 import { format } from 'date-fns';
-import { Forecast as IForecast } from '../../interfaces/forecast';
 import { Button, Card, CardContent, Typography } from '@mui/material';
 import { FavoriteLocation } from '../../interfaces/favorite-location.interface';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Forecast from '../Forecast/Forecast';
+import { _Forecast } from '../Forecast/forecast.model';
+import { Location } from "../../interfaces/favorite-location.interface";
 
 const Home: React.FC = () => {
   const queryClient = useQueryClient()
@@ -45,7 +45,7 @@ const Home: React.FC = () => {
       getForecasts(selectedOption.key)
     ]).then(res => {
       const currentConditions = res[0][0];
-      const forecasts: IForecast[] = res[1].map((forecast) => ({
+      const forecasts: _Forecast[] = res[1].map(forecast => ({
         title: format(new Date(forecast.Date), "EEE"),
         temperature: forecast.Temperature.Minimum.Value,
       }));
@@ -78,7 +78,7 @@ const Home: React.FC = () => {
           <CardContent>
             <Typography className="home__title" gutterBottom variant="h5" component="div">
               <span>
-                <span>{favoriteLocation.data.locationName}</span>
+                <span>{favoriteLocation.data.localizedName}</span>
                 <span>{favoriteLocation.data.temperature}&#176;C</span>
               </span>
               <Button disabled={favoriteLocation.isLoading} onClick={() => { }}>

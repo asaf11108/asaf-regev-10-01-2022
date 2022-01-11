@@ -1,4 +1,4 @@
-import { Location } from '../../interfaces/location';
+import { Location } from '../../interfaces/favorite-location.interface';
 
 export interface ControlledAutocompleteProps {
     selected: Location;

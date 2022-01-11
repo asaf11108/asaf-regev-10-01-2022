@@ -1,11 +1,14 @@
-import { Forecast } from "../interfaces/forecast";
+import { AutocompleteOption } from './api/autocomplete';
+import { _Forecast } from "../components/Forecast/forecast.model";
 
-export interface FavoriteLocation {
-  id: string;
-  locationName: string;
+type LocationResponse = Pick<AutocompleteOption, 'Key' | 'LocalizedName'>;
+
+export type Location = Record<Uncapitalize<keyof LocationResponse>, string>;
+
+export interface FavoriteLocation extends Location {
   weatherText: string;
   temperature: number;
   icon: string;
-  forecasts: Forecast[];
+  forecasts: _Forecast[];
   isFavorite: boolean;
 }

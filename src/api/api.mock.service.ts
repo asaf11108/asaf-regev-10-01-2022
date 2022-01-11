@@ -1,8 +1,8 @@
-import { LocationHttpResponse } from "../interfaces/location";
-import { CurrentConditions } from "../interfaces/current-conditions";
-import { ForecastHttpResponse } from "../interfaces/forecast";
+import { Forecasts } from './../interfaces/api/forecasts';
+import { CurrentConditions } from './../interfaces/api/current-conditions';
+import { AutocompleteOption } from '../interfaces/api/autocomplete';
 
-export function getMockLocations(query: string): Promise<LocationHttpResponse[]> {
+export function getMockLocations(query: string): Promise<AutocompleteOption[]> {
   if ('tel aviv'.toLowerCase().includes(query.toLowerCase())) {
     return Promise.resolve([{ "Version": 1, "Key": "215854", "Type": "City", "Rank": 31, "LocalizedName": "Tel Aviv", "Country": { "ID": "IL", "LocalizedName": "Israel" }, "AdministrativeArea": { "ID": "TA", "LocalizedName": "Tel Aviv" } }]);
   } else if ('paris'.toLowerCase().includes(query.toLowerCase())) {
@@ -12,7 +12,7 @@ export function getMockLocations(query: string): Promise<LocationHttpResponse[]>
   }
 }
 
-export function getMockCurrentConditions(key: string): Promise<CurrentConditions[]> {
+export function getMockCurrentConditions(key: string): Promise<CurrentConditions> {
   return Promise.resolve([
     {
       "LocalObservationDateTime": "2021-03-07T09:30:00+02:00",
@@ -40,8 +40,8 @@ export function getMockCurrentConditions(key: string): Promise<CurrentConditions
   ]);
 }
 
-export function getMockForecasts(key: string): Promise<ForecastHttpResponse[]> {
-  const forcastHttpResponse = {
+export function getMockForecasts(key: string): Promise<Forecasts['DailyForecasts']> {
+  const forcastHttpResponse: Forecasts = {
     "Headline": {
       "EffectiveDate": "2021-03-11T07:00:00+02:00",
       "EffectiveEpochDate": 1615438800,

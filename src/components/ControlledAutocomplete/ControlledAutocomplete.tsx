@@ -3,7 +3,7 @@ import './ControlledAutocomplete.scss';
 import { useState } from 'react';
 import { Autocomplete, debounce, TextField } from '@mui/material';
 import { getLocations } from '../../api/api.service';
-import { Location } from '../../interfaces/location';
+import { Location } from '../../interfaces/favorite-location.interface';
 import { ControlledAutocompleteProps } from './ControlledAutocomplete.model';
 
 const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ selected, handleChange }) => {
