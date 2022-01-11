@@ -10,6 +10,7 @@ import { Button, Card, CardContent, Typography } from '@mui/material';
 import { FavoriteLocation } from '../../interfaces/favorite-location.interface';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Forecast from '../Forecast/Forecast';
 
 const Home: React.FC = () => {
   const queryClient = useQueryClient()
@@ -90,9 +91,11 @@ const Home: React.FC = () => {
             </Typography>
             <div className="home__body">
           <div className="home__body-header">{favoriteLocation.data.weatherText}</div>
-        {/* <div class="home__forecasts">
-          <Forecast v-for="forecast in favoriteLocation.forecasts" :key="forecast.title" :forecastProp="forecast"></Forecast>
-      </div> */}
+        <div className="home__forecasts">
+          {
+            favoriteLocation.data.forecasts.map((forecast, i) => <Forecast key={i} forecast={{ ...forecast }} />)
+          }
+      </div>
             </div>
           </CardContent>
         </Card>
