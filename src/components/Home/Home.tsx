@@ -6,13 +6,16 @@ import { useQueries, useQuery, useQueryClient, UseQueryResult } from 'react-quer
 import { Location } from '../../interfaces/location';
 import { format } from 'date-fns';
 import { Forecast as IForecast } from '../../interfaces/forecast';
-import { Card, CardContent, Typography } from '@mui/material';
+import { Button, Card, CardContent, Typography } from '@mui/material';
+import { FavoriteLocation } from '../../interfaces/favorite-location.interface';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Home: React.FC = () => {
   const queryClient = useQueryClient()
- 
+
   //  const query = useQuery(['locations', selectedOption.key], () => getLocations(''))
- 
+
   //  // Mutations
   //  const mutation = useMutation(postTodo, {
   //    onSuccess: () => {
@@ -35,7 +38,7 @@ const Home: React.FC = () => {
     localizedName: "Tel Aviv",
   };
 
-  const FavoriteLocationQuery = (selectedOption: Location): UseQueryResult<IForecast> => {
+  const FavoriteLocationQuery = (selectedOption: Location): UseQueryResult<FavoriteLocation> => {
     return useQuery(['FavoriteData', selectedOption.key], () => Promise.all([
       getCurrentConditions(selectedOption.key),
       getForecasts(selectedOption.key)
@@ -64,7 +67,7 @@ const Home: React.FC = () => {
     <div className="home">
       <Card className="home__autocomplete home__card">
         <CardContent>
-          <ControlledAutocomplete handleChange={() => {}} selected={selectedOption}/>
+          <ControlledAutocomplete handleChange={() => { }} selected={selectedOption} />
         </CardContent>
       </Card>
 
@@ -72,13 +75,25 @@ const Home: React.FC = () => {
         favoriteLocation.data &&
         <Card className="home__card">
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
+            <Typography className="home__title" gutterBottom variant="h5" component="div">
+              <span>
+                <span>{favoriteLocation.data.locationName}</span>
+                <span>{favoriteLocation.data.temperature}&#176;C</span>
+              </span>
+              <Button disabled={favoriteLocation.isLoading} onClick={() => { }}>
+                {
+                  favoriteLocation.data.isFavorite ?
+                    <FavoriteIcon fontSize="large" color="error" /> :
+                    <FavoriteBorderIcon fontSize="large" />
+                }
+              </Button>
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000
-              species, ranging across all continents except Antarctica
-            </Typography>
+            <div className="home__body">
+          <div className="home__body-header">{favoriteLocation.data.weatherText}</div>
+        {/* <div class="home__forecasts">
+          <Forecast v-for="forecast in favoriteLocation.forecasts" :key="forecast.title" :forecastProp="forecast"></Forecast>
+      </div> */}
+            </div>
           </CardContent>
         </Card>
       }
@@ -87,7 +102,7 @@ const Home: React.FC = () => {
         {JSON.stringify()}
       </div> */}
 
-  {/* <div className="home__card card" v-if="favoriteLocation">
+      {/* <div className="home__card card" v-if="favoriteLocation">
 
       <h5 className="home__title card-title">
         <span>

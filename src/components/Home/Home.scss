@@ -28,7 +28,7 @@
     &__body-header {
         @include vendors.spread(font-size, 50px, 80px);
         text-align: center;
-        margin-block: revert;
+        @include vendors.spread(margin-top, 30px, 60px);
     }
 
     &__body {
