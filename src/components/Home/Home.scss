@@ -23,6 +23,10 @@
             gap: 5px;
             align-items: center;
         }
+
+        .MuiButton-root {
+            @include vendors.spread(font-size, 30px, 40px);
+        }
     }
 
     &__body-header {
