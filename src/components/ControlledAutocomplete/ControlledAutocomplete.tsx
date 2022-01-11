@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect } from 'react';
 import './ControlledAutocomplete.scss';
 import { useState } from 'react';
-import { Autocomplete, debounce, TextField } from '@mui/material';
+import { Autocomplete, CircularProgress, debounce, InputAdornment, TextField } from '@mui/material';
 import { getLocations } from '../../api/api.service';
 import { Location } from '../../interfaces/favorite-location.interface';
 import { ControlledAutocompleteProps } from './ControlledAutocomplete.model';
+import SearchIcon from '@mui/icons-material/Search';
 
 const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ selected, handleChange }) => {
   const [options, setOptions] = useState<Location[]>([]);
@@ -31,7 +32,18 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ selecte
         defaultValue={selected}
         onInputChange={(_, newInputValue) => setInputValue(newInputValue)}
         onChange={(_, location) => location && handleChange(location.key)}
-        renderInput={(params) => <TextField {...params} placeholder="Search location"/>}
+        renderInput={(params) => 
+          <TextField
+            {...params}
+            variant="standard"
+            placeholder="Search location"
+            InputProps={{
+              ...params.InputProps,
+              startAdornment: (
+                <SearchIcon />
+              )
+            }}
+          />}
       />
 
     </div>
