@@ -83,9 +83,9 @@ const Home: React.FC = () => {
               </span>
               <Button disabled={favoriteLocation.isLoading} onClick={() => { }}>
                 {
-                  favoriteLocation.data.isFavorite ?
-                    <FavoriteIcon fontSize="inherit" color="error" /> :
-                    <FavoriteBorderIcon fontSize="inherit" />
+                  favoriteLocation.data.isFavorite
+                    ? <FavoriteIcon fontSize="inherit" color="error" />
+                    : <FavoriteBorderIcon fontSize="inherit" />
                 }
               </Button>
             </Typography>
