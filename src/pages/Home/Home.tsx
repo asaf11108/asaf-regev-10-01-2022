@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Home.scss';
 import ControlledAutocomplete from '../../components/ControlledAutocomplete/ControlledAutocomplete';
-import { Button, Card, CardContent, Typography } from '@mui/material';
+import { Button, Card, CardContent, CircularProgress, Typography } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Forecast from '../../components/Forecast/Forecast';
@@ -44,32 +44,36 @@ const Home: React.FC = () => {
       </Card>
 
       {
-        favoriteLocation &&
-        <Card className="home__card">
-          <CardContent>
-            <Typography className="home__title" gutterBottom variant="h5" component="div">
-              <span>
-                <span>{favoriteLocation.localizedName}</span>
-                <span>{favoriteLocation.temperature}&#176;C</span>
-              </span>
-              <Button disabled={loading} onClick={handleFavoriteClick}>
-                {
-                  favoriteLocation.isFavorite
-                    ? <FavoriteIcon fontSize="inherit" color="error" />
-                    : <FavoriteBorderIcon fontSize="inherit" />
-                }
-              </Button>
-            </Typography>
-            <div className="home__body">
-              <div className="home__body-header">{favoriteLocation.weatherText}</div>
-              <div className="home__forecasts">
-                {
-                  favoriteLocation.forecasts.map((forecast, i) => <Forecast key={i} forecast={forecast} />)
-                }
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+          <Card className="home__card">
+            {
+              loading
+              ? <div className="home__loader"><div><CircularProgress /></div></div>
+              : favoriteLocation
+                && <CardContent>
+                      <Typography className="home__title" gutterBottom variant="h5" component="div">
+                        <span>
+                          <span>{favoriteLocation.localizedName}</span>
+                          <span>{favoriteLocation.temperature}&#176;C</span>
+                        </span>
+                        <Button disabled={loading} onClick={handleFavoriteClick}>
+                          {
+                            favoriteLocation.isFavorite
+                              ? <FavoriteIcon fontSize="inherit" color="error" />
+                              : <FavoriteBorderIcon fontSize="inherit" />
+                          }
+                        </Button>
+                      </Typography>
+                      <div className="home__body">
+                        <div className="home__body-header">{favoriteLocation.weatherText}</div>
+                        <div className="home__forecasts">
+                          {
+                            favoriteLocation.forecasts.map((forecast, i) => <Forecast key={i} forecast={forecast} />)
+                          }
+                        </div>
+                      </div>
+                    </CardContent>
+            }
+          </Card>
       }
     </div>
   );
