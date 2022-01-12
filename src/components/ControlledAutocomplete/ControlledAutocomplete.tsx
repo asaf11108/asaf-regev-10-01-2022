@@ -18,7 +18,6 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
 
   const getOptionsDelayed = useCallback(
     debounce((query, callback) => {
-      console.log(value, inputValue);
       (valid && open)
         ? getLocations(query).then(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName }))).then(callback)
         : callback([]);
