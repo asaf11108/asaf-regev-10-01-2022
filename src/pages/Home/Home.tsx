@@ -13,7 +13,7 @@ import { FavoriteLocationSelectLoading, FavoriteLocationSelectActiveEntity, favo
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
-  let loading = useSelector(FavoriteLocationSelectLoading);
+  const loading = useSelector(FavoriteLocationSelectLoading);
   const favoriteLocation = useSelector(FavoriteLocationSelectActiveEntity);
 
   const [selectedOption, setSelectedOption] = useState<Location>({
