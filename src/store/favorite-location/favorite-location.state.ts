@@ -49,9 +49,11 @@ export const favoriteLocationSelectors = favoriteLocationsAdapter.getSelectors<R
     state => state.favoriteLocations
 );
 
-export const SelectFavoriteLocationEntity = (key: FavoriteLocation['key']) => {
+export const FavoriteLocationSelectEntity = (key: FavoriteLocation['key']) => {
     return createSelector((state: RootState) => state, state => state.favoriteLocations.entities[key]);
 }
+
+export const FavoriteLocationSelectLoading = createSelector((state: RootState) => state, state => state.favoriteLocations.loading);
 
 export const {
     favoriteLocationsLoading,

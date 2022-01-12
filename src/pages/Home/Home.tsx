@@ -12,10 +12,11 @@ import { _Forecast } from '../../components/Forecast/forecast.model';
 import { Location } from "../../store/favorite-location/favorite-location.model";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavoriteLocation } from '../../store/favorite-location/favorite-locations.thunk';
-import { favoriteLocationSelectors, RootState, SelectFavoriteLocationEntity } from '../../store/favorite-location/favorite-location.state';
+import { RootState, FavoriteLocationSelectEntity, FavoriteLocationSelectLoading } from '../../store/favorite-location/favorite-location.state';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
+  let loading = useSelector(FavoriteLocationSelectLoading);
   let favoriteLocation: FavoriteLocation | undefined = undefined;
 
   // const store = useStore();
@@ -32,13 +33,15 @@ const Home: React.FC = () => {
     localizedName: "Tel Aviv",
   };
   
-  const FetchLocation = (selectedOption: Location) => {
-    dispatch(fetchFavoriteLocation(selectedOption));
-    return useSelector((state: RootState) => SelectFavoriteLocationEntity(selectedOption.key)(state));
-  };
+  favoriteLocation = useSelector((state: RootState) => FavoriteLocationSelectEntity(selectedOption.key)(state));
 
+  const FetchLocation = (selectedOption: Location): void => {
+    favoriteLocation = useSelector((state: RootState) => FavoriteLocationSelectEntity(selectedOption.key)(state));
+    dispatch(fetchFavoriteLocation(selectedOption));
+  };
+  
   useEffect(() => {
-    favoriteLocation = FetchLocation(selectedOption);
+    dispatch(fetchFavoriteLocation(selectedOption));
   }, []);
 
 
@@ -50,7 +53,7 @@ const Home: React.FC = () => {
         </CardContent>
       </Card>
 
-      {/* {
+      {
         favoriteLocation &&
         <Card className="home__card">
           <CardContent>
@@ -59,7 +62,7 @@ const Home: React.FC = () => {
                 <span>{favoriteLocation.localizedName}</span>
                 <span>{favoriteLocation.temperature}&#176;C</span>
               </span>
-              <Button disabled={favoriteLocation.isLoading} onClick={() => { }}>
+              <Button disabled={loading} onClick={() => { }}>
                 {
                   favoriteLocation.isFavorite
                     ? <FavoriteIcon fontSize="inherit" color="error" />
@@ -77,7 +80,7 @@ const Home: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-      } */}
+      }
     </div>
   );
 };
