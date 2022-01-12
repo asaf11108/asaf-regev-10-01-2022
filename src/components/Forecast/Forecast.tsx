@@ -8,7 +8,7 @@ const Forecast: React.FC<ForecastProps> = ({ forecast }) => {
     if (!icon) {
       return "";
     }
-    return `../assets/weather-icons/${icon}.png`;
+    return require(`../../assets/weather-icons/${icon}.png`);
   };
 
   forecast = {
