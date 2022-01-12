@@ -17,9 +17,7 @@ const Favorites: React.FC = () => {
     navigate('/');
   };
 
-  const mapToForecastComponent = (
-    favoriteLocation: FavoriteLocation
-  ): _Forecast => {
+  const mapToForecastComponent = (favoriteLocation: FavoriteLocation): _Forecast => {
     return {
       title: favoriteLocation.localizedName,
       temperature: favoriteLocation.temperature,
@@ -31,8 +29,8 @@ const Favorites: React.FC = () => {
     <div className="favorites">
       {
         favoriteLocations.map(favoriteLocation =>
-          <div className="favorites__forecast" onClick={() => handleActiveForecast(favoriteLocation)}>
-            <Forecast key={favoriteLocation.key} forecast={mapToForecastComponent(favoriteLocation)} />
+          <div key={favoriteLocation.key} className="favorites__forecast" onClick={() => handleActiveForecast(favoriteLocation)}>
+            <Forecast forecast={mapToForecastComponent(favoriteLocation)} />
           </div>
         )
       }
