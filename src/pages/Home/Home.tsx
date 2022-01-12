@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.scss';
 import ControlledAutocomplete from '../../components/ControlledAutocomplete/ControlledAutocomplete';
-import { getCurrentConditions, getForecasts, getLocations } from '../../api/api.service';
-import { format } from 'date-fns';
 import { Button, Card, CardContent, Typography } from '@mui/material';
-import { FavoriteLocation } from '../../store/favorite-location/favorite-location.model';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Forecast from '../../components/Forecast/Forecast';
@@ -12,44 +9,32 @@ import { _Forecast } from '../../components/Forecast/forecast.model';
 import { Location } from "../../store/favorite-location/favorite-location.model";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavoriteLocation } from '../../store/favorite-location/favorite-locations.thunk';
-import { RootState, FavoriteLocationSelectEntity, FavoriteLocationSelectLoading } from '../../store/favorite-location/favorite-location.state';
+import { FavoriteLocationSelectLoading, FavoriteLocationSelectActiveEntity } from '../../store/favorite-location/favorite-location.state';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   let loading = useSelector(FavoriteLocationSelectLoading);
-  let favoriteLocation: FavoriteLocation | undefined = undefined;
+  const favoriteLocation = useSelector(FavoriteLocationSelectActiveEntity);
 
-  // const store = useStore();
-  // const selectLoading = computed<boolean>(() => store.getters.selectLoading);
-  // const favoriteLocation = computed<FavoriteLocation>(
-  //   () => store.getters.selectActiveEntity
-  // );
-  // const selectedOption = {
-  //   key: favoriteLocation.value.id ?? "215854",
-  //   localizedName: favoriteLocation.value.locationName ?? "Tel Aviv",
-  // };
-  const selectedOption = {
-    key: "215854",
-    localizedName: "Tel Aviv",
-  };
-  
-  favoriteLocation = useSelector((state: RootState) => FavoriteLocationSelectEntity(selectedOption.key)(state));
+  const [selectedOption, setSelectedOption] = useState<Location>({
+    key: favoriteLocation?.key ?? "215854",
+    localizedName: favoriteLocation?.localizedName ?? "Tel Aviv"
+  });
 
   const FetchLocation = (selectedOption: Location): void => {
-    favoriteLocation = useSelector((state: RootState) => FavoriteLocationSelectEntity(selectedOption.key)(state));
-    dispatch(fetchFavoriteLocation(selectedOption));
+    setSelectedOption(selectedOption);
   };
-  
+
   useEffect(() => {
     dispatch(fetchFavoriteLocation(selectedOption));
-  }, []);
+  }, [selectedOption]);
 
 
   return (
     <div className="home">
       <Card className="home__autocomplete home__card">
         <CardContent>
-          <ControlledAutocomplete handleChange={FetchLocation} selected={selectedOption} />
+          <ControlledAutocomplete handleChange={FetchLocation} query={selectedOption.localizedName} />
         </CardContent>
       </Card>
 

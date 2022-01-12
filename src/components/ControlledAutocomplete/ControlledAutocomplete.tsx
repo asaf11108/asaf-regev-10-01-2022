@@ -7,9 +7,9 @@ import { Location } from '../../store/favorite-location/favorite-location.model'
 import { ControlledAutocompleteProps } from './ControlledAutocomplete.model';
 import SearchIcon from '@mui/icons-material/Search';
 
-const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ selected, handleChange }) => {
+const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, handleChange }) => {
   const [options, setOptions] = useState<Location[]>([]);
-  const [inputValue, setInputValue] = React.useState(selected.localizedName);
+  const [inputValue, setInputValue] = React.useState(query);
   const [valid, setValid] = React.useState(true);
   const regex = /^[a-zA-Z ]+$/;
   const isValid = (query: string): boolean => !!query.length && regex.test(query);
@@ -40,10 +40,10 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ selecte
         <Autocomplete
           options={options}
           getOptionLabel={(option) => option.localizedName}
-          defaultValue={selected}
+          defaultValue={{key: '', localizedName: query}}
           onInputChange={(_, newInputValue) => handleInputChange(newInputValue)}
           onChange={(_, location) => location && handleChange(location)}
-          isOptionEqualToValue={(Option, value) => Option.key === value.key}
+          isOptionEqualToValue={(Option, value) => Option.localizedName === value.localizedName}
           renderInput={(params) =>
             <TextField
               {...params}

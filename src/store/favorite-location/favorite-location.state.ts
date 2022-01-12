@@ -11,7 +11,7 @@ const favoriteLocationsSlice = createSlice({
     initialState: favoriteLocationsAdapter.getInitialState({
         loading: false,
         error: null as any,
-        active: null as FavoriteLocation['key'] | null
+        active: '215854' as FavoriteLocation['key']
     }),
     reducers: {
         favoriteLocationsLoading(state, action) {
@@ -52,6 +52,8 @@ export const favoriteLocationSelectors = favoriteLocationsAdapter.getSelectors<R
 export const FavoriteLocationSelectEntity = (key: FavoriteLocation['key']) => {
     return createSelector((state: RootState) => state, state => state.favoriteLocations.entities[key]);
 }
+
+export const FavoriteLocationSelectActiveEntity = createSelector((state: RootState) => state, state => state.favoriteLocations.entities[state.favoriteLocations.active]);
 
 export const FavoriteLocationSelectLoading = createSelector((state: RootState) => state, state => state.favoriteLocations.loading);
 
