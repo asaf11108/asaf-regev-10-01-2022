@@ -11,14 +11,16 @@ import { FavoriteLocation } from '../../store/favorite-location/favorite-locatio
 import { favoriteLocationsActive, FavoriteLocationSelectors } from '../../store/favorite-location/favorite-location.state';
 import './Favorites.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Favorites: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const favoriteLocations: FavoriteLocation[] = useSelector(FavoriteLocationSelectors.selectAll).filter(favoriteLocation => favoriteLocation.isFavorite);
 
   const handleActiveForecast = (favoriteLocation: FavoriteLocation): void => {
     dispatch(favoriteLocationsActive(favoriteLocation.key));
-    // router.push({ name: "Home" });
+    navigate('/');
   };
 
   const mapToForecastComponent = (
