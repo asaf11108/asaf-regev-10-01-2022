@@ -9,7 +9,7 @@ import { _Forecast } from '../../components/Forecast/forecast.model';
 import { Location } from "../../store/favorite-location/favorite-location.model";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavoriteLocation } from '../../store/favorite-location/favorite-locations.thunk';
-import { FavoriteLocationSelectLoading, FavoriteLocationSelectActiveEntity, favoriteLocationsToggleFavorite } from '../../store/favorite-location/favorite-location.state';
+import { FavoriteLocationSelectLoading, FavoriteLocationSelectActiveEntity, favoriteLocationsToggleFavorite, favoriteLocationsActive } from '../../store/favorite-location/favorite-location.state';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -28,6 +28,7 @@ const Home: React.FC = () => {
 
   const handleSelectLocation = (selectedOption: Location): void => {
     setSelectedOption(selectedOption);
+    dispatch(favoriteLocationsActive(selectedOption.key));
   };
 
   const handleFavoriteClick = (): void => {
