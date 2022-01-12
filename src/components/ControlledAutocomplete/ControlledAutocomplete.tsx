@@ -3,7 +3,7 @@ import './ControlledAutocomplete.scss';
 import { useState } from 'react';
 import { Autocomplete, debounce, FormControl, FormHelperText, TextField } from '@mui/material';
 import { getLocations } from '../../api/api.service';
-import { Location } from '../../store/favorite-location/favorite-location.model';
+import { Location } from '../../store/favorite-locations/favorite-locations.model';
 import { ControlledAutocompleteProps } from './ControlledAutocomplete.model';
 import SearchIcon from '@mui/icons-material/Search';
 

@@ -1,4 +1,4 @@
-import { Location } from '../../store/favorite-location/favorite-location.model';
+import { Location } from '../../store/favorite-locations/favorite-locations.model';
 
 export interface ControlledAutocompleteProps {
     query: Location['key'];

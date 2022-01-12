@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import theme from './theme';
 import { Provider } from 'react-redux';
-import { store } from './store/favorite-location/favorite-location.state';
+import { store } from './store/favorite-locations/favorite-locations.state';
 
 ReactDOM.render(
   <React.StrictMode>

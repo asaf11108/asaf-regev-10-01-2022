@@ -6,10 +6,11 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Forecast from '../../components/Forecast/Forecast';
 import { _Forecast } from '../../components/Forecast/forecast.model';
-import { Location } from "../../store/favorite-location/favorite-location.model";
+import { Location } from "../../store/favorite-locations/favorite-locations.model";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchFavoriteLocation } from '../../store/favorite-location/favorite-locations.thunk';
-import { FavoriteLocationSelectLoading, FavoriteLocationSelectActiveEntity, favoriteLocationsToggleFavorite, favoriteLocationsActive } from '../../store/favorite-location/favorite-location.state';
+import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-locations.thunk';
+import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../store/favorite-locations/favorite-locations.action';
+import { FavoriteLocationSelectActiveEntity, FavoriteLocationSelectLoading } from '../../store/favorite-locations/favorite-locations.selector';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const Home: React.FC = () => {
     dispatch(favoriteLocationsActive(selectedOption.key));
   };
 
-  const handleFavoriteClick = (): void => {
+  function handleFavoriteClick(): void {
     dispatch(favoriteLocationsToggleFavorite({}));
   }
 
@@ -67,7 +68,7 @@ const Home: React.FC = () => {
                         <div className="home__body-header">{favoriteLocation.weatherText}</div>
                         <div className="home__forecasts">
                           {
-                            favoriteLocation.forecasts.map((forecast, i) => <Forecast key={i} forecast={forecast} />)
+                            favoriteLocation.forecasts.map(forecast => <Forecast key={forecast.title} forecast={forecast} />)
                           }
                         </div>
                       </div>

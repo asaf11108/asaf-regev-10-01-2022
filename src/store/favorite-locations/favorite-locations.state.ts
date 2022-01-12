@@ -1,12 +1,12 @@
 import { configureStore, createEntityAdapter, createSelector, createSlice } from "@reduxjs/toolkit";
-import { FavoriteLocation } from "./favorite-location.model";
+import { FavoriteLocation } from "./favorite-locations.model";
 import { fetchFavoriteLocation } from "./favorite-locations.thunk";
 
-const favoriteLocationsAdapter = createEntityAdapter<FavoriteLocation>({
+export const favoriteLocationsAdapter = createEntityAdapter<FavoriteLocation>({
     selectId: (favoriteLocation) => favoriteLocation.key,
 });
 
-const favoriteLocationsSlice = createSlice({
+export const favoriteLocationsSlice = createSlice({
     name: 'favoriteLocation',
     initialState: favoriteLocationsAdapter.getInitialState({
         loading: false,
@@ -46,23 +46,3 @@ export const store = configureStore({
         favoriteLocations: favoriteLocationsSlice.reducer,
     },
 });
-
-
-export const FavoriteLocationSelectors = favoriteLocationsAdapter.getSelectors<RootState>(
-    state => state.favoriteLocations
-);
-
-export const FavoriteLocationSelectEntity = (key: FavoriteLocation['key']) => {
-    return createSelector((state: RootState) => state, state => state.favoriteLocations.entities[key]);
-}
-
-export const FavoriteLocationSelectActiveEntity = createSelector((state: RootState) => state, state => state.favoriteLocations.entities[state.favoriteLocations.active]);
-
-export const FavoriteLocationSelectLoading = createSelector((state: RootState) => state, state => state.favoriteLocations.loading);
-
-export const {
-    favoriteLocationsLoading,
-    favoriteLocationsActive,
-    favoriteLocationsToggleFavorite
-} = favoriteLocationsSlice.actions
-

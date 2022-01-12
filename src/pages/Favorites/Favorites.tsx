@@ -1,17 +1,11 @@
-// import { ForecastData } from "./../../components/Forecast/forecast.data";
-// import { FavoriteLocation } from "./../../store/favorite-location.interface";
-// import Forecast from "./../../components/Forecast/index.vue";
-// import { computed, defineComponent } from "vue";
-// import { useRouter } from "vue-router";
-// import { useStore } from "vuex";
-
 import Forecast from '../../components/Forecast/Forecast';
 import { _Forecast } from '../../components/Forecast/forecast.model';
-import { FavoriteLocation } from '../../store/favorite-location/favorite-location.model';
-import { favoriteLocationsActive, FavoriteLocationSelectors } from '../../store/favorite-location/favorite-location.state';
+import { FavoriteLocation } from '../../store/favorite-locations/favorite-locations.model';
 import './Favorites.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { favoriteLocationsActive } from '../../store/favorite-locations/favorite-locations.action';
+import { FavoriteLocationSelectors } from '../../store/favorite-locations/favorite-locations.selector';
 
 const Favorites: React.FC = () => {
   const dispatch = useDispatch();
