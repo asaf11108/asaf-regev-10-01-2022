@@ -8,42 +8,16 @@
 import Forecast from '../../components/Forecast/Forecast';
 import { _Forecast } from '../../components/Forecast/forecast.model';
 import { FavoriteLocation } from '../../store/favorite-location/favorite-location.model';
+import { favoriteLocationsActive, FavoriteLocationSelectors } from '../../store/favorite-location/favorite-location.state';
 import './Favorites.scss';
-
-// export default defineComponent({
-//   name: "Favorites",
-//   components: {
-//     Forecast,
-//   },
-//   setup() {
-//     const router = useRouter();
-//     const store = useStore();
-
-
-//     const handleForecast = (favoriteLocation: FavoriteLocation): void => {
-//       store.dispatch("setActive", favoriteLocation.id);
-//       router.push({ name: "Home" });
-//     };
-
-//     const mapToForecastComponent = (
-//       favoriteLocation: FavoriteLocation
-//     ): ForecastData => {
-//       return {
-//         title: favoriteLocation.locationName,
-//         temperature: favoriteLocation.temperature,
-//         icon: favoriteLocation.icon,
-//       };
-//     };
-
-//     return { favoriteLocations, handleForecast, mapToForecastComponent };
-//   },
-// });
+import { useDispatch, useSelector } from 'react-redux';
 
 const Favorites: React.FC = () => {
-  const favoriteLocations: FavoriteLocation[] = ([] as FavoriteLocation[]).filter(favoriteLocation => favoriteLocation.isFavorite);
+  const dispatch = useDispatch();
+  const favoriteLocations: FavoriteLocation[] = useSelector(FavoriteLocationSelectors.selectAll).filter(favoriteLocation => favoriteLocation.isFavorite);
 
-  const handleForecast = (favoriteLocation: FavoriteLocation): void => {
-    // store.dispatch("setActive", favoriteLocation.id);
+  const handleActiveForecast = (favoriteLocation: FavoriteLocation): void => {
+    dispatch(favoriteLocationsActive(favoriteLocation.key));
     // router.push({ name: "Home" });
   };
 
@@ -61,7 +35,7 @@ const Favorites: React.FC = () => {
     <div className="favorites">
       {
         favoriteLocations.map(favoriteLocation =>
-          <div className="favorites__forecast" onClick={() => handleForecast(favoriteLocation)}>
+          <div className="favorites__forecast" onClick={() => handleActiveForecast(favoriteLocation)}>
             <Forecast key={favoriteLocation.key} forecast={mapToForecastComponent(favoriteLocation)} />
           </div>
         )

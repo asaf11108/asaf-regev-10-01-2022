@@ -48,7 +48,7 @@ export const store = configureStore({
 });
 
 
-export const favoriteLocationSelectors = favoriteLocationsAdapter.getSelectors<RootState>(
+export const FavoriteLocationSelectors = favoriteLocationsAdapter.getSelectors<RootState>(
     state => state.favoriteLocations
 );
 
