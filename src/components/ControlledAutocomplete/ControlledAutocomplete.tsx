@@ -12,16 +12,18 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
   const [inputValue, setInputValue] = React.useState(query);
   const [value, setValue] = React.useState<Location | null>({ key: '', localizedName: query });
   const [valid, setValid] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const regex = /^[a-zA-Z ]+$/;
   const isValid = (query: string): boolean => !!query.length && regex.test(query);
 
   const getOptionsDelayed = useCallback(
     debounce((query, callback) => {
-      isValid(query)
+      console.log(value, inputValue);
+      (valid && open)
         ? getLocations(query).then(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName }))).then(callback)
         : callback([]);
     }, 1000),
-    []
+    [valid, open]
   );
 
   useEffect(() => {
@@ -43,7 +45,10 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
   return (
     <div className='autocomplete'>
       <FormControl>
-        <Autocomplete
+          <Autocomplete
+          open={open}
+          onOpen={() => setOpen(true)}
+          onClose={() => setOpen(false)}
           value={value}
           options={options}
           getOptionLabel={(option) => option.localizedName}
