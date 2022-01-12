@@ -44,9 +44,9 @@ const Toolbar: React.FC = () => {
 
       <span className="toolbar__actions">
         {
-          menuItems.map((menuItem, index) => (
+          menuItems.map(menuItem => (
             <Button
-              key={index}
+              key={menuItem.label}
               style={{ textTransform: 'capitalize' }}
               onClick={() => navigate(menuItem.navigatePath)}
               variant={match(menuItem.navigatePath) ? 'contained' : 'text'}
@@ -69,10 +69,10 @@ const Toolbar: React.FC = () => {
           onClose={handleClose}
         >
           {
-            menuItems.map((menuItem, index) => (
+            menuItems.map(menuItem => (
               <MenuItem
                 onClick={() => handleClose(menuItem.navigatePath)}
-                key={index}
+                key={menuItem.label}
                 selected={!!match(menuItem.navigatePath)}
               >
                 {menuItem.label}
