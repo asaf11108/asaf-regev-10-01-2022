@@ -6,19 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import theme from './theme';
-import { QueryClient, QueryClientProvider } from 'react-query';
-
-const queryClient = new QueryClient();
+import { Provider } from 'react-redux';
+import { store } from './store/favorite-location/favorite-location.state';
 
 ReactDOM.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <App />
         </BrowserRouter>
       </ThemeProvider>
-    </QueryClientProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

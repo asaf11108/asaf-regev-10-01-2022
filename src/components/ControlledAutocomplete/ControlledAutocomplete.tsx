@@ -3,7 +3,7 @@ import './ControlledAutocomplete.scss';
 import { useState } from 'react';
 import { Autocomplete, debounce, FormControl, FormHelperText, TextField } from '@mui/material';
 import { getLocations } from '../../api/api.service';
-import { Location } from '../../interfaces/favorite-location.interface';
+import { Location } from '../../store/favorite-location/favorite-location.model';
 import { ControlledAutocompleteProps } from './ControlledAutocomplete.model';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -42,7 +42,7 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ selecte
           getOptionLabel={(option) => option.localizedName}
           defaultValue={selected}
           onInputChange={(_, newInputValue) => handleInputChange(newInputValue)}
-          onChange={(_, location) => location && handleChange(location.key)}
+          onChange={(_, location) => location && handleChange(location)}
           isOptionEqualToValue={(Option, value) => Option.key === value.key}
           renderInput={(params) =>
             <TextField

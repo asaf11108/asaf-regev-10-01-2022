@@ -7,7 +7,7 @@
 
 import Forecast from '../../components/Forecast/Forecast';
 import { _Forecast } from '../../components/Forecast/forecast.model';
-import { FavoriteLocation } from '../../interfaces/favorite-location.interface';
+import { FavoriteLocation } from '../../store/favorite-location/favorite-location.model';
 import './Favorites.scss';
 
 // export default defineComponent({

@@ -1,6 +1,6 @@
-import { Location } from '../../interfaces/favorite-location.interface';
+import { Location } from '../../store/favorite-location/favorite-location.model';
 
 export interface ControlledAutocompleteProps {
     selected: Location;
-    handleChange: (key: string) => void;
+    handleChange: (key: Location) => void;
 }
