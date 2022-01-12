@@ -9,7 +9,7 @@ import { _Forecast } from '../../components/Forecast/forecast.model';
 import { Location } from "../../store/favorite-location/favorite-location.model";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavoriteLocation } from '../../store/favorite-location/favorite-locations.thunk';
-import { FavoriteLocationSelectLoading, FavoriteLocationSelectActiveEntity } from '../../store/favorite-location/favorite-location.state';
+import { FavoriteLocationSelectLoading, FavoriteLocationSelectActiveEntity, favoriteLocationsToggleFavorite } from '../../store/favorite-location/favorite-location.state';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -21,20 +21,24 @@ const Home: React.FC = () => {
     localizedName: favoriteLocation?.localizedName ?? "Tel Aviv"
   });
 
-  const FetchLocation = (selectedOption: Location): void => {
-    setSelectedOption(selectedOption);
-  };
-
   useEffect(() => {
     dispatch(fetchFavoriteLocation(selectedOption));
   }, [selectedOption]);
 
 
+  const handleSelectLocation = (selectedOption: Location): void => {
+    setSelectedOption(selectedOption);
+  };
+
+  const handleFavoriteClick = (): void => {
+    dispatch(favoriteLocationsToggleFavorite({}));
+  }
+
   return (
     <div className="home">
       <Card className="home__autocomplete home__card">
         <CardContent>
-          <ControlledAutocomplete handleChange={FetchLocation} query={selectedOption.localizedName} />
+          <ControlledAutocomplete handleChange={handleSelectLocation} query={selectedOption.localizedName} />
         </CardContent>
       </Card>
 
@@ -47,7 +51,7 @@ const Home: React.FC = () => {
                 <span>{favoriteLocation.localizedName}</span>
                 <span>{favoriteLocation.temperature}&#176;C</span>
               </span>
-              <Button disabled={loading} onClick={() => { }}>
+              <Button disabled={loading} onClick={handleFavoriteClick}>
                 {
                   favoriteLocation.isFavorite
                     ? <FavoriteIcon fontSize="inherit" color="error" />

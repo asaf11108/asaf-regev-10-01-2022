@@ -19,6 +19,9 @@ const favoriteLocationsSlice = createSlice({
         },
         favoriteLocationsActive(state, action) {
             state.active = action.payload;
+        },
+        favoriteLocationsToggleFavorite(state, action) {
+            favoriteLocationsAdapter.updateOne(state, { id: state.active, changes: { isFavorite: !state.entities[state.active]?.isFavorite } });
         }
     },
     extraReducers: (builder) => {
@@ -59,6 +62,7 @@ export const FavoriteLocationSelectLoading = createSelector((state: RootState) =
 
 export const {
     favoriteLocationsLoading,
-    favoriteLocationsActive
+    favoriteLocationsActive,
+    favoriteLocationsToggleFavorite
 } = favoriteLocationsSlice.actions
 
