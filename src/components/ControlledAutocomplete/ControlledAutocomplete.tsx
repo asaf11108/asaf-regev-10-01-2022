@@ -10,6 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, handleChange }) => {
   const [options, setOptions] = useState<Location[]>([]);
   const [inputValue, setInputValue] = React.useState(query);
+  const [value, setValue] = React.useState<Location | null>({ key: '', localizedName: query });
   const [valid, setValid] = React.useState(true);
   const regex = /^[a-zA-Z ]+$/;
   const isValid = (query: string): boolean => !!query.length && regex.test(query);
@@ -34,15 +35,20 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
     setInputValue(query);
   }
 
+  const handleAutocomleteChange = (location: Location | null): void => {
+    setValue(location);
+    location && handleChange(location);
+  }
+
   return (
     <div className='autocomplete'>
       <FormControl>
         <Autocomplete
+          value={value}
           options={options}
           getOptionLabel={(option) => option.localizedName}
-          defaultValue={{key: '', localizedName: query}}
           onInputChange={(_, newInputValue) => handleInputChange(newInputValue)}
-          onChange={(_, location) => location && handleChange(location)}
+          onChange={(_, location) => handleAutocomleteChange(location)}
           isOptionEqualToValue={(Option, value) => Option.localizedName === value.localizedName}
           renderInput={(params) =>
             <TextField
