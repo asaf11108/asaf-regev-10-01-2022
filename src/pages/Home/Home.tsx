@@ -5,7 +5,6 @@ import { Button, Card, CardContent, CircularProgress, Typography } from '@mui/ma
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Forecast from '../../components/Forecast/Forecast';
-import { _Forecast } from '../../components/Forecast/forecast.model';
 import { Location } from "../../store/favorite-locations/favorite-locations.model";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-locations.thunk';
@@ -24,7 +23,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchFavoriteLocation(selectedOption));
-  }, [selectedOption]);
+  }, [dispatch, selectedOption]);
 
 
   const handleSelectLocation = (selectedOption: Location): void => {

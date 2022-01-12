@@ -1,4 +1,4 @@
-import { configureStore, createEntityAdapter, createSelector, createSlice } from "@reduxjs/toolkit";
+import { configureStore, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { FavoriteLocation } from "./favorite-locations.model";
 import { fetchFavoriteLocation } from "./favorite-locations.thunk";
 
