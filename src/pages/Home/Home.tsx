@@ -10,6 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-locations.thunk';
 import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../store/favorite-locations/favorite-locations.action';
 import { FavoriteLocationSelectActiveEntity, FavoriteLocationSelectLoading } from '../../store/favorite-locations/favorite-locations.selector';
+import { Option } from '../../interfaces/general';
+import { getLocations } from '../../api/api.service';
+import { ControlledAutocompleteProps } from '../../components/ControlledAutocomplete/ControlledAutocomplete.model';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,20 +29,27 @@ const Home: React.FC = () => {
   }, [dispatch, selectedOption]);
 
 
-  const handleSelectLocation = (selectedOption: Location): void => {
-    setSelectedOption(selectedOption);
-    dispatch(favoriteLocationsActive(selectedOption.key));
+  const handleSelectLocation = (selectedOption: Option): void => {
+    const location: Location = { key: selectedOption.id as string, localizedName: selectedOption.label };
+    setSelectedOption(location);
+    dispatch(favoriteLocationsActive(location.key));
   };
 
-  function handleFavoriteClick(): void {
+  const handleFavoriteClick = (): void => {
     dispatch(favoriteLocationsToggleFavorite({}));
   }
+
+  const promiseOptions: ControlledAutocompleteProps['promiseOptions'] = async (query) => {
+    return getLocations(query)
+      .then<Location[]>(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName })))
+      .then<Option[]>(res => res.map(location => ({ id: location.key, label: location.localizedName })))
+  };
 
   return (
     <div className="home">
       <Card className="home__autocomplete home__card">
         <CardContent>
-          <ControlledAutocomplete handleChange={handleSelectLocation} query={selectedOption.localizedName} />
+          <ControlledAutocomplete handleChange={handleSelectLocation} query={selectedOption.localizedName} promiseOptions={promiseOptions} placeholder="Search location"/>
         </CardContent>
       </Card>
 

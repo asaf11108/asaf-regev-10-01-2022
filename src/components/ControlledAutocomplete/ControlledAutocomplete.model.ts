@@ -1,6 +1,8 @@
-import { Location } from '../../store/favorite-locations/favorite-locations.model';
+import { Option } from "../../interfaces/general";
 
 export interface ControlledAutocompleteProps {
-    query: Location['key'];
-    handleChange: (key: Location) => void;
+    query: string;
+    handleChange: (key: Option) => void;
+    promiseOptions: (query: string) => Promise<Option[]>;
+    placeholder?: string;
 }

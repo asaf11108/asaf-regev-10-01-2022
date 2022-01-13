@@ -2,15 +2,14 @@ import React, { useCallback, useEffect } from 'react';
 import './ControlledAutocomplete.scss';
 import { useState } from 'react';
 import { Autocomplete, debounce, FormControl, FormHelperText, TextField } from '@mui/material';
-import { getLocations } from '../../api/api.service';
-import { Location } from '../../store/favorite-locations/favorite-locations.model';
 import { ControlledAutocompleteProps } from './ControlledAutocomplete.model';
 import SearchIcon from '@mui/icons-material/Search';
+import { Option } from "../../interfaces/general";
 
-const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, handleChange }) => {
-  const [options, setOptions] = useState<Location[]>([]);
+const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, handleChange, promiseOptions, placeholder = 'Search option' }) => {
+  const [options, setOptions] = useState<Option[]>([]);
   const [inputValue, setInputValue] = React.useState(query);
-  const [value, setValue] = React.useState<Location | null>({ key: '', localizedName: query });
+  const [value, setValue] = React.useState<Option | null>({ id: '', label: query });
   const [valid, setValid] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const regex = /^[a-zA-Z ]+$/;
@@ -19,14 +18,14 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
   const getOptionsDelayed = useCallback(
     debounce((query, callback) => {
       (valid && open)
-        ? getLocations(query).then(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName }))).then(callback)
+        ? promiseOptions(query).then(callback)
         : callback([]);
     }, 1000),
     [valid, open]
   );
 
   useEffect(() => {
-    getOptionsDelayed(inputValue, (filteredOptions: Location[]) => {
+    getOptionsDelayed(inputValue, (filteredOptions: Option[]) => {
       setOptions(filteredOptions);
     });
   }, [inputValue, getOptionsDelayed]);
@@ -36,9 +35,9 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
     setInputValue(query);
   }
 
-  const handleAutocomleteChange = (location: Location | null): void => {
-    setValue(location);
-    location && handleChange(location);
+  const handleAutocomleteChange = (option: Option | null): void => {
+    setValue(option);
+    option && handleChange(option);
   }
 
   return (
@@ -50,15 +49,15 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
           onClose={() => setOpen(false)}
           value={value}
           options={options}
-          getOptionLabel={(option) => option.localizedName}
+          getOptionLabel={(option) => option.label}
           onInputChange={(_, newInputValue) => handleInputChange(newInputValue)}
-          onChange={(_, location) => handleAutocomleteChange(location)}
-          isOptionEqualToValue={(Option, value) => Option.localizedName === value.localizedName}
+          onChange={(_, option) => handleAutocomleteChange(option)}
+          isOptionEqualToValue={(Option, value) => Option.label === value.label}
           renderInput={(params) =>
             <TextField
               {...params}
               variant="standard"
-              placeholder="Search location"
+              placeholder={placeholder}
               InputProps={{
                 ...params.InputProps,
                 startAdornment: (
