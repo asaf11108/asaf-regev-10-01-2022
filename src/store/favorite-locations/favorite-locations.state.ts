@@ -1,4 +1,4 @@
-import { configureStore, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { FavoriteLocation } from "./favorite-locations.model";
 import { fetchFavoriteLocation } from "./favorite-locations.thunk";
 
@@ -39,10 +39,3 @@ export const favoriteLocationsSlice = createSlice({
     }
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-
-export const store = configureStore({
-    reducer: {
-        favoriteLocations: favoriteLocationsSlice.reducer,
-    },
-});

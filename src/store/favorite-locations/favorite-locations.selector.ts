@@ -1,6 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
+import { RootState } from "../config";
 import { FavoriteLocation } from "./favorite-locations.model";
-import { favoriteLocationsAdapter, RootState } from "./favorite-locations.state";
+import { favoriteLocationsAdapter } from "./favorite-locations.state";
 
 export const FavoriteLocationSelectors = favoriteLocationsAdapter.getSelectors<RootState>(
     state => state.favoriteLocations
