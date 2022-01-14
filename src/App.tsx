@@ -9,13 +9,6 @@ import { Snackbar } from '@mui/material';
 
 const App: React.FC = () => {
   const [open, setOpen] = React.useState(false);
-  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
 
   httpInterceptor(setOpen);
 
@@ -39,7 +32,6 @@ const App: React.FC = () => {
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={open}
         autoHideDuration={5000}
-        onClose={handleClose}
         message="Unable to retrieve data. Switched to mock data."
       />
     </div>
