@@ -10,6 +10,7 @@ import { Snackbar } from '@mui/material';
 const App: React.FC = () => {
   const [open, setOpen] = React.useState(false);
 
+  //TODO: performance issue
   httpInterceptor(setOpen);
 
   return (

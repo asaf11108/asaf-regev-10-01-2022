@@ -6,6 +6,7 @@ import { ControlledAutocompleteProps } from './ControlledAutocomplete.model';
 import SearchIcon from '@mui/icons-material/Search';
 import { Option } from "../../interfaces/general";
 
+//TODO: implement this with form hook and rxjs
 const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, handleChange, promiseOptions, placeholder = 'Search option' }) => {
   const [options, setOptions] = useState<Option[]>([]);
   const [inputValue, setInputValue] = React.useState(query);
