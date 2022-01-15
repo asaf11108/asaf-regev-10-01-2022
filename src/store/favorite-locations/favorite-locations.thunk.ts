@@ -6,7 +6,7 @@ import { FavoriteLocation, Location } from "./favorite-locations.model";
 
 
 export const fetchFavoriteLocation = createAsyncThunk('favoriteLocations/fetchFavoriteLocation', async (selectedOption: Location) => {
-    return await Promise.all([
+    return Promise.all([
         getCurrentConditions(selectedOption.key),
         getForecasts(selectedOption.key)
     ]).then(res => {
