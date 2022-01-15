@@ -4,14 +4,19 @@ import Toolbar from './components/Toolbar/Toolbar';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Favorites from './pages/Favorites/Favorites';
-import { httpInterceptor } from './interceptors/http.interceptor';
+import apiKeyInterceptor from './interceptors/api-key.interceptor';
+import errorInterceptor from './interceptors/erros.interceptor';
 import { Snackbar } from '@mui/material';
+import { useFirstMountState } from 'react-use';
 
 const App: React.FC = () => {
   const [open, setOpen] = React.useState(false);
+  const isFirstMount = useFirstMountState();
 
-  //TODO: performance issue
-  httpInterceptor(setOpen);
+  if (isFirstMount) {
+    apiKeyInterceptor();
+    errorInterceptor(setOpen);
+  }
 
   return (
     <div className="app">
@@ -32,6 +37,7 @@ const App: React.FC = () => {
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={open}
+        onClose={() => setOpen(false)}
         autoHideDuration={5000}
         message="Unable to retrieve data. Switched to mock data."
       />
