@@ -15,14 +15,20 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
 
   const {
     field: { onChange, onBlur, value, ref },
-    fieldState: { invalid },
+    fieldState: { invalid, error },
   } = useController({
     name,
     control,
     defaultValue: query,
     rules: {
-      required: true,
-      pattern: regex
+      required: {
+        value: true,
+        message: 'Please enter location'
+      },
+      pattern: {
+        value: regex,
+        message: 'Only letters are allowed'
+      }
     }
   });
 
@@ -52,7 +58,7 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
         ref={ref}
         onBlur={onBlur}
         value={value}
-        onInputChange={onChange}
+        onInputChange={(_, option) => onChange(option)}
         open={open}
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
@@ -71,7 +77,7 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
             }}
           />}
       />
-      {invalid && <FormHelperText error>Invalid input</FormHelperText>}
+      {invalid && <FormHelperText error>{error?.message}</FormHelperText>}
     </FormControl>
   );
 };

@@ -19,7 +19,7 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
   const loading = useSelector(FavoriteLocationSelectLoading);
   const favoriteLocation = useSelector(FavoriteLocationSelectActiveEntity);
-  const { control } = useForm();
+  const { control } = useForm({ mode: 'onChange' });
 
   const [selectedOption, setSelectedOption] = useState<Location>({
     key: favoriteLocation?.key ?? "215854",
