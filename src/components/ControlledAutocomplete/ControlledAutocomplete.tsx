@@ -6,11 +6,13 @@ import { ControlledAutocompleteProps } from './ControlledAutocomplete.model';
 import SearchIcon from '@mui/icons-material/Search';
 import { Option } from "../../interfaces/general";
 import { useController } from 'react-hook-form';
+import { CircularProgress } from '@mui/material';
 
 //TODO: implement this with form hook and rxjs
 const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, handleChange, promiseOptions, placeholder = 'Search option', control, name }) => {
   const [options, setOptions] = useState<Option[]>([]);
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const regex = /^[a-zA-Z ]+$/;
 
   const {
@@ -35,7 +37,7 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
   const getOptionsDelayed = useCallback(
     debounce((query, callback) => {
       (!invalid && open)
-        ? promiseOptions(query).then(callback)
+        ? Promise.resolve().then(() => setLoading(true)).then(() => promiseOptions(query)).then(callback).finally(() => setLoading(false))
         : callback([]);
     }, 1000),
     [invalid, open]
@@ -73,6 +75,9 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
               ...params.InputProps,
               startAdornment: (
                 <SearchIcon />
+              ),
+              endAdornment: (
+                loading && <CircularProgress size="1rem"/>
               )
             }}
           />}
