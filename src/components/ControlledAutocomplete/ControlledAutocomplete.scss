@@ -5,5 +5,9 @@
 
     .MuiFormControl-root {
         width: 100%;
+
+        .MuiAutocomplete-inputRoot {
+            padding-right: 0 !important;
+        }
     }
 }
