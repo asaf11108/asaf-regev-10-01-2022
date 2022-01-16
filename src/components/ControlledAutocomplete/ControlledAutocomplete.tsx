@@ -48,7 +48,7 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
   }, [value, getOptionsDelayed]);
 
   const handleAutocomleteChange = (option: Option | null): void => {
-    onChange(option?.label);
+    onChange(option?.label || '');
     option && handleChange(option);
   }
 
@@ -58,7 +58,7 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
         ref={ref}
         onBlur={onBlur}
         value={value}
-        onInputChange={(_, option) => onChange(option)}
+        onInputChange={(_, query) => onChange(query)}
         open={open}
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
