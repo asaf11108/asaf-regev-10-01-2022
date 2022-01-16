@@ -13,11 +13,13 @@ import { FavoriteLocationSelectActiveEntity, FavoriteLocationSelectLoading } fro
 import { Option } from '../../interfaces/general';
 import { getLocations } from '../../api/api.service';
 import { ControlledAutocompleteProps } from '../../components/ControlledAutocomplete/ControlledAutocomplete.model';
+import { useForm } from 'react-hook-form';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const loading = useSelector(FavoriteLocationSelectLoading);
   const favoriteLocation = useSelector(FavoriteLocationSelectActiveEntity);
+  const { control } = useForm();
 
   const [selectedOption, setSelectedOption] = useState<Location>({
     key: favoriteLocation?.key ?? "215854",
@@ -49,7 +51,14 @@ const Home: React.FC = () => {
     <div className="home">
       <Card className="home__autocomplete home__card">
         <CardContent>
-          <ControlledAutocomplete handleChange={handleSelectLocation} query={selectedOption.localizedName} promiseOptions={promiseOptions} placeholder="Search location"/>
+          <ControlledAutocomplete
+            handleChange={handleSelectLocation}
+            query={selectedOption.localizedName}
+            promiseOptions={promiseOptions}
+            placeholder="Search location"
+            name="query"
+            control={control}
+          />
         </CardContent>
       </Card>
 
