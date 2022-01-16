@@ -2,18 +2,17 @@ import React, { useCallback, useEffect } from 'react';
 import './ControlledAutocomplete.scss';
 import { useState } from 'react';
 import { Autocomplete, debounce, FormControl, FormHelperText, TextField } from '@mui/material';
-import { ControlledAutocompleteProps } from './ControlledAutocomplete.model';
+import { ControllerAutocompleteProps } from './ControlledAutocomplete.model';
 import SearchIcon from '@mui/icons-material/Search';
 import { Option } from "../../interfaces/general";
 import { useController } from 'react-hook-form';
 import { CircularProgress } from '@mui/material';
 
 //TODO: implement this with form hook and rxjs
-const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, handleChange, promiseOptions, placeholder = 'Search option', control, name }) => {
+const ControllerAutocomplete: React.FC<ControllerAutocompleteProps> = ({ query, handleChange, promiseOptions, placeholder = 'Search option', control, name }) => {
   const [options, setOptions] = useState<Option[]>([]);
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const regex = /^[a-zA-Z ]+$/;
 
   const {
     field: { onChange, onBlur, value, ref },
@@ -28,7 +27,7 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
         message: 'Please enter location'
       },
       pattern: {
-        value: regex,
+        value: /^[a-zA-Z ]+$/,
         message: 'Only letters are allowed'
       }
     }
@@ -87,4 +86,4 @@ const ControlledAutocomplete: React.FC<ControlledAutocompleteProps> = ({ query, 
   );
 };
 
-export default ControlledAutocomplete;
+export default ControllerAutocomplete;

@@ -1,7 +1,7 @@
 import { Control, FieldValues } from "react-hook-form";
 import { Option } from "../../interfaces/general";
 
-export interface ControlledAutocompleteProps {
+export interface ControllerAutocompleteProps {
     query: string;
     handleChange: (key: Option) => void;
     promiseOptions: (query: string) => Promise<Option[]>;
