@@ -51,14 +51,16 @@ const Home: React.FC = () => {
     <div className="home">
       <Card className="home__autocomplete home__card">
         <CardContent>
-          <ControllerAutocomplete
-            handleChange={handleSelectLocation}
-            query={selectedOption.localizedName}
-            promiseOptions={promiseOptions}
-            placeholder="Search location"
-            name="query"
-            control={control}
-          />
+          <form>
+            <ControllerAutocomplete
+              handleChange={handleSelectLocation}
+              query={selectedOption.localizedName}
+              promiseOptions={promiseOptions}
+              placeholder="Search location"
+              name="query"
+              control={control}
+            />
+          </form>
         </CardContent>
       </Card>
 
