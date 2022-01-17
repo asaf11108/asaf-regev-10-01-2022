@@ -56,7 +56,7 @@ const Home: React.FC = () => {
               handleChange={handleSelectLocation}
               query={selectedOption.localizedName}
               promiseOptions={promiseOptions}
-              placeholder="Search location"
+              optionText="location"
               name="query"
               control={control}
             />

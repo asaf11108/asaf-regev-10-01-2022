@@ -5,7 +5,7 @@ export interface ControllerAutocompleteProps {
     query: string;
     handleChange: (key: Option) => void;
     promiseOptions: (query: string) => Promise<Option[]>;
-    placeholder?: string;
+    optionText?: string;
     control: Control<FieldValues, object>;
     name: string;
 }

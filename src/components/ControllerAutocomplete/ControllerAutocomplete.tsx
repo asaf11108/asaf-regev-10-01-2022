@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import './ControlledAutocomplete.scss';
+import './ControllerAutocomplete.scss';
 import { useState } from 'react';
 import { Autocomplete, debounce, FormControl, FormHelperText, TextField } from '@mui/material';
 import { ControllerAutocompleteProps } from './ControllerAutocomplete.model';
@@ -8,7 +8,7 @@ import { Option } from "../../interfaces/general";
 import { useController } from 'react-hook-form';
 import { CircularProgress } from '@mui/material';
 
-const ControllerAutocomplete: React.FC<ControllerAutocompleteProps> = ({ query, handleChange, promiseOptions, placeholder = 'Search option', control, name }) => {
+const ControllerAutocomplete: React.FC<ControllerAutocompleteProps> = ({ query, handleChange, promiseOptions, optionText = 'option', control, name }) => {
   const [options, setOptions] = useState<Option[]>([]);
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
@@ -23,7 +23,7 @@ const ControllerAutocomplete: React.FC<ControllerAutocompleteProps> = ({ query, 
     rules: {
       required: {
         value: true,
-        message: 'Please enter location'
+        message: `Please enter ${optionText}`
       },
       pattern: {
         value: /^[a-zA-Z ]+$/,
@@ -68,7 +68,7 @@ const ControllerAutocomplete: React.FC<ControllerAutocompleteProps> = ({ query, 
           <TextField
             {...params}
             variant="standard"
-            placeholder={placeholder}
+            placeholder={`Search ${optionText}`}
             InputProps={{
               ...params.InputProps,
               startAdornment: (
