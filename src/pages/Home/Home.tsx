@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Home.scss';
-import ControllerAutocomplete from '../../components/ControlledAutocomplete/ControlledAutocomplete';
+import ControllerAutocomplete from '../../components/ControllerAutocomplete/ControllerAutocomplete';
 import { Button, Card, CardContent, CircularProgress, Typography } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -12,7 +12,7 @@ import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../
 import { FavoriteLocationSelectActiveEntity, FavoriteLocationSelectLoading } from '../../store/favorite-locations/favorite-locations.selector';
 import { Option } from '../../interfaces/general';
 import { getLocations } from '../../api/api.service';
-import { ControllerAutocompleteProps } from '../../components/ControlledAutocomplete/ControlledAutocomplete.model';
+import { ControllerAutocompleteProps } from '../../components/ControllerAutocomplete/ControllerAutocomplete.model';
 import { useForm } from 'react-hook-form';
 
 const Home: React.FC = () => {

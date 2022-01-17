@@ -2,13 +2,12 @@ import React, { useCallback, useEffect } from 'react';
 import './ControlledAutocomplete.scss';
 import { useState } from 'react';
 import { Autocomplete, debounce, FormControl, FormHelperText, TextField } from '@mui/material';
-import { ControllerAutocompleteProps } from './ControlledAutocomplete.model';
+import { ControllerAutocompleteProps } from './ControllerAutocomplete.model';
 import SearchIcon from '@mui/icons-material/Search';
 import { Option } from "../../interfaces/general";
 import { useController } from 'react-hook-form';
 import { CircularProgress } from '@mui/material';
 
-//TODO: implement this with form hook and rxjs
 const ControllerAutocomplete: React.FC<ControllerAutocompleteProps> = ({ query, handleChange, promiseOptions, placeholder = 'Search option', control, name }) => {
   const [options, setOptions] = useState<Option[]>([]);
   const [open, setOpen] = React.useState(false);
