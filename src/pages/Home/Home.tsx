@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Home.scss';
-import ControlledAutocomplete from '../../components/ControlledAutocomplete/ControlledAutocomplete';
+import ControllerAutocomplete from '../../components/ControllerAutocomplete/ControllerAutocomplete';
 import { Button, Card, CardContent, CircularProgress, Typography } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -12,12 +12,14 @@ import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../
 import { FavoriteLocationSelectActiveEntity, FavoriteLocationSelectLoading } from '../../store/favorite-locations/favorite-locations.selector';
 import { Option } from '../../interfaces/general';
 import { getLocations } from '../../api/api.service';
-import { ControlledAutocompleteProps } from '../../components/ControlledAutocomplete/ControlledAutocomplete.model';
+import { ControllerAutocompleteProps } from '../../components/ControllerAutocomplete/ControllerAutocomplete.model';
+import { useForm } from 'react-hook-form';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const loading = useSelector(FavoriteLocationSelectLoading);
   const favoriteLocation = useSelector(FavoriteLocationSelectActiveEntity);
+  const { control } = useForm({ mode: 'onChange' });
 
   const [selectedOption, setSelectedOption] = useState<Location>({
     key: favoriteLocation?.key ?? "215854",
@@ -39,7 +41,7 @@ const Home: React.FC = () => {
     dispatch(favoriteLocationsToggleFavorite({}));
   }
 
-  const promiseOptions: ControlledAutocompleteProps['promiseOptions'] = async (query) => {
+  const promiseOptions: ControllerAutocompleteProps['promiseOptions'] = async (query) => {
     return getLocations(query)
       .then<Location[]>(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName })))
       .then<Option[]>(res => res.map(location => ({ id: location.key, label: location.localizedName })))
@@ -49,7 +51,16 @@ const Home: React.FC = () => {
     <div className="home">
       <Card className="home__autocomplete home__card">
         <CardContent>
-          <ControlledAutocomplete handleChange={handleSelectLocation} query={selectedOption.localizedName} promiseOptions={promiseOptions} placeholder="Search location"/>
+          <form>
+            <ControllerAutocomplete
+              handleChange={handleSelectLocation}
+              query={selectedOption.localizedName}
+              promiseOptions={promiseOptions}
+              optionText="location"
+              name="query"
+              control={control}
+            />
+          </form>
         </CardContent>
       </Card>
 
