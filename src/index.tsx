@@ -8,13 +8,16 @@ import { ThemeProvider } from '@mui/material';
 import theme from './theme';
 import { Provider } from 'react-redux';
 import { store } from './store/config';
+import ApiProvider from './api/api.provider';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <App />
+          <ApiProvider>
+            <App />
+          </ApiProvider>
         </ThemeProvider>
       </Provider>
     </BrowserRouter>

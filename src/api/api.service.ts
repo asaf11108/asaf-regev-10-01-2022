@@ -1,5 +1,5 @@
 import { CurrentConditions } from './interfaces/current-conditions';
-import { getMockCurrentConditions, getMockForecasts, getMockLocations } from "./api.mock.service";
+import { getMockCurrentConditions, getMockForecasts, getMockLocations } from "./api-mock.service";
 import { Forecasts } from './interfaces/forecasts';
 import { AutocompleteOption } from './interfaces/autocomplete';
 import axios from 'axios';
@@ -7,7 +7,7 @@ import axios from 'axios';
 const HTTP_PREFIX = "https://cors-anywhere.herokuapp.com/";
 const ENDPOINT = "http://dataservice.accuweather.com/";
 
-export function getLocations(query: string): Promise<AutocompleteOption[]> {
+export async function getLocations(query: string): Promise<AutocompleteOption[]> {
   return axios.get<AutocompleteOption[]>(
     `${HTTP_PREFIX}${ENDPOINT}locations/v1/cities/autocomplete`,
     {
@@ -20,7 +20,7 @@ export function getLocations(query: string): Promise<AutocompleteOption[]> {
     });
 }
 
-export function getCurrentConditions(key: string): Promise<CurrentConditions> {
+export async function getCurrentConditions(key: string): Promise<CurrentConditions> {
   return axios.get<CurrentConditions>(
     `${HTTP_PREFIX}${ENDPOINT}currentconditions/v1/${key}`
   )
@@ -30,7 +30,7 @@ export function getCurrentConditions(key: string): Promise<CurrentConditions> {
     });
 }
 
-export function getForecasts(key: string): Promise<Forecasts['DailyForecasts']> {
+export async function getForecasts(key: string): Promise<Forecasts['DailyForecasts']> {
   return axios.get(
     `${HTTP_PREFIX}${ENDPOINT}forecasts/v1/daily/5day/${key}`,
     {
