@@ -3,7 +3,7 @@ import { IApiService } from "./api,interface";
 import { getMockCurrentConditions, getMockForecasts, getMockLocations } from "./api-mock.service";
 import { getCurrentConditions, getForecasts, getLocations } from "./api.service";
 
-const defaultApi: IApiService = process.env.REACT_APP_PRODUCTION
+export const defaultApi: IApiService = process.env.REACT_APP_PRODUCTION
   ? ({
     getLocations: getLocations,
     getCurrentConditions: getCurrentConditions,

@@ -13,13 +13,13 @@ import ApiProvider from './api/api.provider';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <ApiProvider>
+      <ApiProvider>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
             <App />
-          </ApiProvider>
-        </ThemeProvider>
-      </Provider>
+          </ThemeProvider>
+        </Provider>
+      </ApiProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

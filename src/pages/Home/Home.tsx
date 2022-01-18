@@ -11,14 +11,15 @@ import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-l
 import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../store/favorite-locations/favorite-locations.action';
 import { FavoriteLocationSelectActiveEntity, FavoriteLocationSelectLoading } from '../../store/favorite-locations/favorite-locations.selector';
 import { Option } from '../../interfaces/general';
-import { getLocations } from '../../api/api.service';
 import { ControllerAutocompleteProps } from '../../components/ControllerAutocomplete/ControllerAutocomplete.model';
 import { useForm } from 'react-hook-form';
+import { useApi } from '../../api/api.provider';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const loading = useSelector(FavoriteLocationSelectLoading);
   const favoriteLocation = useSelector(FavoriteLocationSelectActiveEntity);
+  const api = useApi();
   const { control } = useForm({ mode: 'onChange' });
 
   const [selectedOption, setSelectedOption] = useState<Location>({
@@ -42,7 +43,7 @@ const Home: React.FC = () => {
   }
 
   const promiseOptions: ControllerAutocompleteProps['promiseOptions'] = async (query) => {
-    return getLocations(query)
+    return api.getLocations(query)
       .then<Location[]>(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName })))
       .then<Option[]>(res => res.map(location => ({ id: location.key, label: location.localizedName })))
   };

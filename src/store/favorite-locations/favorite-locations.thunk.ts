@@ -1,14 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { format } from "date-fns";
-import { getCurrentConditions, getForecasts } from "../../api/api.service";
+import { defaultApi } from "../../api/api.provider";
 import { _Forecast } from "../../components/Forecast/forecast.model";
 import { FavoriteLocation, Location } from "./favorite-locations.model";
 
 
 export const fetchFavoriteLocation = createAsyncThunk('favoriteLocations/fetchFavoriteLocation', async (selectedOption: Location) => {
     return Promise.all([
-        getCurrentConditions(selectedOption.key),
-        getForecasts(selectedOption.key)
+        defaultApi.getCurrentConditions(selectedOption.key),
+        defaultApi.getForecasts(selectedOption.key)
     ]).then(res => {
         const currentConditions = res[0][0];
         const forecasts: _Forecast[] = res[1].map(forecast => ({
