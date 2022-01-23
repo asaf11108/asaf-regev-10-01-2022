@@ -1,5 +1,5 @@
 import { get } from "lodash-es";
-import { Fragment, ReactNode, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { ColumnType, TableColumn, _TableColumn } from "./Table.model";
 
 export const useColumns = (columns: TableColumn[]) => {

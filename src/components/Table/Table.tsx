@@ -9,7 +9,7 @@ const Table: React.FC<TableProps> = ({columns, rows}) => {
 
     return (
         <TableContainer className="table" sx={{ maxHeight: 440 }}>
-        <MuiTable stickyHeader aria-label="sticky table">
+        <MuiTable stickyHeader>
           <TableHead>
             <TableRow>
               {cols.map((col) => (
@@ -23,7 +23,7 @@ const Table: React.FC<TableProps> = ({columns, rows}) => {
             {rows
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover key={row.code}>
                     {cols.map((col) => 
                         <TableCell key={col.prop}>
                           {col.cell(row)}
