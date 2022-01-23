@@ -13,7 +13,7 @@ export const useColumns = (columns: TableColumn[]) => {
 
                 switch (col.type) {
                     case ColumnType.Favorite:
-                        cell = (row) => <span style={{fontSize: '1.2rem'}}><Favorite isFavorite={get(row, col.prop)} /></span>
+                        cell = (row) => <span style={{fontSize: '1.2em'}}><Favorite isFavorite={get(row, col.prop)} /></span>
                         break;
                     default:
                         cell = (row) => <span>{get(row, col.prop)}</span>

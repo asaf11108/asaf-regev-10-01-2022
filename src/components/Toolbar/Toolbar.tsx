@@ -29,7 +29,7 @@ const Toolbar: React.FC = () => {
       </span>
 
       <span className="toolbar__actions">
-        <ToolbarTempratureMode />
+        <span className="temprature-mode"><ToolbarTempratureMode /></span>
         {
           MENU.map(menuItem => (
             <Button
@@ -44,7 +44,7 @@ const Toolbar: React.FC = () => {
         }
       </span>
 
-      <span className="toolbar__actions--mobile">
+      <span className="toolbar__actions-mobile">
         <IconButton color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
           <MenuIcon />
         </IconButton>
@@ -66,7 +66,7 @@ const Toolbar: React.FC = () => {
               </MenuItem>
             ))
           }
-          <ToolbarTempratureMode />
+          <div className="text-align-center"><ToolbarTempratureMode /></div>
         </Menu>
       </span >
 

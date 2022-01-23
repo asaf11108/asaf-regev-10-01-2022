@@ -75,7 +75,7 @@ const ControllerAutocomplete: React.FC<ControllerAutocompleteProps> = ({ query, 
                 <SearchIcon />
               ),
               endAdornment: (
-                loading && <CircularProgress size="1rem"/>
+                loading && <CircularProgress size="1em"/>
               ),
             }}
           />}
