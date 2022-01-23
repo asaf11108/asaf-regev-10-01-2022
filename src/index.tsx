@@ -7,8 +7,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import theme from './theme';
 import { Provider } from 'react-redux';
-import { store } from './store/config';
+import { persistor, store } from './store/config';
 import ApiProvider from './api/api.provider';
+import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,7 +17,9 @@ ReactDOM.render(
       <ApiProvider>
         <Provider store={store}>
           <ThemeProvider theme={theme}>
-            <App />
+            <PersistGate loading={null} persistor={persistor}>
+              <App />
+            </PersistGate>
           </ThemeProvider>
         </Provider>
       </ApiProvider>
