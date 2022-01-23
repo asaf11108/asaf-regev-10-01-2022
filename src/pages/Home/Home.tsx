@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './Home.scss';
 import ControllerAutocomplete from '../../components/ControllerAutocomplete/ControllerAutocomplete';
 import { Button, Card, CardContent, CircularProgress, Typography } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import Forecast from '../../components/Forecast/Forecast';
 import { Location } from "../../store/favorite-locations/favorite-locations.model";
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +12,7 @@ import { Option } from '../../interfaces/general';
 import { ControllerAutocompleteProps } from '../../components/ControllerAutocomplete/ControllerAutocomplete.model';
 import { useForm } from 'react-hook-form';
 import { useApi } from '../../api/api.provider';
+import Favorite from '../../components/Favorite/Favorite';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -78,11 +77,7 @@ const Home: React.FC = () => {
                           <span>{favoriteLocation.temperature}&#176;C</span>
                         </span>
                         <Button disabled={loading} onClick={handleFavoriteClick}>
-                          {
-                            favoriteLocation.isFavorite
-                              ? <FavoriteIcon fontSize="inherit" color="error" />
-                              : <FavoriteBorderIcon fontSize="inherit" />
-                          }
+                          <Favorite isFavorite={favoriteLocation.isFavorite}/>
                         </Button>
                       </Typography>
                       <div className="home__body">

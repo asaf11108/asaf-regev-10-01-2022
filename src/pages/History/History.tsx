@@ -20,7 +20,10 @@ const History: React.FC = () => {
 
   return (
     <Card className="history">
-      <Table columns={COLUMNS} rows={favoriteLocations} rowClick={handleRowClick}/>
+      <Table
+        columns={COLUMNS}
+        rows={favoriteLocations}
+        rowClick={handleRowClick}/>
     </Card>
   );
 }

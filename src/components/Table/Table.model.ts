@@ -2,7 +2,8 @@
 export enum ColumnType {
     Text,
     Number,
-    Date
+    Date,
+    Favorite
 }
 
 export interface TableColumn {
