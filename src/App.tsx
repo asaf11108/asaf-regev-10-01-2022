@@ -8,6 +8,7 @@ import apiKeyInterceptor from './interceptors/api-key.interceptor';
 import errorInterceptor from './interceptors/erros.interceptor';
 import { Snackbar } from '@mui/material';
 import { useFirstMountState } from 'react-use';
+import History from './pages/History/History';
 
 const App: React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -28,6 +29,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/history" element={<History />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
 

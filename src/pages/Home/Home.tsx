@@ -50,7 +50,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="home">
-      <Card className="home__autocomplete home__card">
+      <Card className="home__autocomplete">
         <CardContent>
           <form>
             <ControllerAutocomplete
@@ -66,7 +66,7 @@ const Home: React.FC = () => {
       </Card>
 
       {
-          <Card className="home__card">
+          <Card>
             {
               loading
               ? <div className="home__loader"><div><CircularProgress /></div></div>

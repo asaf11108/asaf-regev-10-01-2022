@@ -31,6 +31,10 @@ const Toolbar: React.FC = () => {
     {
       label: 'Favorites',
       navigatePath: '/favorites'
+    },
+    {
+      label: 'History',
+      navigatePath: '/history'
     }
   ];
 
