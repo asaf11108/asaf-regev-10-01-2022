@@ -3,11 +3,8 @@ import './Toolbar.scss';
 import { useNavigate, useMatch } from "react-router-dom";
 import { Button, IconButton, Menu, MenuItem, Toolbar as MuiToolbar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-
-interface IMenuItem {
-  label: string;
-  navigatePath: string
-};
+import { CORS_URL, GITHUB_URL, MENU } from './Toolbar.config';
+import ToolbarTempratureMode from './Toolbar-temprature-mode';
 
 const Toolbar: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -23,32 +20,18 @@ const Toolbar: React.FC = () => {
     navigate(navigatePath);
   };
 
-  const menuItems: IMenuItem[] = [
-    {
-      label: 'Home',
-      navigatePath: '/'
-    },
-    {
-      label: 'Favorites',
-      navigatePath: '/favorites'
-    },
-    {
-      label: 'History',
-      navigatePath: '/history'
-    }
-  ];
-
   return (
     <MuiToolbar className="toolbar">
       <span className="toolbar__title">
         <span>Weather Task</span>
-        <a href="https://cors-anywhere.herokuapp.com/corsdemo">CORS</a>
-        <a href="https://github.com/asaf11108/asaf-regev-10-01-2022">GitHub</a>
+        <a href={CORS_URL}>CORS</a>
+        <a href={GITHUB_URL}>GitHub</a>
       </span>
 
       <span className="toolbar__actions">
+        <ToolbarTempratureMode />
         {
-          menuItems.map(menuItem => (
+          MENU.map(menuItem => (
             <Button
               key={menuItem.label}
               style={{ textTransform: 'capitalize' }}
@@ -73,7 +56,7 @@ const Toolbar: React.FC = () => {
           onClose={handleClose}
         >
           {
-            menuItems.map(menuItem => (
+            MENU.map(menuItem => (
               <MenuItem
                 onClick={() => handleClose(menuItem.navigatePath)}
                 key={menuItem.label}
@@ -83,6 +66,7 @@ const Toolbar: React.FC = () => {
               </MenuItem>
             ))
           }
+          <ToolbarTempratureMode />
         </Menu>
       </span >
 
