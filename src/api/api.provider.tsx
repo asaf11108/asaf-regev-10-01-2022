@@ -5,9 +5,9 @@ import { getCurrentConditions, getForecasts, getLocations } from "./api.service"
 
 export const defaultApi: IApiService = process.env.REACT_APP_PRODUCTION === 'true'
   ? ({
-    getLocations: getLocations,
-    getCurrentConditions: getCurrentConditions,
-    getForecasts: getForecasts
+    getLocations,
+    getCurrentConditions,
+    getForecasts
   })
   : ({
     getLocations: getMockLocations,
