@@ -19,4 +19,5 @@ export interface _TableColumn<T = any> extends TableColumn {
 export interface TableProps<T = any> {
     rows: T[];
     columns: TableColumn[];
+    rowClick?: (row: T) => void;
 }
