@@ -1,6 +1,6 @@
 
-export type TemperatureMode = 'celsius' | 'fahrenheit';
+export type TemperatureType = 'celsius' | 'fahrenheit';
 
 export interface GeneralState {
-  temperatureMode: TemperatureMode;
+  temperatureType: TemperatureType;
 }
