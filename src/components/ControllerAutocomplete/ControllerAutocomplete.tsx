@@ -34,7 +34,7 @@ const ControllerAutocomplete: React.FC<ControllerAutocompleteProps> = ({ query, 
 
   const getOptionsDelayed = useCallback(
     debounce((query, callback) => {
-      (!invalid && open)
+      (!invalid && open && query)
         ? Promise.resolve().then(() => setLoading(true)).then(() => promiseOptions(query)).then(callback).finally(() => setLoading(false))
         : callback([]);
     }, 1000),
