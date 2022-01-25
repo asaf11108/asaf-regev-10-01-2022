@@ -14,7 +14,7 @@ const Table: React.FC<TableProps> = ({ columns, rows, rowClick, idProp = 'id' })
                 <TableHead>
                     <TableRow>
                         {cols.map((col) => (
-                            <TableCell key={col.prop}>
+                            <TableCell key={col.prop} sx={{width: col.width}}>
                                 {col.name}
                             </TableCell>
                         ))}
@@ -26,7 +26,7 @@ const Table: React.FC<TableProps> = ({ columns, rows, rowClick, idProp = 'id' })
                             return (
                                 <TableRow hover key={row[idProp]} onClick={() => rowClick && rowClick(row)}>
                                     {cols.map((col) =>
-                                        <TableCell key={col.prop}>
+                                        <TableCell key={col.prop} sx={{width: col.width}}>
                                             {col.cell(row)}
                                         </TableCell>
                                     )}
