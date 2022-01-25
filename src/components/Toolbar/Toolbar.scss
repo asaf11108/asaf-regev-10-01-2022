@@ -19,6 +19,10 @@
     }
 
     &__actions {
+        .temperature-mode {
+            margin-right: 20px;
+        }
+
         .MuiButton-root {
             width: 80px;
         }
@@ -27,7 +31,7 @@
             display: none;
         }
 
-        &--mobile {
+        &-mobile {
             @include vendors.media('>xs') {
                 display: none;
             }

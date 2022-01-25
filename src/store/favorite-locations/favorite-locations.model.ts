@@ -7,7 +7,7 @@ export type Location = Record<Uncapitalize<keyof LocationResponse>, string>;
 
 export interface FavoriteLocation extends Location {
   weatherText: string;
-  temperature: number;
+  temperature: string;
   icon: string;
   forecasts: _Forecast[];
   isFavorite: boolean;
