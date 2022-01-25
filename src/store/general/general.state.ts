@@ -7,7 +7,7 @@ export const generalSlice = createSlice({
     name: 'general',
     initialState,
     reducers: {
-        generalTempratureMode(state, action: PayloadAction<TemperatureType>) {
+        generalTemperatureMode(state, action: PayloadAction<TemperatureType>) {
             state.temperatureType = action.payload;
         },
     },

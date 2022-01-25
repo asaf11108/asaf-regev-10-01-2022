@@ -4,7 +4,7 @@ import { useNavigate, useMatch } from "react-router-dom";
 import { Button, IconButton, Menu, MenuItem, Toolbar as MuiToolbar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { CORS_URL, GITHUB_URL, MENU } from './Toolbar.config';
-import ToolbarTempratureMode from './Toolbar-temprature-mode';
+import ToolbarTemperatureMode from './Toolbar-temperature-mode';
 
 const Toolbar: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -29,7 +29,7 @@ const Toolbar: React.FC = () => {
       </span>
 
       <span className="toolbar__actions">
-        <span className="temprature-mode"><ToolbarTempratureMode /></span>
+        <span className="temperature-mode"><ToolbarTemperatureMode /></span>
         {
           MENU.map(menuItem => (
             <Button
@@ -66,7 +66,7 @@ const Toolbar: React.FC = () => {
               </MenuItem>
             ))
           }
-          <div className="text-align-center"><ToolbarTempratureMode /></div>
+          <div className="text-align-center"><ToolbarTemperatureMode /></div>
         </Menu>
       </span >
 

@@ -4,7 +4,7 @@ import { TableProps, _TableColumn } from "./Table.model";
 import './Table.scss';
 
 
-const Table: React.FC<TableProps> = ({ columns, rows, rowClick }) => {
+const Table: React.FC<TableProps> = ({ columns, rows, rowClick, idProp = 'id' }) => {
 
     const cols = useColumns(columns);
 
@@ -24,7 +24,7 @@ const Table: React.FC<TableProps> = ({ columns, rows, rowClick }) => {
                     {rows
                         .map((row) => {
                             return (
-                                <TableRow hover key={row.code} onClick={() => rowClick && rowClick(row)}>
+                                <TableRow hover key={row[idProp]} onClick={() => rowClick && rowClick(row)}>
                                     {cols.map((col) =>
                                         <TableCell key={col.prop}>
                                             {col.cell(row)}

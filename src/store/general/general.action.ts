@@ -1,5 +1,5 @@
 import { generalSlice } from "./general.state";
 
 export const {
-    generalTempratureMode,
+    generalTemperatureMode,
 } = generalSlice.actions

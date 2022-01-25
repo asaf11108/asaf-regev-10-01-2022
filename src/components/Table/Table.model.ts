@@ -22,4 +22,5 @@ export interface TableProps<T = any> {
     rows: T[];
     columns: TableColumn[];
     rowClick?: (row: T) => void;
+    idProp?: string;
 }

@@ -3,7 +3,7 @@ import './Home.scss';
 import ControllerAutocomplete from '../../components/ControllerAutocomplete/ControllerAutocomplete';
 import { Button, Card, CardContent, CircularProgress, Typography } from '@mui/material';
 import Forecast from '../../components/Forecast/Forecast';
-import { Location } from "../../store/favorite-locations/favorite-locations.model";
+import { FavoriteLocation, Location } from "../../store/favorite-locations/favorite-locations.model";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-locations.thunk';
 import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../store/favorite-locations/favorite-locations.action';
@@ -13,11 +13,12 @@ import { ControllerAutocompleteProps } from '../../components/ControllerAutocomp
 import { useForm } from 'react-hook-form';
 import { useApi } from '../../api/api.provider';
 import Favorite from '../../components/Favorite/Favorite';
+import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const loading = useSelector(FavoriteLocationSelectLoading);
-  const favoriteLocation = useSelector(FavoriteLocationSelectActiveEntity);
+  const favoriteLocation = useOneTemperatureType(useSelector(FavoriteLocationSelectActiveEntity) as FavoriteLocation);
   const api = useApi();
   const { control } = useForm({ mode: 'onChange' });
 
