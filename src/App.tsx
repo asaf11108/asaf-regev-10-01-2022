@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC, useState } from 'react';
 import './App.scss';
 import Toolbar from './components/Toolbar/Toolbar';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -8,9 +8,10 @@ import apiKeyInterceptor from './interceptors/api-key.interceptor';
 import errorInterceptor from './interceptors/erros.interceptor';
 import { Snackbar } from '@mui/material';
 import { useFirstMountState } from 'react-use';
+import History from './pages/History/History';
 
-const App: React.FC = () => {
-  const [open, setOpen] = React.useState(false);
+const App: FC = () => {
+  const [open, setOpen] = useState(false);
   const isFirstMount = useFirstMountState();
 
   if (isFirstMount) {
@@ -28,6 +29,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/history" element={<History />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
 

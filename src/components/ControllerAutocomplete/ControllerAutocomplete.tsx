@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import './ControllerAutocomplete.scss';
 import { useState } from 'react';
 import { Autocomplete, debounce, FormControl, FormHelperText, TextField } from '@mui/material';
@@ -8,10 +8,10 @@ import { Option } from "../../interfaces/general";
 import { useController } from 'react-hook-form';
 import { CircularProgress } from '@mui/material';
 
-const ControllerAutocomplete: React.FC<ControllerAutocompleteProps> = ({ query, handleChange, promiseOptions, optionText = 'option', control, name }) => {
+const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({ query, handleChange, promiseOptions, optionText = 'option', control, name }) => {
   const [options, setOptions] = useState<Option[]>([]);
-  const [open, setOpen] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const {
     field: { onChange, onBlur, value, ref },
@@ -75,7 +75,7 @@ const ControllerAutocomplete: React.FC<ControllerAutocompleteProps> = ({ query, 
                 <SearchIcon />
               ),
               endAdornment: (
-                loading && <CircularProgress size="1rem"/>
+                loading && <CircularProgress size="1em"/>
               ),
             }}
           />}

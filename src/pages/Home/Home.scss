@@ -2,9 +2,6 @@
 
 .home {
     text-align: center;
-    &__card.MuiCard-root {
-        background-color: rgba(255, 255, 255, 0.6);
-    }
 
     &__autocomplete {
         @include vendors.spread(width, 90%, 50%);

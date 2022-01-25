@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import './Home.scss';
 import ControllerAutocomplete from '../../components/ControllerAutocomplete/ControllerAutocomplete';
 import { Button, Card, CardContent, CircularProgress, Typography } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import Forecast from '../../components/Forecast/Forecast';
-import { Location } from "../../store/favorite-locations/favorite-locations.model";
+import { FavoriteLocation, Location } from "../../store/favorite-locations/favorite-locations.model";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-locations.thunk';
 import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../store/favorite-locations/favorite-locations.action';
@@ -13,13 +11,14 @@ import { FavoriteLocationSelectActiveEntity, FavoriteLocationSelectLoading } fro
 import { Option } from '../../interfaces/general';
 import { ControllerAutocompleteProps } from '../../components/ControllerAutocomplete/ControllerAutocomplete.model';
 import { useForm } from 'react-hook-form';
-import { useApi } from '../../api/api.provider';
+import API from '../../api/api';
+import Favorite from '../../components/Favorite/Favorite';
+import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 
-const Home: React.FC = () => {
+const Home: FC = () => {
   const dispatch = useDispatch();
   const loading = useSelector(FavoriteLocationSelectLoading);
-  const favoriteLocation = useSelector(FavoriteLocationSelectActiveEntity);
-  const api = useApi();
+  const favoriteLocation = useOneTemperatureType(useSelector(FavoriteLocationSelectActiveEntity) as FavoriteLocation);
   const { control } = useForm({ mode: 'onChange' });
 
   const [selectedOption, setSelectedOption] = useState<Location>({
@@ -43,14 +42,14 @@ const Home: React.FC = () => {
   }
 
   const promiseOptions: ControllerAutocompleteProps['promiseOptions'] = async (query) => {
-    return api.getLocations(query)
+    return API.getLocations(query)
       .then<Location[]>(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName })))
       .then<Option[]>(res => res.map(location => ({ id: location.key, label: location.localizedName })))
   };
 
   return (
     <div className="home">
-      <Card className="home__autocomplete home__card">
+      <Card className="home__autocomplete">
         <CardContent>
           <form>
             <ControllerAutocomplete
@@ -66,7 +65,7 @@ const Home: React.FC = () => {
       </Card>
 
       {
-          <Card className="home__card">
+          <Card>
             {
               loading
               ? <div className="home__loader"><div><CircularProgress /></div></div>
@@ -75,14 +74,10 @@ const Home: React.FC = () => {
                       <Typography className="home__title" gutterBottom variant="h5" component="div">
                         <span>
                           <span>{favoriteLocation.localizedName}</span>
-                          <span>{favoriteLocation.temperature}&#176;C</span>
+                          <span>{favoriteLocation.temperature}</span>
                         </span>
                         <Button disabled={loading} onClick={handleFavoriteClick}>
-                          {
-                            favoriteLocation.isFavorite
-                              ? <FavoriteIcon fontSize="inherit" color="error" />
-                              : <FavoriteBorderIcon fontSize="inherit" />
-                          }
+                          <Favorite isFavorite={favoriteLocation.isFavorite}/>
                         </Button>
                       </Typography>
                       <div className="home__body">
