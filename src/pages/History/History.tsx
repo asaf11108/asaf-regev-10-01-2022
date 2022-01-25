@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import './History.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +10,7 @@ import { FavoriteLocation } from '../../store/favorite-locations/favorite-locati
 import { favoriteLocationsActive } from '../../store/favorite-locations/favorite-locations.action';
 import { useManyTemperatureType } from '../../hooks/temprature-type.hook';
 
-const History: React.FC = () => {
+const History: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const favoriteLocations: FavoriteLocation[] = useManyTemperatureType(useSelector(FavoriteLocationSelectors.selectAll));

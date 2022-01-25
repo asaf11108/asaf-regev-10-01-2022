@@ -1,9 +1,9 @@
-import React from 'react';
+import { FC } from 'react';
 import './Forecast.scss';
 import { ForecastProps } from './forecast.model';
 import { Typography } from '@mui/material';
 
-const Forecast: React.FC<ForecastProps> = ({ forecast }) => {
+const Forecast: FC<ForecastProps> = ({ forecast }) => {
   const buildIconUrl = (icon?: string): string => {
     if (!icon) {
       return "";

@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC, useState, MouseEvent } from 'react';
 import './Toolbar.scss';
 import { useNavigate, useMatch } from "react-router-dom";
 import { Button, IconButton, Menu, MenuItem, Toolbar as MuiToolbar } from '@mui/material';
@@ -6,12 +6,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { CORS_URL, GITHUB_URL, MENU } from './Toolbar.config';
 import ToolbarTemperatureMode from './Toolbar-temperature-mode';
 
-const Toolbar: React.FC = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+const Toolbar: FC = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
   const match = useMatch;
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 

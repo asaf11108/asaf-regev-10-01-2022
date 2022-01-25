@@ -1,10 +1,11 @@
+import { FC } from "react";
 import { TableContainer, Table as MuiTable, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 import { useColumns } from "./columns.hook";
-import { TableProps, _TableColumn } from "./Table.model";
+import { TableProps } from "./Table.model";
 import './Table.scss';
 
 
-const Table: React.FC<TableProps> = ({ columns, rows, rowClick, idProp = 'id' }) => {
+const Table: FC<TableProps> = ({ columns, rows, rowClick, idProp = 'id' }) => {
 
     const cols = useColumns(columns);
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC, useState } from 'react';
 import './App.scss';
 import Toolbar from './components/Toolbar/Toolbar';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -10,8 +10,8 @@ import { Snackbar } from '@mui/material';
 import { useFirstMountState } from 'react-use';
 import History from './pages/History/History';
 
-const App: React.FC = () => {
-  const [open, setOpen] = React.useState(false);
+const App: FC = () => {
+  const [open, setOpen] = useState(false);
   const isFirstMount = useFirstMountState();
 
   if (isFirstMount) {

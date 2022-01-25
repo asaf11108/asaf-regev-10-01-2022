@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import './Home.scss';
 import ControllerAutocomplete from '../../components/ControllerAutocomplete/ControllerAutocomplete';
 import { Button, Card, CardContent, CircularProgress, Typography } from '@mui/material';
@@ -15,7 +15,7 @@ import API from '../../api/api';
 import Favorite from '../../components/Favorite/Favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 
-const Home: React.FC = () => {
+const Home: FC = () => {
   const dispatch = useDispatch();
   const loading = useSelector(FavoriteLocationSelectLoading);
   const favoriteLocation = useOneTemperatureType(useSelector(FavoriteLocationSelectActiveEntity) as FavoriteLocation);
