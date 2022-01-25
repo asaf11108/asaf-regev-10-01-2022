@@ -13,13 +13,13 @@ export const fetchFavoriteLocation = createAsyncThunk('favoriteLocations/fetchFa
         const currentConditions = res[0][0];
         const forecasts: _Forecast[] = res[1].map(forecast => ({
             title: format(new Date(forecast.Date), "EEE"),
-            temperature: forecast.Temperature.Minimum.Value,
+            temperature: `${forecast.Temperature.Minimum.Value}\u00B0C`,
         }));
 
         return {
             key: selectedOption.key,
             localizedName: selectedOption.localizedName,
-            temperature: currentConditions.Temperature.Metric.Value,
+            temperature: `${currentConditions.Temperature.Metric.Value}\u00B0C`,
             weatherText: currentConditions.WeatherText,
             icon: currentConditions.WeatherIcon.toString(),
             forecasts,

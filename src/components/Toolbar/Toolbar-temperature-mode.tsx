@@ -8,12 +8,12 @@ import { GeneralTemperatureModeSelect } from "../../store/general/general.select
 const ToolbarTemperatureMode: FC = () => {
     const dispatch = useDispatch();
     const temperatureMode = useSelector(GeneralTemperatureModeSelect);
-
+    
     const handleTemperatureMode = (
         event: React.MouseEvent<HTMLElement>,
         newMode: TemperatureType,
-      ) => {
-        dispatch(generalTemperatureMode(newMode));
+        ) => {
+        newMode && dispatch(generalTemperatureMode(newMode));
       };
 
     return (
@@ -23,10 +23,10 @@ const ToolbarTemperatureMode: FC = () => {
             exclusive
             onChange={handleTemperatureMode}
         >
-            <ToggleButton value="celsius">
+            <ToggleButton value={TemperatureType.Celsius}>
                 &#176;C
             </ToggleButton>
-            <ToggleButton value="fahrenheit">
+            <ToggleButton value={TemperatureType.Fahrenheit}>
                 &#176;F
             </ToggleButton>
         </ToggleButtonGroup>

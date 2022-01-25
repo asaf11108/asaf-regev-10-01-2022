@@ -6,11 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { favoriteLocationsActive } from '../../store/favorite-locations/favorite-locations.action';
 import { FavoriteLocationSelectors } from '../../store/favorite-locations/favorite-locations.selector';
+import { useManyTemperatureType } from '../../hooks/temprature-type.hook';
 
 const Favorites: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const favoriteLocations: FavoriteLocation[] = useSelector(FavoriteLocationSelectors.selectAll).filter(favoriteLocation => favoriteLocation.isFavorite);
+  const favoriteLocations: FavoriteLocation[] = useManyTemperatureType(useSelector(FavoriteLocationSelectors.selectAll))
+    .filter(favoriteLocation => favoriteLocation.isFavorite);
 
   const handleActiveForecast = (favoriteLocation: FavoriteLocation): void => {
     dispatch(favoriteLocationsActive(favoriteLocation.key));

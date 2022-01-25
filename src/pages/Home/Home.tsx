@@ -75,7 +75,7 @@ const Home: React.FC = () => {
                       <Typography className="home__title" gutterBottom variant="h5" component="div">
                         <span>
                           <span>{favoriteLocation.localizedName}</span>
-                          <span>{favoriteLocation.temperature}&#176;C</span>
+                          <span>{favoriteLocation.temperature}</span>
                         </span>
                         <Button disabled={loading} onClick={handleFavoriteClick}>
                           <Favorite isFavorite={favoriteLocation.isFavorite}/>

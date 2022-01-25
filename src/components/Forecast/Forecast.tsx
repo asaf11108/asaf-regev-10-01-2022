@@ -20,7 +20,7 @@ const Forecast: React.FC<ForecastProps> = ({ forecast }) => {
     <div className="forecast">
       <Typography variant="h5" className="card-title">
           <p>{ forecast.title }</p>
-          <p>{ forecast.temperature }&#176;C</p>
+          <p>{ forecast.temperature }</p>
           { forecast.icon && <img src={forecast.icon} /> }
       </Typography>
     </div>

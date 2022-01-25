@@ -1,6 +1,6 @@
 export interface _Forecast {
   title: string;
-  temperature: number;
+  temperature: string;
   icon?: string;
 }
 
