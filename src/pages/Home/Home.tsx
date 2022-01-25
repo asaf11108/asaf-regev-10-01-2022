@@ -11,7 +11,7 @@ import { FavoriteLocationSelectActiveEntity, FavoriteLocationSelectLoading } fro
 import { Option } from '../../interfaces/general';
 import { ControllerAutocompleteProps } from '../../components/ControllerAutocomplete/ControllerAutocomplete.model';
 import { useForm } from 'react-hook-form';
-import { useApi } from '../../api/api.provider';
+import API from '../../api/api';
 import Favorite from '../../components/Favorite/Favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 
@@ -19,7 +19,6 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
   const loading = useSelector(FavoriteLocationSelectLoading);
   const favoriteLocation = useOneTemperatureType(useSelector(FavoriteLocationSelectActiveEntity) as FavoriteLocation);
-  const api = useApi();
   const { control } = useForm({ mode: 'onChange' });
 
   const [selectedOption, setSelectedOption] = useState<Location>({
@@ -43,7 +42,7 @@ const Home: React.FC = () => {
   }
 
   const promiseOptions: ControllerAutocompleteProps['promiseOptions'] = async (query) => {
-    return api.getLocations(query)
+    return API.getLocations(query)
       .then<Location[]>(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName })))
       .then<Option[]>(res => res.map(location => ({ id: location.key, label: location.localizedName })))
   };

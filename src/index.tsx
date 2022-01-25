@@ -8,13 +8,11 @@ import { ThemeProvider } from '@mui/material';
 import theme from './theme';
 import { Provider } from 'react-redux';
 import { persistor, store } from './store/config';
-import ApiProvider from './api/api.provider';
 import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ApiProvider>
         <Provider store={store}>
           <ThemeProvider theme={theme}>
             <PersistGate loading={null} persistor={persistor}>
@@ -22,7 +20,6 @@ ReactDOM.render(
             </PersistGate>
           </ThemeProvider>
         </Provider>
-      </ApiProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
