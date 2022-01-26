@@ -8,6 +8,8 @@ import { Option } from "../../interfaces/general";
 import { useController } from 'react-hook-form';
 import { CircularProgress } from '@mui/material';
 
+// The form hook mechanism might be unnecessary and could be written without it,
+// but I keep it because it shows skills in implementing form hook.
 const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({ query, handleChange, promiseOptions, optionText = 'option', control, name }) => {
   const [options, setOptions] = useState<Option[]>([]);
   const [open, setOpen] = useState(false);
