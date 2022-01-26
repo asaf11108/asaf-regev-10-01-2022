@@ -8,12 +8,17 @@ import { useNavigate } from 'react-router-dom';
 import { favoriteLocationsActive } from '../../store/favorite-locations/favorite-locations.action';
 import { FavoriteLocationSelectors } from '../../store/favorite-locations/favorite-locations.selector';
 import { useManyTemperatureType } from '../../hooks/temprature-type.hook';
+import { flow } from 'lodash-es';
+import { filter } from 'lodash/fp';
 
 const Favorites: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const favoriteLocations: FavoriteLocation[] = useManyTemperatureType(useSelector(FavoriteLocationSelectors.selectAll))
-    .filter(favoriteLocation => favoriteLocation.isFavorite);
+  const favoriteLocations: FavoriteLocation[] = flow([
+    useSelector,
+    useManyTemperatureType,
+    filter('isFavorite')
+  ])(FavoriteLocationSelectors.selectAll);
 
   const handleActiveForecast = (favoriteLocation: FavoriteLocation): void => {
     dispatch(favoriteLocationsActive(favoriteLocation.key));

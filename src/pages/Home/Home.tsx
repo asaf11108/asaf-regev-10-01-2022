@@ -14,11 +14,15 @@ import { useForm } from 'react-hook-form';
 import API from '../../api/api';
 import Favorite from '../../components/Favorite/Favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
+import { flow } from 'lodash-es';
 
 const Home: FC = () => {
   const dispatch = useDispatch();
   const loading = useSelector(FavoriteLocationSelectLoading);
-  const favoriteLocation = useOneTemperatureType(useSelector(FavoriteLocationSelectActiveEntity) as FavoriteLocation);
+  const favoriteLocation: FavoriteLocation = flow([
+    useSelector,
+    useOneTemperatureType,
+  ])(FavoriteLocationSelectActiveEntity);
   const { control } = useForm({ mode: 'onChange' });
 
   const [selectedOption, setSelectedOption] = useState<Location>({
