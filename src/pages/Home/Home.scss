@@ -45,18 +45,6 @@
     &__loader {
         align-items: center;
         justify-content: center;
-
-        > div {
-            $size: 500px;
-            $size-shrink: 150;
-            @include vendors.spread(width, $size - $size-shrink * 2, $size - $size-shrink);
-            @include vendors.spread(height, $size - $size-shrink * 2, $size - $size-shrink);
-        
-            .MuiCircularProgress-root {
-                width: inherit !important;
-                height: inherit !important;
-            }
-        }
     }
 
     &__forecasts {

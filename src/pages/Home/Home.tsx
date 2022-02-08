@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import './Home.scss';
 import ControllerAutocomplete from '../../components/ControllerAutocomplete/ControllerAutocomplete';
-import { Button, Card, CardContent, CircularProgress, Typography } from '@mui/material';
+import { Button, Card, CardContent, Typography } from '@mui/material';
 import Forecast from '../../components/Forecast/Forecast';
 import { FavoriteLocation, Location } from "../../store/favorite-locations/favorite-locations.model";
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +15,7 @@ import API from '../../api/api';
 import Favorite from '../../components/Favorite/Favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
+import Loader from '../../components/Loader/Loader';
 
 const Home: FC = () => {
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ const Home: FC = () => {
           <Card>
             {
               loading
-              ? <div className="home__loader"><div><CircularProgress /></div></div>
+              ? <div className="home__loader"><Loader /></div>
               : favoriteLocation
                 && <CardContent>
                       <Typography className="home__title" gutterBottom variant="h5" component="div">
