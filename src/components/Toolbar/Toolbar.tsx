@@ -3,7 +3,7 @@ import './Toolbar.scss';
 import { useNavigate, useMatch } from "react-router-dom";
 import { Button, IconButton, Menu, MenuItem, Toolbar as MuiToolbar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { CORS_URL, GITHUB_URL, MENU } from './Toolbar.config';
+import { GITHUB_URL, MENU } from './Toolbar.config';
 import ToolbarTemperatureMode from './Toolbar-temperature-mode';
 
 const Toolbar: FC = () => {
@@ -24,7 +24,6 @@ const Toolbar: FC = () => {
     <MuiToolbar className="toolbar">
       <span className="toolbar__title">
         <span>Weather Task</span>
-        <a href={CORS_URL}>CORS</a>
         <a href={GITHUB_URL}>GitHub</a>
       </span>
 
