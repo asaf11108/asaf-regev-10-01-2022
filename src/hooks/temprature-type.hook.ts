@@ -6,7 +6,7 @@ import { TemperatureType } from '../store/general/general.model';
 import { round } from 'lodash-es';
 
 const calcTemprature = (temperature: string): string => {
-    return `${round(Number(temperature.replace(/[^0-9.]*/g, '')) * 9/5 + 32)}\u00B0F`; // calculation to fahrenheit and round to 1 digits precision
+    return `${round(Number(temperature.slice(0, -2)) * 9/5 + 32, 1)}\u00B0F`; // calculation to fahrenheit and round to 1 digits precision
 }
 
 const useTemperatureType = (favoriteLocations: FavoriteLocation[]) => {
