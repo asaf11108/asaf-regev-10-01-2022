@@ -55,7 +55,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
         onBlur={onBlur}
         value={option}
         onInputChange={(_, query) => _handleInputChange(query)}
-        open={open}
+        open={open && valid}
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
         options={options}
