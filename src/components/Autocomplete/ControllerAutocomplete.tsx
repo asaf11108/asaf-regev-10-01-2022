@@ -32,7 +32,7 @@ const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
 
   return (
       <Autocomplete
-        ref={ref}
+        innerRef={ref}
         onBlur={onBlur}
         option={option}
         onInputChange={handleInputChange}

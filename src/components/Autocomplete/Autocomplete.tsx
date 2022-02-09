@@ -15,7 +15,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
   option,
   valid = true,
   error,
-  ref,
+  innerRef,
   onBlur
 }) => {
   const [options, setOptions] = useState<Option[]>([]);
@@ -51,7 +51,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
   return (
     <FormControl className='autocomplete'>
       <MuiAutocomplete
-        ref={ref}
+        ref={innerRef}
         onBlur={onBlur}
         value={option}
         onInputChange={(_, query) => _handleInputChange(query)}
