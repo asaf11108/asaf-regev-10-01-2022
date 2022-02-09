@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import './Home.scss';
-import ControllerAutocomplete from '../../components/ControllerAutocomplete/ControllerAutocomplete';
+import ControllerAutocomplete from '../../components/Autocomplete/ControllerAutocomplete';
 import { Button, Card, CardContent, Typography } from '@mui/material';
 import Forecast from '../../components/Forecast/Forecast';
 import { FavoriteLocation, Location } from "../../store/favorite-locations/favorite-locations.model";
@@ -9,7 +9,7 @@ import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-l
 import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../store/favorite-locations/favorite-locations.action';
 import { FavoriteLocationSelectActiveEntity, FavoriteLocationSelectLoading } from '../../store/favorite-locations/favorite-locations.selector';
 import { Option } from '../../interfaces/general';
-import { ControllerAutocompleteProps } from '../../components/ControllerAutocomplete/ControllerAutocomplete.model';
+import { AutocompleteProps } from '../../components/Autocomplete/Autocomplete.model';
 import { useForm } from 'react-hook-form';
 import API from '../../api/api';
 import Favorite from '../../components/Favorite/Favorite';
@@ -46,11 +46,14 @@ const Home: FC = () => {
     dispatch(favoriteLocationsToggleFavorite({}));
   }
 
-  const promiseOptions: ControllerAutocompleteProps['promiseOptions'] = async (query) => {
+  const locationToOption = (location: Location): Option => ({ id: location.key, label: location.localizedName })
+
+  const promiseOptions: AutocompleteProps['promiseOptions'] = async (query) => {
     return API.getLocations(query)
       .then<Location[]>(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName })))
-      .then<Option[]>(res => res.map(location => ({ id: location.key, label: location.localizedName })))
+      .then<Option[]>(res => res.map(locationToOption))
   };
+
 
   return (
     <div className="home">
@@ -58,8 +61,8 @@ const Home: FC = () => {
         <CardContent>
           <form>
             <ControllerAutocomplete
-              handleChange={handleSelectLocation}
-              query={selectedOption.localizedName}
+              onChange={handleSelectLocation}
+              option={locationToOption(selectedOption)}
               promiseOptions={promiseOptions}
               optionText="location"
               name="query"

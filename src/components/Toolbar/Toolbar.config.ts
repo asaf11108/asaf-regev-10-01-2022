@@ -1,3 +1,4 @@
+import { filter } from 'lodash-es';
 import { IMenuItem } from "./Toolbar.model";
 
 export const MENU: IMenuItem[] = [
@@ -7,11 +8,13 @@ export const MENU: IMenuItem[] = [
     },
     {
         label: 'Favorites',
-        navigatePath: '/favorites'
+        navigatePath: '/favorites',
+        disabled: favoriteLocations => !filter(favoriteLocations, 'isFavorite').length
     },
     {
         label: 'History',
-        navigatePath: '/history'
+        navigatePath: '/history',
+        disabled: favoriteLocations => !favoriteLocations.length
     }
 ];
 

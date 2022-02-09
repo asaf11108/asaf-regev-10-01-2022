@@ -6,5 +6,9 @@ This project uses packages such as: `react-redux`, `@reduxjs/toolkit`, `@mui/mat
 
 ## API notes
 1. I used the following API to fetch data: https://developer.accuweather.com/.
-2. Please note that you'll need to [enable cors](https://cors-anywhere.herokuapp.com/corsdemo).
-3. This free API enables `50 requests` per day for some API key, if a request failed the app we'll fetch `mock data`.
+2. This free API enables `50 requests` per day for some API key, if a request failed the app we'll fetch `mock data`.
+
+## React disparity from Angular
+1. Style vendors.
+2. Interceptors on init.
+3. Route guard

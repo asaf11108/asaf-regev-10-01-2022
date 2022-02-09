@@ -5,11 +5,15 @@ import { Button, IconButton, Menu, MenuItem, Toolbar as MuiToolbar } from '@mui/
 import MenuIcon from '@mui/icons-material/Menu';
 import { GITHUB_URL, MENU } from './Toolbar.config';
 import ToolbarTemperatureMode from './Toolbar-temperature-mode';
+import { useSelector } from 'react-redux';
+import { FavoriteLocationSelectors } from '../../store/favorite-locations/favorite-locations.selector';
 
 const Toolbar: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
   const match = useMatch;
+
+  const favoriteLocations = useSelector(FavoriteLocationSelectors.selectAll);
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -36,6 +40,7 @@ const Toolbar: FC = () => {
               style={{ textTransform: 'capitalize' }}
               onClick={() => navigate(menuItem.navigatePath)}
               variant={match(menuItem.navigatePath) ? 'contained' : 'text'}
+              disabled={menuItem.disabled?.(favoriteLocations)}
             >
               {menuItem.label}
             </Button>
@@ -60,6 +65,7 @@ const Toolbar: FC = () => {
                 onClick={() => handleClose(menuItem.navigatePath)}
                 key={menuItem.label}
                 selected={!!match(menuItem.navigatePath)}
+                disabled={menuItem.disabled?.(favoriteLocations)}
               >
                 {menuItem.label}
               </MenuItem>
