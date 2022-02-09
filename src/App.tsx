@@ -23,7 +23,7 @@ const App: FC = () => {
       <div className="app__content-wrapper">
         <div className="app__content">
 
-        <AppRouting />
+          <AppRouting />
 
         </div>
       </div>
