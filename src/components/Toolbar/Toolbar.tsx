@@ -1,10 +1,10 @@
 import { FC, useState, MouseEvent } from 'react';
-import './Toolbar.scss';
+import './toolbar.scss';
 import { useNavigate, useMatch } from "react-router-dom";
 import { Button, IconButton, Menu, MenuItem, Toolbar as MuiToolbar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { GITHUB_URL, MENU } from './Toolbar.config';
-import ToolbarTemperatureMode from './Toolbar-temperature-mode';
+import { GITHUB_URL, MENU } from './toolbar.config';
+import ToolbarTemperatureMode from './toolbar-temperature-mode';
 import { useSelector } from 'react-redux';
 import { FavoriteLocationSelectors } from '../../store/favorite-locations/favorite-locations.selector';
 

@@ -1,5 +1,5 @@
 import { AutocompleteOption } from '../../api/interfaces/autocomplete';
-import { _Forecast } from "../../components/Forecast/forecast.model";
+import { _Forecast } from "../../components/forecast/forecast.model";
 
 type LocationResponse = Pick<AutocompleteOption, 'Key' | 'LocalizedName'>;
 

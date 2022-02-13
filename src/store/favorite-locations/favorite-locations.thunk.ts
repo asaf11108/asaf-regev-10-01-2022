@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { format } from "date-fns";
 import API from "../../api/api";
-import { _Forecast } from "../../components/Forecast/forecast.model";
+import { _Forecast } from "../../components/forecast/forecast.model";
 import { FavoriteLocation, Location } from "./favorite-locations.model";
 
 

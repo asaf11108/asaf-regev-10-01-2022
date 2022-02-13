@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import Forecast from '../../components/Forecast/Forecast';
-import { _Forecast } from '../../components/Forecast/forecast.model';
+import Forecast from '../../components/forecast/forecast';
+import { _Forecast } from '../../components/forecast/forecast.model';
 import { FavoriteLocation } from '../../store/favorite-locations/favorite-locations.model';
-import './Favorites.scss';
+import './favorites.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { favoriteLocationsActive } from '../../store/favorite-locations/favorite-locations.action';

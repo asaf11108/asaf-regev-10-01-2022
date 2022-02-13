@@ -1,21 +1,21 @@
 import { FC, useEffect, useState } from 'react';
-import './Home.scss';
-import ControllerAutocomplete from '../../components/Autocomplete/ControllerAutocomplete';
+import './home.scss';
+import ControllerAutocomplete from '../../components/autocomplete/controller-autocomplete';
 import { Button, Card, CardContent, Typography } from '@mui/material';
-import Forecast from '../../components/Forecast/Forecast';
+import Forecast from '../../components/forecast/forecast';
 import { FavoriteLocation, Location } from "../../store/favorite-locations/favorite-locations.model";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-locations.thunk';
 import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../store/favorite-locations/favorite-locations.action';
 import { FavoriteLocationSelectActiveEntity, FavoriteLocationSelectLoading } from '../../store/favorite-locations/favorite-locations.selector';
 import { Option } from '../../interfaces/general';
-import { AutocompleteProps } from '../../components/Autocomplete/Autocomplete.model';
+import { AutocompleteProps } from '../../components/autocomplete/autocomplete.model';
 import { useForm } from 'react-hook-form';
 import API from '../../api/api';
-import Favorite from '../../components/Favorite/Favorite';
+import Favorite from '../../components/favorite/favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
-import Loader from '../../components/Loader/Loader';
+import Loader from '../../components/loader/loader';
 
 const Home: FC = () => {
   const dispatch = useDispatch();

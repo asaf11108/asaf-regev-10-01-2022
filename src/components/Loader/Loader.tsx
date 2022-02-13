@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { LoaderProps } from './Loader.model';
-import './Loader.scss';
+import { LoaderProps } from './loader.model';
+import './loader.scss';
 import { CircularProgress } from '@mui/material';
 
 

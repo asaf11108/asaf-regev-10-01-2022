@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { TableContainer, Table as MuiTable, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 import { useColumns } from "./columns.hook";
-import { TableProps } from "./Table.model";
-import './Table.scss';
+import { TableProps } from "./table.model";
+import './table.scss';
 
 
 const Table: FC<TableProps> = ({ columns, rows, rowClick, idProp = 'id' }) => {

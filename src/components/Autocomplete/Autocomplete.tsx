@@ -1,8 +1,8 @@
 import { FC, useCallback, useEffect } from 'react';
-import './Autocomplete.scss';
+import './autocomplete.scss';
 import { useState } from 'react';
 import { Autocomplete as MuiAutocomplete, debounce, FormControl, FormHelperText, TextField } from '@mui/material';
-import { AutocompleteProps } from './Autocomplete.model';
+import { AutocompleteProps } from './autocomplete.model';
 import SearchIcon from '@mui/icons-material/Search';
 import { Option } from "../../interfaces/general";
 import { CircularProgress } from '@mui/material';

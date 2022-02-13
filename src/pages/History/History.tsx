@@ -1,9 +1,9 @@
 import { FC, useState } from 'react';
-import './History.scss';
+import './history.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Table from '../../components/Table/Table';
-import { COLUMNS } from './History.config';
+import Table from '../../components/table/table';
+import { COLUMNS } from './history.config';
 import { Card, TextField } from '@mui/material';
 import { FavoriteLocationSelectors } from '../../store/favorite-locations/favorite-locations.selector';
 import { FavoriteLocation } from '../../store/favorite-locations/favorite-locations.model';

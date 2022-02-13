@@ -1,5 +1,5 @@
 import { FC, MouseEvent } from "react";
-import './Toolbar-temperature-mode.scss'
+import './toolbar-temperature-mode.scss'
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { generalTemperatureMode } from "../../store/general/general.action";

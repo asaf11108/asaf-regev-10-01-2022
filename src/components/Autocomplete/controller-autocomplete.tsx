@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { ControllerAutocompleteProps } from './Autocomplete.model';
-import Autocomplete from './Autocomplete';
+import { ControllerAutocompleteProps } from './autocomplete.model';
+import Autocomplete from './autocomplete';
 import { useController } from 'react-hook-form';
 
 const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({

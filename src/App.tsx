@@ -1,11 +1,11 @@
 import { FC, useState } from 'react';
-import './App.scss';
-import Toolbar from './components/Toolbar/Toolbar';
+import './app.scss';
+import Toolbar from './components/toolbar/toolbar';
 import apiKeyInterceptor from './interceptors/api-key.interceptor';
 import errorInterceptor from './interceptors/erros.interceptor';
 import { Snackbar } from '@mui/material';
 import { useFirstMountState } from 'react-use';
-import AppRouting from './AppRouting';
+import AppRouting from './app-routing';
 
 const App: FC = () => {
   const [open, setOpen] = useState(false);

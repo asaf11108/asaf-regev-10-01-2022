@@ -1,5 +1,5 @@
 import { filter } from 'lodash-es';
-import { IMenuItem } from "./Toolbar.model";
+import { IMenuItem } from "./toolbar.model";
 
 export const MENU: IMenuItem[] = [
     {

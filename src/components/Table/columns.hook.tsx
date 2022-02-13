@@ -1,7 +1,7 @@
 import { get } from "lodash-es";
 import { useMemo } from "react";
-import Favorite from "../Favorite/Favorite";
-import { ColumnType, TableColumn, _TableColumn } from "./Table.model";
+import Favorite from "../favorite/favorite";
+import { ColumnType, TableColumn, _TableColumn } from "./table.model";
 
 export const useColumns = (columns: TableColumn[]): _TableColumn[] => {
     return useMemo(() =>

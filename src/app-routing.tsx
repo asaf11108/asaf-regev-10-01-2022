@@ -1,12 +1,12 @@
 import { FC, lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Loader from "./components/Loader/Loader";
-import FavoritesGuard from "./guards/Favorites.guard";
-import HistoryGuard from "./guards/History.guard";
+import Loader from "./components/loader/loader";
+import FavoritesGuard from "./guards/favorites.guard";
+import HistoryGuard from "./guards/history.guard";
 
-const Home = lazy(() => import('./pages/Home/Home'));
-const History = lazy(() => import('./pages/History/History'));
-const Favorites = lazy(() => import('./pages/Favorites/Favorites'));
+const Home = lazy(() => import('./pages/home/home'));
+const History = lazy(() => import('./pages/history/history'));
+const Favorites = lazy(() => import('./pages/favorites/favorites'));
 
 const AppRouting: FC = () => {
     return (

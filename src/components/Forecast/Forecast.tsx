@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import './Forecast.scss';
+import './forecast.scss';
 import { ForecastProps } from './forecast.model';
 import { Typography } from '@mui/material';
 

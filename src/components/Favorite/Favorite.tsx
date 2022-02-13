@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { FavoriteProps } from './Favorite.model';
-import './Favorite.scss';
+import { FavoriteProps } from './favorite.model';
+import './favorite.scss';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 

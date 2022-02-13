@@ -1,4 +1,4 @@
-import { TableColumn, ColumnType } from './../../components/Table/Table.model';
+import { TableColumn, ColumnType } from '../../components/table/table.model';
 
 export const COLUMNS: TableColumn[] = [
     { type: ColumnType.Favorite, prop: 'isFavorite', name: '', width: '16px' },
