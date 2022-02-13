@@ -21,7 +21,7 @@ const Forecast: FC<ForecastProps> = ({ forecast }) => {
       <Typography variant="h5" className="card-title">
           <p>{ forecast.title }</p>
           <p>{ forecast.temperature }</p>
-          { forecast.icon && <img src={forecast.icon} /> }
+          { forecast.icon && <img src={forecast.icon} alt="Weather icon" /> }
       </Typography>
     </div>
   );
