@@ -6,6 +6,7 @@ import errorInterceptor from './interceptors/erros.interceptor';
 import { Snackbar } from '@mui/material';
 import { useFirstMountState } from 'react-use';
 import AppRouting from './app-routing';
+import { Content, ContentWrapper } from './app.style';
 
 const App: FC = () => {
   const [open, setOpen] = useState(false);
@@ -17,16 +18,16 @@ const App: FC = () => {
   }
 
   return (
-    <div className="app">
+    <>
       <Toolbar />
 
-      <div className="app__content-wrapper">
-        <div className="app__content">
+      <ContentWrapper>
+        <Content>
 
           <AppRouting />
 
-        </div>
-      </div>
+        </Content>
+      </ContentWrapper>
 
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
@@ -35,7 +36,7 @@ const App: FC = () => {
         autoHideDuration={5000}
         message="Unable to retrieve data. Switched to mock data."
       />
-    </div>
+    </>
   );
 }
 
