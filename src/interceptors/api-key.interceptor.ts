@@ -5,7 +5,7 @@ const API_KEY = "gRf4KNnswLuVm8mG3puAI1GUOGeJTu1v";
 const apiKeyInterceptor = (): void => {
     axios.interceptors.request.use(
         config => {
-            config.params = { ...config.params, apikey: API_KEY };
+            config.params = { ...config.params, apikey: process.env.REACT_APP_API_KEY };
             return config;
         }
     );
