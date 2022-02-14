@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import './App.scss';
+import './app.scss';
 import Toolbar from './components/toolbar/toolbar';
 import apiKeyInterceptor from './interceptors/api-key.interceptor';
 import errorInterceptor from './interceptors/erros.interceptor';
