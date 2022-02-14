@@ -18,7 +18,7 @@ $toolbar-height-mobile: 56px;
     background-size: cover;
     box-sizing: border-box;
     min-height: calc(100vh - #{$toolbar-height});
-    @include vendors.media("<=xs") {
+    @include vendors.media("<=sm") {
       min-height: calc(100vh - #{$toolbar-height-mobile});
     }
     display: flex;
