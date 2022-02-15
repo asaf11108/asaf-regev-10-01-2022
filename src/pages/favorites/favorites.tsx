@@ -11,6 +11,7 @@ import { useManyTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import { filter } from 'lodash/fp';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { ANIMATION_DELAY } from './favorites.config';
 
 const Favorites: FC = () => {
   const dispatch = useDispatch();
@@ -37,10 +38,14 @@ const Favorites: FC = () => {
   return (
     <TransitionGroup className="favorites">
       {favoriteLocations.map((favoriteLocation, index) =>
-        <CSSTransition key={favoriteLocation.key} timeout={300 * (index + 1)} classNames="favorites__forecast" appear>
+        <CSSTransition
+          classNames="favorites__forecast"
+          key={favoriteLocation.key}
+          timeout={ANIMATION_DELAY * (index + 1)}
+          appear>
           <div
             className="favorites__forecast"
-            style={{ transitionDelay: `${300 * index}ms` }}
+            style={{ transitionDelay: `${ANIMATION_DELAY * index}ms`,  }}
             onClick={() => handleActiveForecast(favoriteLocation)}>
             <Forecast forecast={mapToForecastComponent(favoriteLocation)} />
           </div>

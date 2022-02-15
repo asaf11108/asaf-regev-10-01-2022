@@ -67,7 +67,7 @@ const Toolbar: FC = () => {
               {menuItem.label}
             </MenuItem>
           ))}
-          <div className="text-align-center"><ToolbarTemperatureMode /></div>
+          <div style={{textAlign: 'center'}}><ToolbarTemperatureMode /></div>
         </Menu>
       </span >
 

@@ -2,9 +2,23 @@
 
 .loader {
     $size: 500px;
-    $size-shrink: 150;
-    @include vendors.spread(width, $size - $size-shrink * 2, $size - $size-shrink);
-    @include vendors.spread(height, $size - $size-shrink * 2, $size - $size-shrink);
+    
+    @mixin loaderSize($shrink-size) {
+        @include vendors.spread(width, $size - $shrink-size * 2, $size - $shrink-size);
+        @include vendors.spread(height, $size - $shrink-size * 2, $size - $shrink-size);
+    }
+
+    &--small {
+        @include loaderSize(200);
+    }
+
+    &--medium {
+        @include loaderSize(150);
+    }
+
+    &--large {
+        @include loaderSize(100);
+    }
 
     .MuiCircularProgress-root {
         width: inherit !important;

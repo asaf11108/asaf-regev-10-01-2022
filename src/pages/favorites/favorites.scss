@@ -4,6 +4,8 @@
     
     &__forecast {
         cursor: pointer;
+        transition-property: opacity, transform;
+
         &:hover {
             filter: brightness(85%);
         }
@@ -14,7 +16,6 @@
         &-appear-active {
             opacity: 1;
             transform: translateX(0);
-            transition: all 300ms;
         }
     }
 

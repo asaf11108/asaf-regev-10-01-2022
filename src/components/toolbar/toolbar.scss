@@ -3,11 +3,13 @@
 .toolbar {
     display: flex;
     justify-content: space-between;
-    background-color: white;
-    @include vendors.media('>xs') {
-        position: sticky !important;
-        top: 0;
-        z-index: 1;
+    &.MuiToolbar-root {
+        background-color: white;
+        @include vendors.media('>xs') {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
     }
 
     &__title {
