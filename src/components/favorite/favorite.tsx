@@ -10,11 +10,9 @@ const Favorite: FC<FavoriteProps> = ({ isFavorite }) => {
 
     return (
         <>
-            {
-                isFavorite
-                    ? <FavoriteIcon fontSize="inherit" color="error" />
-                    : <FavoriteBorderIcon fontSize="inherit" />
-            }
+            {isFavorite
+                ? <FavoriteIcon fontSize="inherit" color="error" />
+                : <FavoriteBorderIcon fontSize="inherit" />}
         </>
     );
 }

@@ -27,9 +27,11 @@ const Home: FC = () => {
   const { control } = useForm({ mode: 'onChange' });
 
   const [selectedOption, setSelectedOption] = useState<Location>({
-    key: favoriteLocation?.key ?? "215854",
-    localizedName: favoriteLocation?.localizedName ?? "Tel Aviv"
+    key: favoriteLocation?.key ?? '215854',
+    localizedName: favoriteLocation?.localizedName ?? 'Tel Aviv'
   });
+
+  const locationToOption = (location: Location): Option => ({ id: location.key, label: location.localizedName });
 
   useEffect(() => {
     dispatch(fetchFavoriteLocation(selectedOption));
@@ -43,10 +45,8 @@ const Home: FC = () => {
   };
 
   const handleFavoriteClick = (): void => {
-    dispatch(favoriteLocationsToggleFavorite({}));
+    dispatch(favoriteLocationsToggleFavorite());
   }
-
-  const locationToOption = (location: Location): Option => ({ id: location.key, label: location.localizedName })
 
   const promiseOptions: AutocompleteProps['promiseOptions'] = async (query) => {
     return API.getLocations(query)
@@ -73,32 +73,30 @@ const Home: FC = () => {
       </Card>
 
       {
-          <Card>
-            {
-              loading
-              ? <div className="home__loader"><Loader /></div>
-              : favoriteLocation
-                && <CardContent>
-                      <Typography className="home__title" gutterBottom variant="h5" component="div">
-                        <span>
-                          <span>{favoriteLocation.localizedName}</span>
-                          <span>{favoriteLocation.temperature}</span>
-                        </span>
-                        <Button disabled={loading} onClick={handleFavoriteClick}>
-                          <Favorite isFavorite={favoriteLocation.isFavorite}/>
-                        </Button>
-                      </Typography>
-                      <div className="home__body">
-                        <div className="home__body-header">{favoriteLocation.weatherText}</div>
-                        <div className="home__forecasts">
-                          {
-                            favoriteLocation.forecasts.map(forecast => <Forecast key={forecast.title} forecast={forecast} />)
-                          }
-                        </div>
-                      </div>
-                    </CardContent>
-            }
-          </Card>
+        <Card>
+          {loading
+            ? <div className="home__loader"><Loader /></div>
+            : favoriteLocation
+            && <CardContent>
+              <Typography className="home__title" gutterBottom variant="h5" component="div">
+                <span>
+                  <span>{favoriteLocation.localizedName}</span>
+                  <span>{favoriteLocation.temperature}</span>
+                </span>
+                <Button disabled={loading} onClick={handleFavoriteClick}>
+                  <Favorite isFavorite={favoriteLocation.isFavorite} />
+                </Button>
+              </Typography>
+              <div className="home__body">
+                <div className="home__body-header">{favoriteLocation.weatherText}</div>
+                <div className="home__forecasts">
+                  {
+                    favoriteLocation.forecasts.map(forecast => <Forecast key={forecast.title} forecast={forecast} />)
+                  }
+                </div>
+              </div>
+            </CardContent>}
+        </Card>
       }
     </div>
   );

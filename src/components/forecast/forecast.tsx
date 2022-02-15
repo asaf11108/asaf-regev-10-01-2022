@@ -19,9 +19,9 @@ const Forecast: FC<ForecastProps> = ({ forecast }) => {
   return (
     <div className="forecast">
       <Typography variant="h5" className="card-title">
-          <p>{ forecast.title }</p>
-          <p>{ forecast.temperature }</p>
-          { forecast.icon && <img src={forecast.icon} alt="Weather icon" /> }
+          <p>{forecast.title}</p>
+          <p>{forecast.temperature}</p>
+          {forecast.icon && <img src={forecast.icon} alt="Weather icon" />}
       </Typography>
     </div>
   );

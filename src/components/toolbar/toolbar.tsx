@@ -33,19 +33,17 @@ const Toolbar: FC = () => {
 
       <span className="toolbar__actions">
         <span className="temperature-mode"><ToolbarTemperatureMode /></span>
-        {
-          MENU.map(menuItem => (
-            <Button
-              key={menuItem.label}
-              style={{ textTransform: 'capitalize' }}
-              onClick={() => navigate(menuItem.navigatePath)}
-              variant={match(menuItem.navigatePath) ? 'contained' : 'text'}
-              disabled={menuItem.disabled?.(favoriteLocations)}
-            >
-              {menuItem.label}
-            </Button>
-          ))
-        }
+        {MENU.map(menuItem => (
+          <Button
+            key={menuItem.label}
+            style={{ textTransform: 'capitalize' }}
+            onClick={() => navigate(menuItem.navigatePath)}
+            variant={match(menuItem.navigatePath) ? 'contained' : 'text'}
+            disabled={menuItem.disabled?.(favoriteLocations)}
+          >
+            {menuItem.label}
+          </Button>
+        ))}
       </span>
 
       <span className="toolbar__actions-mobile">
@@ -59,18 +57,16 @@ const Toolbar: FC = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          {
-            MENU.map(menuItem => (
-              <MenuItem
-                onClick={() => handleClose(menuItem.navigatePath)}
-                key={menuItem.label}
-                selected={!!match(menuItem.navigatePath)}
-                disabled={menuItem.disabled?.(favoriteLocations)}
-              >
-                {menuItem.label}
-              </MenuItem>
-            ))
-          }
+          {MENU.map(menuItem => (
+            <MenuItem
+              onClick={() => handleClose(menuItem.navigatePath)}
+              key={menuItem.label}
+              selected={!!match(menuItem.navigatePath)}
+              disabled={menuItem.disabled?.(favoriteLocations)}
+            >
+              {menuItem.label}
+            </MenuItem>
+          ))}
           <div className="text-align-center"><ToolbarTemperatureMode /></div>
         </Menu>
       </span >

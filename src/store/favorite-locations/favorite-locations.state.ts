@@ -20,12 +20,12 @@ export const favoriteLocationsSlice = createSlice({
         favoriteLocationsActive(state, action) {
             state.active = action.payload;
         },
-        favoriteLocationsToggleFavorite(state, action) {
+        favoriteLocationsToggleFavorite(state) {
             favoriteLocationsAdapter.updateOne(state, { id: state.active, changes: { isFavorite: !state.entities[state.active]?.isFavorite } });
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchFavoriteLocation.pending, (state, action) => {
+        builder.addCase(fetchFavoriteLocation.pending, (state) => {
             state.loading = true;
         });
         builder.addCase(fetchFavoriteLocation.fulfilled, (state, action) => {
