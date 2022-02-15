@@ -24,9 +24,9 @@ This project uses packages such as: `react-redux`, `@reduxjs/toolkit`, `@mui/mat
 
 ## React disparity from Angular
 1. SASS VS css-in-js.<br />
-    SASS: There are strong utility libraries that implemented by SASS, SASS selectors (BEM) is easy to build style.<br />
-    css-in-js: The code is cleaner, it easy to pass variable from js to css.
+    SASS: There are strong utility libraries that implemented by SASS, SASS selectors (BEM) is easy to build style, overriding MUI classes isn't intuitive.<br />
+    css-in-js: The code is cleaner (in the HTML part), it's easy to pass variable from js to css.
 2. Init interceptors. There is no way to initialize the interceptors without wrapping them in first render logic and taking into account that the initialization needs to be happen before any rendering and pass setState of snackbar to interceptor error response.
-3. The route guard inefficient. There isn't build-in tool to implement route guard, so the solution is to load the page and in case that the route canActivate is false that app will redirect to home page. This cause to 2 page renders.
+3. The route guard inefficient. There isn't build-in tool to implement route guard, so the solution is to load the page and in case that the route can't be activated the app will redirect to home page. This cause to 2 page renders.
 4. RxJS, doesn't integrate good in React. The code can be messy, for example take a look in the autocomplete component, it could be cleaner in RxJS.
 5. Good words on React, the code is much simpler! there are no modules / services / pipes / ... like Angular.
