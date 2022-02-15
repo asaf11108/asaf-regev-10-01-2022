@@ -9,7 +9,7 @@ const Home = lazy(() => import('./pages/home/home'));
 const History = lazy(() => import('./pages/history/history'));
 const Favorites = lazy(() => import('./pages/favorites/favorites'));
 
-const RouteFallback: FC = () => <div style={{margin: 'auto'}}><Loader color='white' size={LoaderSize.small} /></div>;
+const RouteFallback: FC = () => <div style={{margin: 'auto'}}><Loader color='white' size={LoaderSize.Small} /></div>;
 
 const AppRouting: FC = () => {
     return (

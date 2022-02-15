@@ -4,7 +4,7 @@ import './loader.scss';
 import { CircularProgress } from '@mui/material';
 import clsx from 'clsx';
 
-const Loader: FC<LoaderProps> = ({ color, size = LoaderSize.medium }) => {
+const Loader: FC<LoaderProps> = ({ color, size = LoaderSize.Medium }) => {
 
     return (
         <div className={clsx('loader', `loader--${size}`)}>
