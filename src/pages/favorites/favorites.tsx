@@ -45,7 +45,7 @@ const Favorites: FC = () => {
           appear>
           <div
             className="favorites__forecast"
-            style={{ transitionDelay: `${ANIMATION_DELAY * index}ms`,  }}
+            style={{ transitionDelay: `${ANIMATION_DELAY * index}ms` }}
             onClick={() => handleActiveForecast(favoriteLocation)}>
             <Forecast forecast={mapToForecastComponent(favoriteLocation)} />
           </div>
