@@ -24,7 +24,7 @@ const History: FC = () => {
   ])(FavoriteLocationSelectors.selectAll);
 
   const handleRowClick = (favoriteLocation: FavoriteLocation): void => {
-    dispatch(favoriteLocationsActive(favoriteLocation.key));
+    dispatch(favoriteLocationsActive(favoriteLocation));
     navigate('/');
   };
 

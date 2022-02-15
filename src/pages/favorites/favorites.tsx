@@ -22,7 +22,7 @@ const Favorites: FC = () => {
   ])(FavoriteLocationSelectors.selectAll);
 
   const handleActiveForecast = (favoriteLocation: FavoriteLocation): void => {
-    dispatch(favoriteLocationsActive(favoriteLocation.key));
+    dispatch(favoriteLocationsActive(favoriteLocation));
     navigate('/');
   };
 
