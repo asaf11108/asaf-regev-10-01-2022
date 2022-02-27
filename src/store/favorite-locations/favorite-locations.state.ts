@@ -12,13 +12,15 @@ export const favoriteLocationsAdapter = createEntityAdapter<FavoriteLocation>({
     selectId: (favoriteLocation) => favoriteLocation.key,
 });
 
+export const initialState = favoriteLocationsAdapter.getInitialState({
+    loading: false,
+    error: null as any,
+    active: DEAFUALT_LOCATION
+});
+
 export const favoriteLocationsSlice = createSlice({
     name: 'favoriteLocation',
-    initialState: favoriteLocationsAdapter.getInitialState({
-        loading: false,
-        error: null as any,
-        active: DEAFUALT_LOCATION
-    }),
+    initialState,
     reducers: {
         favoriteLocationsLoading(state, { payload }: PayloadAction<boolean>) {
             state.loading = payload;

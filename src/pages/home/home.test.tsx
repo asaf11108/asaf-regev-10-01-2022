@@ -1,13 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import Home from './home';
-import { shallow } from '@testing-library/react';
+import { createRenderer } from 'react-test-renderer/shallow';
+import configureStore from 'redux-mock-store';
+import { deepRenderer, shallowRenderer } from '../../testing/redux';
 
-it('It should mount', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Home />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+const mockStore = configureStore([]);
+const renderer = createRenderer();
+
+describe('HomeComponent', () => {
+  let store;
+  let fixture;
+
+  beforeEach(() => {
+    deepRenderer(<Home />, {});
+    const result = renderer.getRenderOutput();
+  })
+  it('It should mount', () => {
+    expect(2).toBe(2)
+  });
+
+})
 
 // describe('HomeComponent', () => {
 //   let fixture: HomeComponent;

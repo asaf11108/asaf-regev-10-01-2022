@@ -13,7 +13,7 @@ import { generalSlice } from "./general/general.state";
 
 export type RootState = ReturnType<typeof store.getState>;
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
     favoriteLocations: favoriteLocationsSlice.reducer,
     general: generalSlice.reducer
 });
