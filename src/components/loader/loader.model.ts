@@ -1,7 +1,7 @@
 export enum LoaderSize  {
-    small = 'small',
-    medium = 'medium',
-    large = 'large'
+    Small = 'small',
+    Medium = 'medium',
+    Large = 'large'
 }
 
 export interface LoaderProps {
