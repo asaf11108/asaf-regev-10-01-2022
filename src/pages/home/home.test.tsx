@@ -1,20 +1,18 @@
+import { ReactElement, ReactInstance } from 'react';
 import Home from './home';
-import { createRenderer } from 'react-test-renderer/shallow';
-import configureStore from 'redux-mock-store';
-import { deepRenderer, shallowRenderer } from '../../testing/redux';
-
-const mockStore = configureStore([]);
-const renderer = createRenderer();
+import { deepRenderer, reduxShallow, shallowRenderer } from '../../testing/store-renderer';
+import { ReactTestInstance } from 'react-test-renderer';
+import { ShallowWrapper } from 'enzyme';
 
 describe('HomeComponent', () => {
-  let store;
-  let fixture;
+  let fixture: ShallowWrapper<typeof Home>;
 
   beforeEach(() => {
-    deepRenderer(<Home />, {});
-    const result = renderer.getRenderOutput();
+    fixture = reduxShallow(<Home />);
   })
-  it('It should mount', () => {
+
+  it('It should have initial location', () => {
+    console.log(fixture.instance())
     expect(2).toBe(2)
   });
 
