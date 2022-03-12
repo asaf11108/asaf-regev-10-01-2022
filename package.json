@@ -60,6 +60,7 @@
     "@types/node": "^16.11.19",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
-    "@types/react-redux": "^7.1.22"
+    "@types/react-redux": "^7.1.22",
+    "generate-react-cli": "^7.0.6"
   }
 }
