@@ -3,13 +3,11 @@
 .toolbar {
     display: flex;
     justify-content: space-between;
-    &.MuiToolbar-root {
-        background-color: white;
-        @include vendors.media('>xs') {
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }
+    background-color: white;
+    @include vendors.media('>sm') {
+        position: sticky !important;
+        top: 0;
+        z-index: 1;
     }
 
     &__title {
@@ -30,12 +28,12 @@
             width: 80px;
         }
 
-        @include vendors.media('<=xs') {
+        @include vendors.media('<=sm') {
             display: none;
         }
 
         &-mobile {
-            @include vendors.media('>xs') {
+            @include vendors.media('>sm') {
                 display: none;
             }
         }

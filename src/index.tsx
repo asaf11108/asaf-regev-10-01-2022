@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.scss';
+import GlobalStyles from './styles/index';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
@@ -9,11 +9,13 @@ import theme from './theme';
 import { Provider } from 'react-redux';
 import { persistor, store } from './store/config';
 import { PersistGate } from 'redux-persist/integration/react';
+import { Global } from '@emotion/react';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
         <Provider store={store}>
+          <Global styles={GlobalStyles} />
           <ThemeProvider theme={theme}>
             <PersistGate loading={null} persistor={persistor}>
               <App />
