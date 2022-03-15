@@ -1,13 +1,13 @@
-import { FC, useState, MouseEvent, useCallback } from 'react';
+import { FC, MouseEvent } from 'react';
 import './toolbar.scss';
 import { useNavigate, useMatch } from "react-router-dom";
-import { Button, IconButton, Menu, MenuItem, Toolbar as MuiToolbar } from '@mui/material';
+import { Button, IconButton, MenuItem, Toolbar as MuiToolbar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { GITHUB_URL, MENU } from './toolbar.config';
 import ToolbarTemperatureMode from './toolbar-temperature-mode';
 import { useSelector } from 'react-redux';
 import { FavoriteLocationSelectors } from '../../store/favorite-locations/favorite-locations.selector';
-import { useMenu } from '../../hooks/menu.hook';
+import { useMenu } from '../../hooks/menu/menu.hook';
 
 const Toolbar: FC = () => {
   const navigate = useNavigate();
@@ -16,8 +16,8 @@ const Toolbar: FC = () => {
 
   const favoriteLocations = useSelector(FavoriteLocationSelectors.selectAll);
 
-  const handleMenuItemClick = (navigatePath: string) => {
-    closeMenu();
+  const handleMenuItemClick = (event: MouseEvent<HTMLElement>, navigatePath: string) => {
+    closeMenu(event);
     navigate(navigatePath);
   };
 
@@ -53,7 +53,7 @@ const Toolbar: FC = () => {
         >
           {MENU.map(menuItem => (
             <MenuItem
-              onClick={() => handleMenuItemClick(menuItem.navigatePath)}
+              onClick={event => handleMenuItemClick(event, menuItem.navigatePath)}
               key={menuItem.label}
               selected={!!match(menuItem.navigatePath)}
               disabled={menuItem.disabled?.(favoriteLocations)}
