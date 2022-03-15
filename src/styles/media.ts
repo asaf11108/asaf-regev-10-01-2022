@@ -4,7 +4,10 @@ import { CSSInterpolation } from '@emotion/serialize'
 import { fluidRange } from "polished";
 import { FluidRangeConfiguration } from "polished/lib/types/fluidRangeConfiguration";
 
-export const BREAKPOINTS = {
+export type Breakpoints = Record<'xs' | 'sm' | 'md' | 'lg' | 'xl', number>;
+export type CssType = typeof css;
+
+export const BREAKPOINTS: Breakpoints = {
     xs: 0,
     sm: 600,
     md: 960,
