@@ -7,24 +7,19 @@ import { GITHUB_URL, MENU } from './toolbar.config';
 import ToolbarTemperatureMode from './toolbar-temperature-mode';
 import { useSelector } from 'react-redux';
 import { FavoriteLocationSelectors } from '../../store/favorite-locations/favorite-locations.selector';
+import { useMenu } from '../../hooks/menu.hook';
 
 const Toolbar: FC = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
   const match = useMatch;
+  const { menuProps, openMenu, closeMenu } = useMenu();
 
   const favoriteLocations = useSelector(FavoriteLocationSelectors.selectAll);
 
-  const handleClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    setAnchorEl(event.currentTarget);
-  }, []);
-
-  const handleClose = useCallback((event: MouseEvent<HTMLLIElement>, navigatePath: string) => {
-    event.stopPropagation();
-    setAnchorEl(null);
+  const handleMenuItemClick = (navigatePath: string) => {
+    closeMenu();
     navigate(navigatePath);
-  }, []);
+  };
 
   return (
     <MuiToolbar className="toolbar">
@@ -49,19 +44,17 @@ const Toolbar: FC = () => {
       </span>
 
       <span className="toolbar__actions-mobile">
-        <IconButton color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        <IconButton color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
           <MenuIcon />
         </IconButton>
         <Menu
+          {...menuProps}
           className="menu"
-          anchorEl={anchorEl}
           keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
         >
           {MENU.map(menuItem => (
             <MenuItem
-              onClick={(event) => handleClose(event, menuItem.navigatePath)}
+              onClick={() => handleMenuItemClick(menuItem.navigatePath)}
               key={menuItem.label}
               selected={!!match(menuItem.navigatePath)}
               disabled={menuItem.disabled?.(favoriteLocations)}
