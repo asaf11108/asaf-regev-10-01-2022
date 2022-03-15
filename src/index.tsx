@@ -9,6 +9,7 @@ import theme from './theme';
 import { Provider } from 'react-redux';
 import { persistor, store } from './store/config';
 import { PersistGate } from 'redux-persist/integration/react';
+import { MenuContextProvider } from './hooks/menu/menu.provider';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,7 +17,9 @@ ReactDOM.render(
         <Provider store={store}>
           <ThemeProvider theme={theme}>
             <PersistGate loading={null} persistor={persistor}>
-              <App />
+              <MenuContextProvider>
+                <App />
+              </MenuContextProvider>
             </PersistGate>
           </ThemeProvider>
         </Provider>
