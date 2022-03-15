@@ -1,4 +1,4 @@
-import { FC, useState, MouseEvent } from 'react';
+import { FC, useState, MouseEvent, useCallback } from 'react';
 import './toolbar.scss';
 import { useNavigate, useMatch } from "react-router-dom";
 import { Button, IconButton, Menu, MenuItem, Toolbar as MuiToolbar } from '@mui/material';
@@ -15,14 +15,16 @@ const Toolbar: FC = () => {
 
   const favoriteLocations = useSelector(FavoriteLocationSelectors.selectAll);
 
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
-  };
+  }, []);
 
-  const handleClose = (navigatePath: string) => {
+  const handleClose = useCallback((event: MouseEvent<HTMLLIElement>, navigatePath: string) => {
+    event.stopPropagation();
     setAnchorEl(null);
     navigate(navigatePath);
-  };
+  }, []);
 
   return (
     <MuiToolbar className="toolbar">
@@ -59,7 +61,7 @@ const Toolbar: FC = () => {
         >
           {MENU.map(menuItem => (
             <MenuItem
-              onClick={() => handleClose(menuItem.navigatePath)}
+              onClick={(event) => handleClose(event, menuItem.navigatePath)}
               key={menuItem.label}
               selected={!!match(menuItem.navigatePath)}
               disabled={menuItem.disabled?.(favoriteLocations)}
