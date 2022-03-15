@@ -12,19 +12,12 @@ export const useMenu = () => {
   const { setAnchorEl } = useContext(MenuContext);
 
   const openMenu = useCallback(
-    (event: MouseEvent<HTMLElement>) => {
-      event.stopPropagation();
-      const target = event.currentTarget;
-      setAnchorEl(target);
-    },
+    (event: MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget),
     [setAnchorEl]
   );
 
   const closeMenu = useCallback(
-    (event: MouseEvent<HTMLElement>) => {
-      event.stopPropagation();
-      setAnchorEl(null);
-    },
+    () => setAnchorEl(null),
     [setAnchorEl]
   );
 

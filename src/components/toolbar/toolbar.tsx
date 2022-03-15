@@ -16,8 +16,8 @@ const Toolbar: FC = () => {
 
   const favoriteLocations = useSelector(FavoriteLocationSelectors.selectAll);
 
-  const handleMenuItemClick = (event: MouseEvent<HTMLElement>, navigatePath: string) => {
-    closeMenu(event);
+  const handleMenuItemClick = (navigatePath: string) => {
+    closeMenu();
     navigate(navigatePath);
   };
 
@@ -53,7 +53,7 @@ const Toolbar: FC = () => {
         >
           {MENU.map(menuItem => (
             <MenuItem
-              onClick={event => handleMenuItemClick(event, menuItem.navigatePath)}
+              onClick={() => handleMenuItemClick(menuItem.navigatePath)}
               key={menuItem.label}
               selected={!!match(menuItem.navigatePath)}
               disabled={menuItem.disabled?.(favoriteLocations)}
