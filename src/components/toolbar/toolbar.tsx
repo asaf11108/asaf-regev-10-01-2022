@@ -12,7 +12,7 @@ import { useMenu } from '../../hooks/menu.hook';
 const Toolbar: FC = () => {
   const navigate = useNavigate();
   const match = useMatch;
-  const { menuProps, openMenu, closeMenu } = useMenu();
+  const { Menu, openMenu, closeMenu } = useMenu();
 
   const favoriteLocations = useSelector(FavoriteLocationSelectors.selectAll);
 
@@ -48,7 +48,6 @@ const Toolbar: FC = () => {
           <MenuIcon />
         </IconButton>
         <Menu
-          {...menuProps}
           className="menu"
           keepMounted
         >

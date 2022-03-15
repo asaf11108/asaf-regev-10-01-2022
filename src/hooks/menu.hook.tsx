@@ -1,5 +1,5 @@
-import { useState, useCallback, useMemo, MouseEvent } from "react";
-import { MenuProps } from "@mui/material/Menu";
+import { MenuProps, Menu as MuiMenu } from "@mui/material";
+import { useState, useCallback, useMemo, MouseEvent, FC } from "react";
 
 export const useMenu = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -12,17 +12,20 @@ export const useMenu = () => {
     setAnchorEl(null);
   }, []);
 
-  const menuProps = useMemo((): MenuProps => {
-    return {
-      anchorEl,
-      open: Boolean(anchorEl),
-      onClose: closeMenu
-    };
+  const Menu = useMemo(() => {
+    const MenuComponent: FC<Omit<MenuProps, "open" | "anchorEl" | "onClose">> = ({ children, ...props }) => {
+        return (
+          <MuiMenu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={closeMenu} {...props}>
+            {children}
+          </MuiMenu>
+        );
+      };
+      return MenuComponent;
   }, [anchorEl, closeMenu]);
 
   return {
+    Menu,
     openMenu,
-    closeMenu,
-    menuProps
+    closeMenu
   };
 };
