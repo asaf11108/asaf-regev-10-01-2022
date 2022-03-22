@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { VFC } from 'react';
 import Forecast from '../../components/forecast/forecast';
 import { _Forecast } from '../../components/forecast/forecast.model';
 import { FavoriteLocation } from '../../store/favorite-locations/favorite-locations.model';
@@ -13,7 +13,7 @@ import { filter } from 'lodash/fp';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { ANIMATION_DELAY } from './favorites.config';
 
-const Favorites: FC = () => {
+const Favorites: VFC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const favoriteLocations: FavoriteLocation[] = flow([

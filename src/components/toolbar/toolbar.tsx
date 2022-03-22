@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from 'react';
+import { VFC } from 'react';
 import './toolbar.scss';
 import { useNavigate, useMatch } from "react-router-dom";
 import { Button, IconButton, MenuItem, Toolbar as MuiToolbar } from '@mui/material';
@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { FavoriteLocationSelectors } from '../../store/favorite-locations/favorite-locations.selector';
 import { useMenu } from '../../hooks/menu/menu.hook';
 
-const Toolbar: FC = () => {
+const Toolbar: VFC = () => {
   const navigate = useNavigate();
   const match = useMatch;
   const { Menu, openMenu, closeMenu } = useMenu();

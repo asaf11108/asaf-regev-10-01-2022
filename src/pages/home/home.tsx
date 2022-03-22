@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { VFC, useEffect } from 'react';
 import './home.scss';
 import ControllerAutocomplete from '../../components/autocomplete/controller-autocomplete';
 import { Button, Card, CardContent, Typography } from '@mui/material';
@@ -17,7 +17,7 @@ import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import Loader from '../../components/loader/loader';
 
-const Home: FC = () => {
+const Home: VFC = () => {
   const dispatch = useDispatch();
   const loading = useSelector(FavoriteLocationSelectLoading);
   const error = useSelector(FavoriteLocationSelectError);

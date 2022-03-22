@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { VFC, useState } from 'react';
 import './history.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,7 @@ import { useManyTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import { filter } from 'lodash/fp';
 
-const History: FC = () => {
+const History: VFC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { VFC, useState } from 'react';
 import './app.scss';
 import Toolbar from './components/toolbar/toolbar';
 import apiKeyInterceptor from './interceptors/api-key.interceptor';
@@ -7,7 +7,7 @@ import { Snackbar } from '@mui/material';
 import { useFirstMountState } from 'react-use';
 import AppRouting from './app-routing';
 
-const App: FC = () => {
+const App: VFC = () => {
   const [open, setOpen] = useState(false);
   const isFirstMount = useFirstMountState();
 
