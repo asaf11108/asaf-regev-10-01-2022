@@ -68,7 +68,6 @@ const Home: VFC = () => {
         </CardContent>
       </Card>
 
-      {
         <Card>
           {loading
             ? <div className="home__loader"><Loader /></div>
@@ -88,14 +87,11 @@ const Home: VFC = () => {
                 <div className="home__body">
                   <div className="home__body-header">{favoriteLocation.weatherText}</div>
                   <div className="home__forecasts">
-                    {
-                      favoriteLocation.forecasts.map(forecast => <Forecast key={forecast.title} forecast={forecast} />)
-                    }
+                    {favoriteLocation.forecasts.map(forecast => <Forecast key={forecast.title} forecast={forecast} />)}
                   </div>
                 </div>
               </CardContent>}
         </Card>
-      }
     </div>
   );
 };
