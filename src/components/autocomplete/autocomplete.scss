@@ -1,19 +1,5 @@
-@use "./../../styles/vendors/vendors";
-
 .autocomplete {
-    width: 100%;
-    position: relative;
-
-    .MuiFormControl-root {
-        width: 100%;
-
-        .MuiAutocomplete-inputRoot {
-            padding-right: 0 !important;
-        }
-    }
-
-    .MuiFormHelperText-root {
-        position: absolute;
-        top: 95%;
+    .MuiAutocomplete-inputRoot {
+        padding-right: 0 !important;
     }
 }

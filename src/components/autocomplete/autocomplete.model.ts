@@ -11,7 +11,6 @@ interface BaseAutocompleteProps {
 
 export interface AutocompleteProps extends BaseAutocompleteProps {
     valid?: boolean;
-    error?: FieldError;
     innerRef?: Ref<any>;
     onInputChange?: (query: string) => void;
     onBlur?: Noop;

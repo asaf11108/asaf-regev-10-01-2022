@@ -1,15 +1,17 @@
-import { FC } from 'react';
-import { ControllerAutocompleteProps } from './autocomplete.model';
-import Autocomplete from './autocomplete';
-import { useController } from 'react-hook-form';
+import { FC } from "react";
+import "./controller-autocomplete.scss";
+import { ControllerAutocompleteProps } from "./autocomplete.model";
+import Autocomplete from "./autocomplete";
+import { useController } from "react-hook-form";
+import { FormControl, FormHelperText } from "@mui/material";
 
 const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
   onChange: handleChange,
   promiseOptions,
-  optionText = 'option',
+  optionText = "option",
   option,
   name,
-  control
+  control,
 }) => {
   const {
     field: { onChange: handleInputChange, onBlur, ref },
@@ -17,20 +19,21 @@ const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
   } = useController({
     name,
     control,
-    defaultValue: option?.label || '',
+    defaultValue: option?.label || "",
     rules: {
       required: {
         value: true,
-        message: `Please enter ${optionText}`
+        message: `Please enter ${optionText}`,
       },
       pattern: {
         value: /^[a-zA-Z ]+$/,
-        message: 'Only letters are allowed'
-      }
-    }
+        message: "Only letters are allowed",
+      },
+    },
   });
 
   return (
+    <FormControl className="controller-autocomplete">
       <Autocomplete
         innerRef={ref}
         onBlur={onBlur}
@@ -40,8 +43,9 @@ const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
         promiseOptions={promiseOptions}
         optionText={optionText}
         valid={!invalid}
-        error={error}
       />
+      {invalid && <FormHelperText error>{error?.message}</FormHelperText>}
+    </FormControl>
   );
 };
 
