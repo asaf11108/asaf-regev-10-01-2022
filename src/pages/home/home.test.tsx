@@ -1,9 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { renderWithProviders } from '../../testing/render-with-providers';
 import Home from './home';
 
 it('It should mount', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Home />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  renderWithProviders(<Home />);
 });
