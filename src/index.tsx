@@ -1,30 +1,12 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.scss';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material';
-import theme from './theme';
-import { Provider } from 'react-redux';
-import { persistor, store } from './store/config';
-import { PersistGate } from 'redux-persist/integration/react';
-import { MenuContextProvider } from './hooks/menu/menu.provider';
+import { providersWrapper } from './providers-wrapper';
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-        <Provider store={store}>
-          <ThemeProvider theme={theme}>
-            <PersistGate loading={null} persistor={persistor}>
-              <MenuContextProvider>
-                <App />
-              </MenuContextProvider>
-            </PersistGate>
-          </ThemeProvider>
-        </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
+  providersWrapper(<App />),
   document.getElementById('root')
 );
 
