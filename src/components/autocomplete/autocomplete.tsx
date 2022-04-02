@@ -48,7 +48,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
     getOptionsDelayed(inputValue, (filteredOptions: Option[]) => {
       setOptions(filteredOptions);
     });
-  }, [inputValue, getOptionsDelayed]);
+  }, [inputValue, getOptionsDelayed, setOptions]);
 
   const handleValueChange = (option: Option | null): void => {
     _handleInputChange(option?.label || "");
@@ -58,6 +58,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
   return (
     <MuiAutocomplete
       className="autocomplete"
+      data-testid="autocomplete"
       ref={innerRef}
       onBlur={onBlur}
       value={option}
@@ -74,6 +75,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
           {...params}
           variant="standard"
           placeholder={`Search ${optionText}`}
+          data-testid="auto-input"
           InputProps={{
             ...params.InputProps,
             startAdornment: <SearchIcon />,
