@@ -24,11 +24,16 @@ This project uses packages such as: `react-redux`, `@reduxjs/toolkit`, `@mui/mat
 12. Generate react cli, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/generate-react-cli.json).
 12. Improvements to be done: add `OpenAPI` to the project, use `style components` instead of SASS.
 
-## React disparity from Angular
+## React vs Angular
 1. `SASS VS css-in-js`.<br />
     SASS: There are strong utility libraries that implemented by SASS, SASS selectors (BEM) is easy to build style, overriding MUI classes isn't intuitive.<br />
     css-in-js: The code is cleaner (in the HTML part), it's easy to pass variable from js to css.
 2. Init interceptors. There is no way to initialize the interceptors without wrapping them in first render logic and taking into account that the initialization needs to be happen before any rendering and pass setState of snackbar to interceptor error response.
 3. The route guard inefficient. There isn't build-in tool to implement route guard, so the solution is to load the page and in case that the route can't be activated the app will redirect to home page. This cause to 2 page renders.
 4. `RxJS` doesn't go along well with React. The code can be messy, for example take a look in the autocomplete component, it could be cleaner in RxJS.
-5. Good words on React, the code is much simpler! there are no modules / services / pipes / ... like Angular.
+5. In material UI [Textfield](https://mui.com/components/text-fields/#components) is very powerful and easy to customise in respect to Angular material form field, [article](https://medium.com/geekculture/what-really-happens-when-you-use-the-textfield-component-in-material-ui-1e62652196f).
+6. React is much `simpler`! there are no modules / services / pipes / ... like Angular.
+7. `Rendering` in react can be slow in contrast to Angular (OnPush).<br/>
+React component re-rendering when: update in State, update in prop, re-rendering of the parent component.<br/>
+Angular component re-rendering when: input / output changed, async event (click / mouse move...).<br/>
+Angular change detection is simplier, no need for useMemo / useCallback that make uglify the code and slower the app.
