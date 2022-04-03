@@ -7,11 +7,13 @@ import { FormControl, FormHelperText } from "@mui/material";
 
 const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
   onChange: handleChange,
-  promiseOptions,
+  onInputChange: hand,
   optionText = "option",
   option,
   name,
   control,
+  options,
+  loading
 }) => {
   const {
     field: { onChange: handleInputChange, onBlur, ref },
@@ -40,10 +42,10 @@ const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
         option={option}
         onInputChange={handleInputChange}
         onChange={handleChange}
-        promiseOptions={promiseOptions}
         optionText={optionText}
         valid={!invalid}
-      />
+        options={options}
+        loading={loading}/>
       {invalid && <FormHelperText error>{error?.message}</FormHelperText>}
     </FormControl>
   );

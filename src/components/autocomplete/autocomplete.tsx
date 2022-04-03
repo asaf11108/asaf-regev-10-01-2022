@@ -14,44 +14,32 @@ import { CircularProgress } from "@mui/material";
 const Autocomplete: FC<AutocompleteProps> = ({
   onInputChange: handleInputChange,
   onChange: handleChange,
-  promiseOptions,
   optionText = "option",
   option,
   valid = true,
   innerRef,
   onBlur,
+  options = [],
+  loading = false
 }) => {
-  const [options, setOptions] = useState<Option[]>([]);
   const [inputValue, setInputValue] = useState(option?.label || "");
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const _handleInputChange = (query: string): void => {
-    setInputValue(query);
-    handleInputChange?.(query);
-  };
 
   const getOptionsDelayed = useCallback(
-    debounce((query, callback) => {
-      valid && open && query
-        ? Promise.resolve()
-            .then(() => setLoading(true))
-            .then(() => promiseOptions(query))
-            .then(callback)
-            .finally(() => setLoading(false))
-        : callback([]);
+    debounce((query) => {
+      if (valid && open && query) {
+        handleInputChange(query)
+      }
     }, 1000),
     [valid, open]
   );
 
   useEffect(() => {
-    getOptionsDelayed(inputValue, (filteredOptions: Option[]) => {
-      setOptions(filteredOptions);
-    });
-  }, [inputValue, getOptionsDelayed, setOptions]);
+    getOptionsDelayed(inputValue);
+  }, [inputValue, getOptionsDelayed]);
 
   const handleValueChange = (option: Option | null): void => {
-    _handleInputChange(option?.label || "");
+    setInputValue(option?.label || "");
     option && handleChange(option);
   };
 
@@ -62,7 +50,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
       ref={innerRef}
       onBlur={onBlur}
       value={option}
-      onInputChange={(_, query) => _handleInputChange(query)}
+      onInputChange={(_, query) => setInputValue(query)}
       open={open && valid}
       onOpen={() => setOpen(true)}
       onClose={() => setOpen(false)}

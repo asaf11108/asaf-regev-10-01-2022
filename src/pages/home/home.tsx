@@ -1,4 +1,4 @@
-import { VFC, useEffect } from 'react';
+import { VFC, useEffect, useMemo } from 'react';
 import './home.scss';
 import ControllerAutocomplete from '../../components/autocomplete/controller-autocomplete';
 import { Button, Card, CardContent, Typography } from '@mui/material';
@@ -16,16 +16,19 @@ import Favorite from '../../components/favorite/favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import Loader from '../../components/loader/loader';
+import useFetch from 'use-http';
+import { AutocompleteOption } from '../../api/interfaces/autocomplete';
 
 const Home: VFC = () => {
   const dispatch = useDispatch();
-  const loading = useSelector(FavoriteLocationSelectLoading);
-  const error = useSelector(FavoriteLocationSelectError);
+  const loadingLocation = useSelector(FavoriteLocationSelectLoading);
+  const errorLocation = useSelector(FavoriteLocationSelectError);
   const favoriteLocation: FavoriteLocation = flow([
     useSelector,
     useOneTemperatureType,
   ])(FavoriteLocationSelectActiveEntity);
   const { control } = useForm({ mode: 'onChange' });
+  const { get, response, loading: loadingLocations, error: errorLocations } = useFetch<AutocompleteOption[]>({ data: [] });
 
   const activeLocation = useSelector(FavoriteLocationSelectActive);
 
@@ -44,12 +47,16 @@ const Home: VFC = () => {
     dispatch(favoriteLocationsToggleFavorite());
   }
 
-  const promiseOptions: AutocompleteProps['promiseOptions'] = async (query) => {
-    return API.getLocations(query)
-      .then<Location[]>(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName })))
-      .then<Option[]>(res => res.map(locationToOption))
+  const handleInputChange: AutocompleteProps['onInputChange'] = async (query) => {
+    return get().then(() => API.getLocations(query))
+      
   };
 
+  const options = useMemo<Option[]>(() => {
+    return (response.data || [])
+      .map<Location>(location => ({ key: location.Key, localizedName: location.LocalizedName }))
+      .map(locationToOption);
+  }, [response])
 
   return (
     <div className="home">
@@ -58,8 +65,10 @@ const Home: VFC = () => {
           <form>
             <ControllerAutocomplete
               onChange={handleSelectLocation}
+              onInputChange={handleInputChange}
               option={locationToOption(activeLocation)}
-              promiseOptions={promiseOptions}
+              options={options}
+              loading={loadingLocations}
               optionText="location"
               name="query"
               control={control}
@@ -69,9 +78,9 @@ const Home: VFC = () => {
       </Card>
 
         <Card>
-          {loading
+          {loadingLocation
             ? <div className="home__loader"><Loader /></div>
-            : error
+            : errorLocation
               ? <Typography className="home__error" variant="h1" component="div">NO DATA</Typography>
               : favoriteLocation
               && <CardContent>
@@ -80,7 +89,7 @@ const Home: VFC = () => {
                     <span data-testid="localized-name">{favoriteLocation.localizedName}</span>
                     <span>{favoriteLocation.temperature}</span>
                   </span>
-                  <Button disabled={loading} onClick={handleFavoriteClick}>
+                  <Button disabled={loadingLocation} onClick={handleFavoriteClick}>
                     <Favorite isFavorite={favoriteLocation.isFavorite} />
                   </Button>
                 </Typography>

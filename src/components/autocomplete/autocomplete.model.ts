@@ -4,15 +4,16 @@ import { Option } from "../../interfaces/general";
 
 interface BaseAutocompleteProps {
     onChange: (key: Option) => void;
-    promiseOptions: (query: string) => Promise<Option[]>;
+    onInputChange: (query: string) => void;
     optionText?: string;
     option: Option;
+    options: Option[];
+    loading: boolean;
 }
 
 export interface AutocompleteProps extends BaseAutocompleteProps {
     valid?: boolean;
     innerRef?: Ref<any>;
-    onInputChange?: (query: string) => void;
     onBlur?: Noop;
 }
 
