@@ -16,6 +16,7 @@ import Favorite from '../../components/favorite/favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import Loader from '../../components/loader/loader';
+import largeImage from "../../assets/large-image.jpg";
 
 const Home: VFC = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const Home: VFC = () => {
 
   return (
     <div className="home">
+      <img src={largeImage} />
       <Card className="home__autocomplete">
         <CardContent>
           <form>
