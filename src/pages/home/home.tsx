@@ -1,6 +1,5 @@
-import { VFC, useEffect, useMemo } from 'react';
+import { VFC, useEffect, useMemo, useState, useCallback } from 'react';
 import './home.scss';
-import ControllerAutocomplete from '../../components/autocomplete/controller-autocomplete';
 import { Button, Card, CardContent, Typography } from '@mui/material';
 import Forecast from '../../components/forecast/forecast';
 import { FavoriteLocation, Location } from "../../store/favorite-locations/favorite-locations.model";
@@ -16,7 +15,8 @@ import Favorite from '../../components/favorite/favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import Loader from '../../components/loader/loader';
-import useFetch from 'use-http';
+import Autocomplete from '../../components/autocomplete/autocomplete';
+import usePromise from 'react-use-promise';
 import { AutocompleteOption } from '../../api/interfaces/autocomplete';
 
 const Home: VFC = () => {
@@ -28,9 +28,14 @@ const Home: VFC = () => {
     useOneTemperatureType,
   ])(FavoriteLocationSelectActiveEntity);
   const { control } = useForm({ mode: 'onChange' });
-  const { get, response, loading: loadingLocations, error: errorLocations } = useFetch<AutocompleteOption[]>({ data: [] });
 
   const activeLocation = useSelector(FavoriteLocationSelectActive);
+
+  const [query, setQuery] = useState<string>(activeLocation.localizedName);
+  const [response, error, loadingState] = usePromise<AutocompleteOption[]>(
+    () => API.getLocations(query),
+    [query]
+  );
 
   const locationToOption = (location: Location): Option => ({ id: location.key, label: location.localizedName });
 
@@ -47,15 +52,14 @@ const Home: VFC = () => {
     dispatch(favoriteLocationsToggleFavorite());
   }
 
-  const handleInputChange: AutocompleteProps['onInputChange'] = async (query) => {
-    return get().then(() => API.getLocations(query))
-      
-  };
+  const handleInputChange = (query: string) => {
+      setQuery(query);
+    };
 
   const options = useMemo<Option[]>(() => {
-    return (response.data || [])
-      .map<Location>(location => ({ key: location.Key, localizedName: location.LocalizedName }))
-      .map(locationToOption);
+    return (response || [])
+    .map<Location>(location => ({ key: location.Key, localizedName: location.LocalizedName }))
+    .map(locationToOption);
   }, [response])
 
   return (
@@ -63,15 +67,13 @@ const Home: VFC = () => {
       <Card className="home__autocomplete">
         <CardContent>
           <form>
-            <ControllerAutocomplete
+            <Autocomplete
               onChange={handleSelectLocation}
               onInputChange={handleInputChange}
               option={locationToOption(activeLocation)}
               options={options}
-              loading={loadingLocations}
+              loading={loadingState === 'pending'}
               optionText="location"
-              name="query"
-              control={control}
             />
           </form>
         </CardContent>

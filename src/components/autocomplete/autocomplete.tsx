@@ -49,7 +49,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
       data-testid="autocomplete"
       ref={innerRef}
       onBlur={onBlur}
-      value={option}
+      defaultValue={option}
       onInputChange={(_, query) => setInputValue(query)}
       open={open && valid}
       onOpen={() => setOpen(true)}
