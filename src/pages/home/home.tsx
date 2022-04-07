@@ -73,7 +73,7 @@ const Home: VFC = () => {
               option={locationToOption(activeLocation)}
               options={options}
               loading={loadingState === 'pending'}
-              optionText="location"
+              placeholder="location"
             />
           </form>
         </CardContent>

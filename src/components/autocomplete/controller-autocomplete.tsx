@@ -8,7 +8,7 @@ import { FormControl, FormHelperText } from "@mui/material";
 const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
   onChange: handleChange,
   onInputChange: hand,
-  optionText = "option",
+  placeholder = "option",
   option,
   name,
   control,
@@ -25,7 +25,7 @@ const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
     rules: {
       required: {
         value: true,
-        message: `Please enter ${optionText}`,
+        message: `Please enter ${placeholder}`,
       },
       pattern: {
         value: /^[a-zA-Z ]+$/,
@@ -42,7 +42,7 @@ const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
         option={option}
         onInputChange={handleInputChange}
         onChange={handleChange}
-        optionText={optionText}
+        placeholder={placeholder}
         valid={!invalid}
         options={options}
         loading={loading}/>

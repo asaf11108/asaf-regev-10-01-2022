@@ -5,7 +5,7 @@ import { Option } from "../../interfaces/general";
 interface BaseAutocompleteProps {
     onChange: (key: Option) => void;
     onInputChange: (query: string) => void;
-    optionText?: string;
+    placeholder?: string;
     option: Option;
     options: Option[];
     loading: boolean;

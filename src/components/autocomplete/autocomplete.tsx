@@ -14,7 +14,7 @@ import { CircularProgress } from "@mui/material";
 const Autocomplete: FC<AutocompleteProps> = ({
   onInputChange: handleInputChange,
   onChange: handleChange,
-  optionText = "option",
+  placeholder = "option",
   option,
   valid = true,
   innerRef,
@@ -62,7 +62,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
         <TextField
           {...params}
           variant="standard"
-          placeholder={`Search ${optionText}`}
+          placeholder={`Search ${placeholder}`}
           data-testid="auto-input"
           InputProps={{
             ...params.InputProps,
