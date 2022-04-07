@@ -7,7 +7,7 @@ import { FormControl, FormHelperText } from "@mui/material";
 
 const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
   onChange: handleChange,
-  onInputChange: hand,
+  onInputChange: handleInputChange,
   placeholder = "option",
   option,
   name,
@@ -16,7 +16,7 @@ const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
   loading
 }) => {
   const {
-    field: { onChange: handleInputChange, onBlur, ref },
+    field: { onChange: handleFormInputChange, onBlur, ref },
     fieldState: { invalid, error },
   } = useController({
     name,
@@ -34,13 +34,18 @@ const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
     },
   });
 
+  const _handleInputChange = (query: string) => {
+    handleFormInputChange(query);
+    handleInputChange(query);
+  };
+
   return (
     <FormControl className="controller-autocomplete">
       <Autocomplete
         innerRef={ref}
         onBlur={onBlur}
         option={option}
-        onInputChange={handleInputChange}
+        onInputChange={_handleInputChange}
         onChange={handleChange}
         placeholder={placeholder}
         valid={!invalid}
