@@ -15,14 +15,14 @@ const Autocomplete: FC<AutocompleteProps> = ({
   onInputChange: handleInputChange,
   onChange: handleChange,
   placeholder = "option",
-  option,
+  defaultOption,
   valid = true,
   innerRef,
   onBlur,
   options = [],
   loading = false
 }) => {
-  const [inputValue, setInputValue] = useState(option?.label || "");
+  const [inputValue, setInputValue] = useState(defaultOption?.label || "");
   const [open, setOpen] = useState(false);
 
   const getOptionsDelayed = useCallback(
@@ -49,7 +49,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
       data-testid="autocomplete"
       ref={innerRef}
       onBlur={onBlur}
-      defaultValue={option}
+      defaultValue={defaultOption}
       onInputChange={(_, query) => setInputValue(query)}
       open={open && valid}
       onOpen={() => setOpen(true)}

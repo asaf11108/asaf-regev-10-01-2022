@@ -9,19 +9,19 @@ const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
   onChange: handleChange,
   onInputChange: handleInputChange,
   placeholder = "option",
-  option,
+  defaultOption,
   name,
   control,
   options,
   loading
 }) => {
   const {
-    field: { onChange: handleFormInputChange, onBlur, ref },
+    field: { onChange: handleControlInputChange, onBlur, ref },
     fieldState: { invalid, error },
   } = useController({
     name,
     control,
-    defaultValue: option?.label || "",
+    defaultValue: defaultOption?.label || "",
     rules: {
       required: {
         value: true,
@@ -35,7 +35,7 @@ const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
   });
 
   const _handleInputChange = (query: string) => {
-    handleFormInputChange(query);
+    handleControlInputChange(query);
     handleInputChange(query);
   };
 
@@ -44,7 +44,7 @@ const ControllerAutocomplete: FC<ControllerAutocompleteProps> = ({
       <Autocomplete
         innerRef={ref}
         onBlur={onBlur}
-        option={option}
+        defaultOption={defaultOption}
         onInputChange={_handleInputChange}
         onChange={handleChange}
         placeholder={placeholder}

@@ -6,7 +6,7 @@ interface BaseAutocompleteProps {
     onChange: (key: Option) => void;
     onInputChange: (query: string) => void;
     placeholder?: string;
-    option: Option;
+    defaultOption: Option;
     options: Option[];
     loading: boolean;
 }

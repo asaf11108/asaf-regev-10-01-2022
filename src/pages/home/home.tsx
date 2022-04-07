@@ -70,7 +70,7 @@ const Home: VFC = () => {
             <Autocomplete
               onChange={handleSelectLocation}
               onInputChange={handleInputChange}
-              option={locationToOption(activeLocation)}
+              defaultOption={locationToOption(activeLocation)}
               options={options}
               loading={loadingState === 'pending'}
               placeholder="location"
