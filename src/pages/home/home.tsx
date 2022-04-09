@@ -17,6 +17,7 @@ import usePromise from 'react-use-promise';
 import { AutocompleteOption } from '../../api/interfaces/autocomplete';
 import ControllerAutocomplete from '../../components/autocomplete/controller-autocomplete';
 import useHomeForm, { HOME_FORM_REG_EXP } from './home-form.hook';
+import useHomeQuery from './home-query.hook';
 
 const Home: VFC = () => {
   const dispatch = useDispatch();
@@ -29,11 +30,7 @@ const Home: VFC = () => {
 
   const activeLocation = useSelector(FavoriteLocationSelectActive);
 
-  const [query, setQuery] = useState<string>(activeLocation.localizedName);
-  const [response, error, loadingState] = usePromise<AutocompleteOption[]>(
-    () => API.getLocations(query),
-    [query]
-  );
+  const { setQuery: onInputDebounce, promiseQuery: [response, error, loadingState] } = useHomeQuery(activeLocation);
   const formProps = useHomeForm(activeLocation.localizedName);
 
   const locationToOption = (location: Location): Option => ({ id: location.key, label: location.localizedName });
@@ -50,10 +47,6 @@ const Home: VFC = () => {
   const handleFavoriteClick = (): void => {
     dispatch(favoriteLocationsToggleFavorite());
   }
-
-  const onInputDebounce = (query: string) => {
-      setQuery(query);
-  };
 
   const options = useMemo<Option[]>(() => {
     return (response || [])
