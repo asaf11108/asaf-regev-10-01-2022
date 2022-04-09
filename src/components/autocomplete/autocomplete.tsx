@@ -12,16 +12,16 @@ import { Option } from "../../interfaces/general";
 import { CircularProgress } from "@mui/material";
 
 const Autocomplete: FC<AutocompleteProps> = ({
-  onInput,
-  onInputDebounce,
-  onChange,
+  options = [],
+  loading = false,
   placeholder = "option",
   defaultOption,
-  valid = true,
+  onChange,
+  onInputDebounce,
   innerRef,
+  valid = true,
+  onInput,
   onBlur,
-  options = [],
-  loading = false
 }) => {
   const [inputValue, setInputValue] = useState(defaultOption?.label || "");
   const [open, setOpen] = useState(false);
@@ -45,7 +45,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
   }
 
   const _onChange = (option: Option | null): void => {
-    setInputValue(option?.label || "");
+    _onInput(option?.label || "");
     option && onChange(option);
   };
 

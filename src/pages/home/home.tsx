@@ -8,14 +8,11 @@ import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-l
 import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../store/favorite-locations/favorite-locations.action';
 import { FavoriteLocationSelectActive, FavoriteLocationSelectActiveEntity, FavoriteLocationSelectError, FavoriteLocationSelectLoading } from '../../store/favorite-locations/favorite-locations.selector';
 import { Option } from '../../interfaces/general';
-import { AutocompleteProps } from '../../components/autocomplete/autocomplete.model';
-import { useForm } from 'react-hook-form';
 import API from '../../api/api';
 import Favorite from '../../components/favorite/favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import Loader from '../../components/loader/loader';
-import Autocomplete from '../../components/autocomplete/autocomplete';
 import usePromise from 'react-use-promise';
 import { AutocompleteOption } from '../../api/interfaces/autocomplete';
 import ControllerAutocomplete from '../../components/autocomplete/controller-autocomplete';
@@ -60,6 +57,7 @@ const Home: VFC = () => {
 
   const options = useMemo<Option[]>(() => {
     return (response || [])
+    .filter(location => /^[a-zA-Z ]+$/.test(location.LocalizedName))
     .map<Location>(location => ({ key: location.Key, localizedName: location.LocalizedName }))
     .map(locationToOption);
   }, [response])

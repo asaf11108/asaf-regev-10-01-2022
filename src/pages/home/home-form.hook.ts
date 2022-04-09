@@ -23,7 +23,7 @@ const useHomeForm = (localizedName: string): ControllerProps => {
         },
     });
 
-    return { onInput: onChange, onBlur, innerRef: ref, valid: !invalid, error }
+    return { onInput: onChange, onBlur, innerRef: ref, valid: !invalid, error };
 }
 
 export default useHomeForm;
