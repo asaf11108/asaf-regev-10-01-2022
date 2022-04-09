@@ -1,6 +1,8 @@
 import { useController, useForm } from "react-hook-form";
 import { ControllerProps } from "../../interfaces/general";
 
+export const HOME_FORM_REG_EXP = /^[a-zA-Z ]+$/;
+
 const useHomeForm = (localizedName: string): ControllerProps => {
     const { control } = useForm({ mode: 'onChange' });
 
@@ -17,7 +19,7 @@ const useHomeForm = (localizedName: string): ControllerProps => {
                 message: `Please enter location`,
             },
             pattern: {
-                value: /^[a-zA-Z ]+$/,
+                value: HOME_FORM_REG_EXP,
                 message: "Only letters are allowed",
             },
         },

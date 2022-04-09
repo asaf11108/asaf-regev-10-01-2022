@@ -16,7 +16,7 @@ import Loader from '../../components/loader/loader';
 import usePromise from 'react-use-promise';
 import { AutocompleteOption } from '../../api/interfaces/autocomplete';
 import ControllerAutocomplete from '../../components/autocomplete/controller-autocomplete';
-import useHomeForm from './home-form.hook';
+import useHomeForm, { HOME_FORM_REG_EXP } from './home-form.hook';
 
 const Home: VFC = () => {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const Home: VFC = () => {
 
   const options = useMemo<Option[]>(() => {
     return (response || [])
-    .filter(location => /^[a-zA-Z ]+$/.test(location.LocalizedName))
+    .filter(location => HOME_FORM_REG_EXP.test(location.LocalizedName))
     .map<Location>(location => ({ key: location.Key, localizedName: location.LocalizedName }))
     .map(locationToOption);
   }, [response])
