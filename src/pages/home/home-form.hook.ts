@@ -10,7 +10,7 @@ const useHomeForm = (localizedName: string): ControllerProps => {
     } = useController({
         name: 'location',
         control,
-        defaultValue: localizedName || "",
+        defaultValue: localizedName,
         rules: {
             required: {
                 value: true,

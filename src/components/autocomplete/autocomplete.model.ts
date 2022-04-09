@@ -1,12 +1,12 @@
 import { ControllerProps, Option } from "../../interfaces/general";
 
 interface BaseAutocompleteProps {
+    options: Option[];
+    loading?: boolean;
+    placeholder?: string;
+    defaultOption?: Option;
     onChange: (key: Option) => void;
     onInputDebounce?: (query: string) => void;
-    placeholder?: string;
-    defaultOption: Option;
-    options: Option[];
-    loading: boolean;
 }
 
 export type AutocompleteProps = BaseAutocompleteProps & ControllerProps;

@@ -11,9 +11,9 @@ export interface Option {
 }
 
 export interface ControllerProps {
-    valid?: boolean;
-    innerRef?: Ref<any>;
+    valid: boolean;
+    innerRef: Ref<any>;
     error?: FieldError;
     onInput: (query: string) => void;
-    onBlur?: Noop;
+    onBlur: Noop;
 }
