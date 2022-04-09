@@ -1,10 +1,7 @@
-import { Ref } from "react";
-import { Control, FieldError, FieldValues, Noop } from "react-hook-form";
-import { Option } from "../../interfaces/general";
+import { ControllerProps, Option } from "../../interfaces/general";
 
 interface BaseAutocompleteProps {
     onChange: (key: Option) => void;
-    onInput: (query: string) => void;
     onInputDebounce?: (query: string) => void;
     placeholder?: string;
     defaultOption: Option;
@@ -12,9 +9,4 @@ interface BaseAutocompleteProps {
     loading: boolean;
 }
 
-export interface AutocompleteProps extends BaseAutocompleteProps {
-    valid?: boolean;
-    innerRef?: Ref<any>;
-    onBlur?: Noop;
-    error?: FieldError;
-}
+export type AutocompleteProps = BaseAutocompleteProps & ControllerProps;

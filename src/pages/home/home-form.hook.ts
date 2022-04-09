@@ -1,6 +1,7 @@
 import { useController, useForm } from "react-hook-form";
+import { ControllerProps } from "../../interfaces/general";
 
-const useHomeForm = (localizedName: string) => {
+const useHomeForm = (localizedName: string): ControllerProps => {
     const { control } = useForm({ mode: 'onChange' });
 
     const {
