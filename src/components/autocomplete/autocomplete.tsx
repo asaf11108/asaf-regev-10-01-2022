@@ -12,8 +12,9 @@ import { Option } from "../../interfaces/general";
 import { CircularProgress } from "@mui/material";
 
 const Autocomplete: FC<AutocompleteProps> = ({
-  onInputChange: handleInputChange,
-  onChange: handleChange,
+  onInput,
+  onInputDebounce,
+  onChange,
   placeholder = "option",
   defaultOption,
   valid = true,
@@ -28,7 +29,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
   const getOptionsDelayed = useCallback(
     debounce((query) => {
       if (valid && open && query) {
-        handleInputChange(query)
+        onInputDebounce?.(query)
       }
     }, 1000),
     [valid, open]
@@ -38,9 +39,14 @@ const Autocomplete: FC<AutocompleteProps> = ({
     getOptionsDelayed(inputValue);
   }, [inputValue, getOptionsDelayed]);
 
-  const handleValueChange = (option: Option | null): void => {
+  const _onInput = (query: string) => {
+    setInputValue(query);
+    onInput(query);
+  }
+
+  const _onChange = (option: Option | null): void => {
     setInputValue(option?.label || "");
-    option && handleChange(option);
+    option && onChange(option);
   };
 
   return (
@@ -50,12 +56,12 @@ const Autocomplete: FC<AutocompleteProps> = ({
       ref={innerRef}
       onBlur={onBlur}
       defaultValue={defaultOption}
-      onInputChange={(_, query) => setInputValue(query)}
+      onInputChange={(_, query) => _onInput(query)}
       open={open && valid}
       onOpen={() => setOpen(true)}
       onClose={() => setOpen(false)}
       options={options}
-      onChange={(_, option) => handleValueChange(option)}
+      onChange={(_, option) => _onChange(option)}
       getOptionLabel={(option) => option.label}
       isOptionEqualToValue={(Option, value) => Option.id === value.id}
       renderInput={(params) => (

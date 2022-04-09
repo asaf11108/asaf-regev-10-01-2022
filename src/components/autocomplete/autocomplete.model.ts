@@ -4,7 +4,8 @@ import { Option } from "../../interfaces/general";
 
 interface BaseAutocompleteProps {
     onChange: (key: Option) => void;
-    onInputChange: (query: string) => void;
+    onInput: (query: string) => void;
+    onInputDebounce?: (query: string) => void;
     placeholder?: string;
     defaultOption: Option;
     options: Option[];
@@ -15,9 +16,5 @@ export interface AutocompleteProps extends BaseAutocompleteProps {
     valid?: boolean;
     innerRef?: Ref<any>;
     onBlur?: Noop;
-}
-
-export interface ControllerAutocompleteProps extends BaseAutocompleteProps {
-    control: Control<FieldValues, object>;
-    name: string;
+    error?: FieldError;
 }

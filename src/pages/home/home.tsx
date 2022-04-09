@@ -18,6 +18,8 @@ import Loader from '../../components/loader/loader';
 import Autocomplete from '../../components/autocomplete/autocomplete';
 import usePromise from 'react-use-promise';
 import { AutocompleteOption } from '../../api/interfaces/autocomplete';
+import ControllerAutocomplete from '../../components/autocomplete/controller-autocomplete';
+import useHomeForm from './home-form.hook';
 
 const Home: VFC = () => {
   const dispatch = useDispatch();
@@ -27,7 +29,6 @@ const Home: VFC = () => {
     useSelector,
     useOneTemperatureType,
   ])(FavoriteLocationSelectActiveEntity);
-  const { control } = useForm({ mode: 'onChange' });
 
   const activeLocation = useSelector(FavoriteLocationSelectActive);
 
@@ -36,6 +37,7 @@ const Home: VFC = () => {
     () => API.getLocations(query),
     [query]
   );
+  const formProps = useHomeForm(activeLocation.localizedName);
 
   const locationToOption = (location: Location): Option => ({ id: location.key, label: location.localizedName });
 
@@ -43,7 +45,7 @@ const Home: VFC = () => {
     dispatch(fetchFavoriteLocation(activeLocation));
   }, [dispatch, activeLocation]);
 
-  const handleSelectLocation = (selectedOption: Option): void => {
+  const onLocationSelect = (selectedOption: Option): void => {
     const location: Location = { key: selectedOption.id as string, localizedName: selectedOption.label };
     dispatch(favoriteLocationsActive(location));
   };
@@ -52,9 +54,9 @@ const Home: VFC = () => {
     dispatch(favoriteLocationsToggleFavorite());
   }
 
-  const handleInputChange = (query: string) => {
+  const onInputDebounce = (query: string) => {
       setQuery(query);
-    };
+  };
 
   const options = useMemo<Option[]>(() => {
     return (response || [])
@@ -67,9 +69,10 @@ const Home: VFC = () => {
       <Card className="home__autocomplete">
         <CardContent>
           <form>
-            <Autocomplete
-              onChange={handleSelectLocation}
-              onInputChange={handleInputChange}
+            <ControllerAutocomplete
+              {...formProps}
+              onChange={onLocationSelect}
+              onInputDebounce={onInputDebounce}
               defaultOption={locationToOption(activeLocation)}
               options={options}
               loading={loadingState === 'pending'}
