@@ -25,16 +25,19 @@
     "react-scripts": "5.0.0",
     "react-transition-group": "^4.4.2",
     "react-use": "^17.3.2",
+    "react-use-promise": "^0.4.1",
     "redux-persist": "^6.0.0",
     "sass": "^1.46.0",
     "typescript": "^4.5.4",
+    "use-debounce": "^7.0.1",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@toolz/allow-react)/\" --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix ."
   },
   "eslintConfig": {
     "extends": [
@@ -55,14 +58,14 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.12.13",
     "@types/jest": "^27.4.0",
     "@types/lodash-es": "^4.17.5",
     "@types/node": "^16.11.19",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/react-redux": "^7.1.22",
-    "generate-react-cli": "^7.0.6",
-    "@babel/plugin-transform-modules-commonjs": "^7.12.13",
-    "babel-jest": "^27.5.1"
+    "babel-jest": "^27.5.1",
+    "generate-react-cli": "^7.0.6"
   }
 }

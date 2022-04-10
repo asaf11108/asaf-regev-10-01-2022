@@ -1,22 +1,12 @@
-import { Ref } from "react";
-import { Control, FieldError, FieldValues, Noop } from "react-hook-form";
-import { Option } from "../../interfaces/general";
+import { ControllerProps, Option } from "../../interfaces/general";
 
 interface BaseAutocompleteProps {
+    options: Option[];
+    loading?: boolean;
+    placeholder?: string;
+    defaultOption?: Option;
     onChange: (key: Option) => void;
-    promiseOptions: (query: string) => Promise<Option[]>;
-    optionText?: string;
-    option: Option;
+    onInputDebounce?: (query: string) => void;
 }
 
-export interface AutocompleteProps extends BaseAutocompleteProps {
-    valid?: boolean;
-    innerRef?: Ref<any>;
-    onInputChange?: (query: string) => void;
-    onBlur?: Noop;
-}
-
-export interface ControllerAutocompleteProps extends BaseAutocompleteProps {
-    control: Control<FieldValues, object>;
-    name: string;
-}
+export type AutocompleteProps = BaseAutocompleteProps & ControllerProps;
