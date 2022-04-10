@@ -10,7 +10,7 @@ const ToolbarTemperatureMode: FC = () => {
     const dispatch = useDispatch();
     const temperatureMode = useSelector(GeneralTemperatureModeSelect);
     
-    const handleTemperatureMode = (
+    const onTemperatureModeChange = (
         event: MouseEvent<HTMLElement>,
         newMode: TemperatureType,
         ) => {
@@ -23,7 +23,7 @@ const ToolbarTemperatureMode: FC = () => {
             size="small"
             value={temperatureMode}
             exclusive
-            onChange={handleTemperatureMode}
+            onChange={onTemperatureModeChange}
         >
             <ToggleButton value={TemperatureType.Celsius}>
                 &#176;C

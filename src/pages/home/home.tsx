@@ -41,7 +41,7 @@ const Home: VFC = () => {
     dispatch(favoriteLocationsActive(location));
   };
 
-  const handleFavoriteClick = (): void => {
+  const onFavoriteClick = (): void => {
     dispatch(favoriteLocationsToggleFavorite());
   }
 
@@ -82,7 +82,7 @@ const Home: VFC = () => {
                     <span data-testid="localized-name">{favoriteLocation.localizedName}</span>
                     <span>{favoriteLocation.temperature}</span>
                   </span>
-                  <Button disabled={loadingLocation} onClick={handleFavoriteClick}>
+                  <Button disabled={loadingLocation} onClick={onFavoriteClick}>
                     <Favorite isFavorite={favoriteLocation.isFavorite} />
                   </Button>
                 </Typography>

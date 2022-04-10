@@ -23,7 +23,7 @@ const History: VFC = () => {
     filter((favoriteLocation: FavoriteLocation) => favoriteLocation.localizedName.toLowerCase().includes(query.toLowerCase()))
   ])(FavoriteLocationSelectors.selectAll);
 
-  const handleRowClick = (favoriteLocation: FavoriteLocation): void => {
+  const onRowClick = (favoriteLocation: FavoriteLocation): void => {
     dispatch(favoriteLocationsActive(favoriteLocation));
     navigate('/');
   };
@@ -36,7 +36,7 @@ const History: VFC = () => {
       <Table
         columns={COLUMNS}
         rows={favoriteLocations}
-        rowClick={handleRowClick}
+        rowClick={onRowClick}
         idProp="key"/>
 
     </Card>

@@ -22,7 +22,7 @@ const Favorites: VFC = () => {
     filter('isFavorite')
   ])(FavoriteLocationSelectors.selectAll);
 
-  const handleActiveForecast = (favoriteLocation: FavoriteLocation): void => {
+  const onLocationClick = (favoriteLocation: FavoriteLocation): void => {
     dispatch(favoriteLocationsActive(favoriteLocation));
     navigate('/');
   };
@@ -46,7 +46,7 @@ const Favorites: VFC = () => {
           <div
             className="favorites__forecast"
             style={{ transitionDelay: `${ANIMATION_DELAY * index}ms` }}
-            onClick={() => handleActiveForecast(favoriteLocation)}>
+            onClick={() => onLocationClick(favoriteLocation)}>
             <Forecast forecast={mapToForecastComponent(favoriteLocation)} />
           </div>
         </CSSTransition>

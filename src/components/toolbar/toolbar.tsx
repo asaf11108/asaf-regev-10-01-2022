@@ -16,7 +16,7 @@ const Toolbar: VFC = () => {
 
   const favoriteLocations = useSelector(FavoriteLocationSelectors.selectAll);
 
-  const handleMenuItemClick = (navigatePath: string) => {
+  const onMenuItemClick = (navigatePath: string) => {
     closeMenu();
     navigate(navigatePath);
   };
@@ -53,7 +53,7 @@ const Toolbar: VFC = () => {
         >
           {MENU.map(menuItem => (
             <MenuItem
-              onClick={() => handleMenuItemClick(menuItem.navigatePath)}
+              onClick={() => onMenuItemClick(menuItem.navigatePath)}
               key={menuItem.label}
               selected={!!match(menuItem.navigatePath)}
               disabled={menuItem.disabled?.(favoriteLocations)}
