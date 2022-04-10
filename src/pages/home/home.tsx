@@ -1,4 +1,4 @@
-import { VFC, useEffect, useMemo, useState, useCallback } from 'react';
+import { VFC, useEffect, useMemo } from 'react';
 import './home.scss';
 import { Button, Card, CardContent, Typography } from '@mui/material';
 import Forecast from '../../components/forecast/forecast';
@@ -8,13 +8,10 @@ import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-l
 import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../store/favorite-locations/favorite-locations.action';
 import { FavoriteLocationSelectActive, FavoriteLocationSelectActiveEntity, FavoriteLocationSelectError, FavoriteLocationSelectLoading } from '../../store/favorite-locations/favorite-locations.selector';
 import { Option } from '../../interfaces/general';
-import API from '../../api/api';
 import Favorite from '../../components/favorite/favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import Loader from '../../components/loader/loader';
-import usePromise from 'react-use-promise';
-import { AutocompleteOption } from '../../api/interfaces/autocomplete';
 import ControllerAutocomplete from '../../components/autocomplete/controller-autocomplete';
 import useHomeForm, { HOME_FORM_REG_EXP } from './home-form.hook';
 import useHomeQuery from './home-query.hook';

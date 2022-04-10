@@ -1,5 +1,5 @@
 import { render, within } from '@testing-library/react';
-import { screen } from '@testing-library/dom';
+import { screen, waitFor } from '@testing-library/dom';
 import Home from './home';
 import { providersWrapper } from '../../providers-wrapper';
 import userEvent from '@testing-library/user-event';
@@ -17,8 +17,7 @@ describe('Home', () => {
       const input = within(inputWrapper).getByRole<HTMLInputElement>('textbox');
       input.setSelectionRange(0, input.value.length);
       userEvent.type(input, 'paris');
-      console.log("🚀 ~ file: home.test.tsx ~ line 18 ~ it ~ input", input.value)
-      const clickable = (await screen.findAllByRole('option')).at(0)!;
+      const clickable = await waitFor(() => screen.getAllByRole('option').at(0)!, { timeout: 3000 });
       userEvent.click(clickable);
       expect(await screen.findByTestId('localized-name')).toHaveTextContent('Paris');
     });
