@@ -9,7 +9,7 @@ import { AutocompleteProps } from "./autocomplete.model";
 import SearchIcon from "@mui/icons-material/Search";
 import { Option } from "../../interfaces/general";
 import { CircularProgress } from "@mui/material";
-import { useDebouncedCallback } from "use-debounce";
+import { useDebounce } from "use-debounce";
 
 const Autocomplete: FC<AutocompleteProps> = ({
   options = [],
@@ -24,15 +24,10 @@ const Autocomplete: FC<AutocompleteProps> = ({
   onBlur,
 }) => {
   const [inputValue, setInputValue] = useState(defaultOption?.label || "");
-  const [inputDebounce, setInputDebounce] = useState(inputValue);
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(defaultOption);
 
-  const getOptionsDelayed = useDebouncedCallback((query: string) => setInputDebounce(query), 1000);
-
-  useEffect(() => {
-    getOptionsDelayed(inputValue);
-  }, [inputValue, getOptionsDelayed]);
+  const [inputDebounce] = useDebounce(inputValue, 1000);
 
   useEffect(() => {
     open && valid && onInputDebounce?.(inputDebounce);
