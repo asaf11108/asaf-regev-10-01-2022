@@ -8,10 +8,10 @@ export const MenuContext = createContext<ContextValue>({
     open: false,
     anchorEl: null,
     onClose: () => {
-      throw "MenuContext::menuProps.onClose";
+      throw Error("MenuContext::menuProps.onClose");
     }
   },
   setAnchorEl: () => {
-    throw "MenuContext::setAnchorEl";
+    throw Error("MenuContext::setAnchorEl");
   }
 });
