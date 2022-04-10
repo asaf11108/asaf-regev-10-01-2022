@@ -1,15 +1,15 @@
-import { FC, useCallback, useEffect } from "react";
+import { FC, useEffect } from "react";
 import "./autocomplete.scss";
 import { useState } from "react";
 import {
   Autocomplete as MuiAutocomplete,
-  debounce,
   TextField,
 } from "@mui/material";
 import { AutocompleteProps } from "./autocomplete.model";
 import SearchIcon from "@mui/icons-material/Search";
 import { Option } from "../../interfaces/general";
 import { CircularProgress } from "@mui/material";
+import { useDebouncedCallback } from "use-debounce";
 
 const Autocomplete: FC<AutocompleteProps> = ({
   options = [],
@@ -24,21 +24,19 @@ const Autocomplete: FC<AutocompleteProps> = ({
   onBlur,
 }) => {
   const [inputValue, setInputValue] = useState(defaultOption?.label || "");
+  const [inputDebounce, setInputDebounce] = useState(inputValue);
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(defaultOption);
 
-  const getOptionsDelayed = useCallback(
-    debounce((query) => {
-      if (valid && open && query) {
-        onInputDebounce?.(query)
-      }
-    }, 1000),
-    [valid, open]
-  );
+  const getOptionsDelayed = useDebouncedCallback((query: string) => setInputDebounce(query), 1000);
 
   useEffect(() => {
     getOptionsDelayed(inputValue);
   }, [inputValue, getOptionsDelayed]);
+
+  useEffect(() => {
+    open && valid && onInputDebounce?.(inputDebounce);
+  }, [open, valid, inputDebounce, onInputDebounce]);
 
   const _onInput = (query: string) => {
     setInputValue(query);
