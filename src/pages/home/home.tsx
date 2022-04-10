@@ -27,7 +27,7 @@ const Home: VFC = () => {
 
   const activeLocation = useSelector(FavoriteLocationSelectActive);
 
-  const { setQuery: onInputDebounce, promiseQuery: [response, error, loadingState] } = useHomeQuery(activeLocation);
+  const { setQuery: onInputDebounce, promiseQuery: [response,, loadingState] } = useHomeQuery(activeLocation);
   const formProps = useHomeForm(activeLocation.localizedName);
 
   const locationToOption = (location: Location): Option => ({ id: location.key, label: location.localizedName });
