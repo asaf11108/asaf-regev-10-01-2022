@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, within } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import Home from './home';
 import { providersWrapper } from '../../providers-wrapper';
@@ -12,16 +12,15 @@ describe('Home', () => {
     });
     
     it('should select different location', async () => {
-      // render(providersWrapper(<Home />));
-      // const inputWrapper = screen.getByTestId<HTMLInputElement>('auto-input');
-      // const input = within(inputWrapper).getByRole<HTMLInputElement>('textbox');
-      // input.setSelectionRange(0, input.value.length);
-      // userEvent.type(input, 'paris');
-      // console.log("🚀 ~ file: home.test.tsx ~ line 18 ~ it ~ input", input.value)
-      // const clickable = await waitFor(() => screen.getAllByRole('option').at(0)!, { timeout: 20000 });
-      // screen.debug()
-      // userEvent.click(clickable);
-      // expect(await screen.findByTestId('localized-name')).toHaveTextContent('Paris');
+      render(providersWrapper(<Home />));
+      const inputWrapper = screen.getByTestId<HTMLInputElement>('auto-input');
+      const input = within(inputWrapper).getByRole<HTMLInputElement>('textbox');
+      input.setSelectionRange(0, input.value.length);
+      userEvent.type(input, 'paris');
+      console.log("🚀 ~ file: home.test.tsx ~ line 18 ~ it ~ input", input.value)
+      const clickable = (await screen.findAllByRole('option')).at(0)!;
+      userEvent.click(clickable);
+      expect(await screen.findByTestId('localized-name')).toHaveTextContent('Paris');
     });
   })
   

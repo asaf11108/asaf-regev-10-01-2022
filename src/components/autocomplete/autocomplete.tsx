@@ -25,6 +25,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
 }) => {
   const [inputValue, setInputValue] = useState(defaultOption?.label || "");
   const [open, setOpen] = useState(false);
+  const [option, setOption] = useState(defaultOption);
 
   const getOptionsDelayed = useCallback(
     debounce((query) => {
@@ -46,7 +47,10 @@ const Autocomplete: FC<AutocompleteProps> = ({
 
   const _onChange = (option: Option | null): void => {
     _onInput(option?.label || "");
-    option && onChange(option);
+    if (option) {
+      setOption(option);
+      onChange(option);
+    }
   };
 
   return (
@@ -56,6 +60,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
       ref={innerRef}
       onBlur={onBlur}
       defaultValue={defaultOption}
+      value={option}
       onInputChange={(_, query) => _onInput(query)}
       open={open && valid}
       onOpen={() => setOpen(true)}
