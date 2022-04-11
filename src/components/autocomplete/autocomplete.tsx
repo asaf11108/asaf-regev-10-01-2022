@@ -10,6 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Option } from "../../interfaces/general";
 import { CircularProgress } from "@mui/material";
 import { useDebounce } from "use-debounce";
+import { usePrevious } from "react-use";
 
 const Autocomplete: FC<AutocompleteProps> = ({
   options = [],
@@ -28,10 +29,11 @@ const Autocomplete: FC<AutocompleteProps> = ({
   const [option, setOption] = useState(defaultOption);
 
   const [inputDebounce] = useDebounce(inputValue, 1000);
+  const previousInputDebounce = usePrevious(inputDebounce);
 
   useEffect(() => {
-    open && valid && onInputDebounce?.(inputDebounce);
-  }, [open, valid, inputDebounce, onInputDebounce]);
+    previousInputDebounce !== inputDebounce && open && valid && onInputDebounce?.(inputDebounce);
+  }, [open, valid, inputDebounce, previousInputDebounce, onInputDebounce]);
 
   const _onInput = (query: string) => {
     setInputValue(query);
