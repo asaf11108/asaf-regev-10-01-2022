@@ -69,7 +69,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
         <TextField
           {...params}
           variant="standard"
-          placeholder={`Search ${placeholder}`}
+          placeholder={placeholder}
           data-testid="auto-input"
           InputProps={{
             ...params.InputProps,
