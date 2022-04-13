@@ -23,6 +23,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
   valid = true,
   onInput,
   onBlur,
+  error
 }) => {
   const [inputValue, setInputValue] = useState(defaultOption?.label || "");
   const [open, setOpen] = useState(false);
@@ -75,6 +76,8 @@ const Autocomplete: FC<AutocompleteProps> = ({
             startAdornment: <SearchIcon />,
             endAdornment: loading && <CircularProgress size="1em" />,
           }}
+          error={!valid}
+          helperText={error?.message}
         />
       )}
     />

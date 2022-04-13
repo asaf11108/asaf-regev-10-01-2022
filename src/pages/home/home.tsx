@@ -12,9 +12,9 @@ import Favorite from '../../components/favorite/favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import Loader from '../../components/loader/loader';
-import ControllerAutocomplete from '../../components/autocomplete/controller-autocomplete';
 import useHomeForm, { HOME_FORM_REG_EXP } from './home-form.hook';
 import useHomeQuery from './home-query.hook';
+import Autocomplete from '../../components/autocomplete/autocomplete';
 
 const Home: VFC = () => {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const Home: VFC = () => {
       <Card className="home__autocomplete">
         <CardContent>
           <form>
-            <ControllerAutocomplete
+            <Autocomplete
               {...formProps}
               onChange={onLocationSelect}
               onInputDebounce={onInputDebounce}
