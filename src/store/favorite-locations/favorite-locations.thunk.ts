@@ -23,6 +23,7 @@ export const fetchFavoriteLocation = createAsyncThunk('favoriteLocations/fetchFa
             weatherText: currentConditions.WeatherText,
             icon: currentConditions.WeatherIcon.toString(),
             forecasts,
+            searchedDate: new Date().toISOString()
         } as FavoriteLocation
     });
 });
