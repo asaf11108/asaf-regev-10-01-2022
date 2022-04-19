@@ -7,6 +7,7 @@ import { persistor, store } from "./store/config";
 import { PersistGate } from "redux-persist/integration/react";
 import { MenuProvider } from "./providers/menu/menu.provider";
 import { LocaleProvider } from "./providers/locale/locale.provider";
+import { SnackbarProvider } from "./providers/snackbar/snackbar.provider";
 
 export const providersWrapper = (component: JSX.Element) => (
   <StrictMode>
@@ -15,9 +16,11 @@ export const providersWrapper = (component: JSX.Element) => (
         <BrowserRouter>
           <LocaleProvider>
             <ThemeProvider theme={theme}>
-              <MenuProvider>
-                {component}
-              </MenuProvider>
+              <SnackbarProvider>
+                <MenuProvider>
+                  {component}
+                </MenuProvider>
+              </SnackbarProvider>
             </ThemeProvider>
           </LocaleProvider>
         </BrowserRouter>

@@ -1,12 +1,12 @@
 import axios from "axios";
-import { Dispatch, SetStateAction } from 'react';
+import { OpenSnackbar } from "../providers/snackbar/snackbar.context";
 
-const errorInterceptor = (setOpen: Dispatch<SetStateAction<boolean>>): void => {
+const errorInterceptor = (openSnackbar: OpenSnackbar | undefined): void => {
 
     axios.interceptors.response.use(
         x => x,
         error => {
-            setOpen(true);
+            openSnackbar?.('Unable to retrieve data. Switched to mock data.');
             return Promise.reject(error);
         }
     );
