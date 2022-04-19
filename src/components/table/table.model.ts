@@ -3,6 +3,7 @@ export enum ColumnType {
     Text,
     Number,
     Date,
+    LongDate,
     Temperature,
     Favorite
 }

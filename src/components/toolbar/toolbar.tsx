@@ -7,7 +7,7 @@ import { GITHUB_URL, MENU } from './toolbar.config';
 import ToolbarTemperatureMode from './toolbar-temperature-mode';
 import { useSelector } from 'react-redux';
 import { FavoriteLocationSelectors } from '../../store/favorite-locations/favorite-locations.selector';
-import { useMenu } from '../../hooks/menu/menu.hook';
+import { useMenu } from '../../providers/menu/menu.hook';
 
 const Toolbar: VFC = () => {
   const navigate = useNavigate();

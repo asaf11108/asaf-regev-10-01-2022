@@ -1,24 +1,27 @@
-import { StrictMode } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material';
-import theme from './theme';
-import { Provider } from 'react-redux';
-import { persistor, store } from './store/config';
-import { PersistGate } from 'redux-persist/integration/react';
-import { MenuContextProvider } from './hooks/menu/menu.provider';
+import { StrictMode } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "@mui/material";
+import theme from "./theme";
+import { Provider } from "react-redux";
+import { persistor, store } from "./store/config";
+import { PersistGate } from "redux-persist/integration/react";
+import { MenuProvider } from "./providers/menu/menu.provider";
+import { LocaleProvider } from "./providers/locale/locale.provider";
 
 export const providersWrapper = (component: JSX.Element) => (
-    <StrictMode>
-      <BrowserRouter>
-          <Provider store={store}>
+  <StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <LocaleProvider>
             <ThemeProvider theme={theme}>
-              <PersistGate loading={null} persistor={persistor}>
-                <MenuContextProvider>
-                  {component}
-                </MenuContextProvider>
-              </PersistGate>
+              <MenuProvider>
+                {component}
+              </MenuProvider>
             </ThemeProvider>
-          </Provider>
-      </BrowserRouter>
-    </StrictMode>
-  );
+          </LocaleProvider>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
+  </StrictMode>
+);

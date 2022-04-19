@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { MenuContext } from "./menu.context";
 
-export const MenuContextProvider: FC = ({ children }) => {
+export const MenuProvider: FC = ({ children }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   
     return (

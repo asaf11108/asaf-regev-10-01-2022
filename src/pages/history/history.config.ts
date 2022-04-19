@@ -6,4 +6,5 @@ export const COLUMNS: TableColumn[] = [
     { type: ColumnType.Text, prop: 'localizedName', name: 'Name' },
     { type: ColumnType.Text, prop: 'weatherText', name: 'Weather' },
     { type: ColumnType.Temperature, prop: 'temperature', name: 'Temperature' },
+    { type: ColumnType.Date, prop: 'searchedDate', name: 'Searched date' },
 ];
