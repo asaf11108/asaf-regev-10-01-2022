@@ -6,14 +6,15 @@ import errorInterceptor from './interceptors/erros.interceptor';
 import { Snackbar } from '@mui/material';
 import { useFirstMountState } from 'react-use';
 import AppRouting from './app-routing';
+import { useSnackbar } from './providers/snackbar/snackbar.hook';
 
 const App: VFC = () => {
-  const [open, setOpen] = useState(false);
   const isFirstMount = useFirstMountState();
+  const openSnackbar = useSnackbar();
 
   if (isFirstMount) {
     apiKeyInterceptor();
-    errorInterceptor(setOpen);
+    errorInterceptor(openSnackbar);
   }
 
   return (
@@ -28,13 +29,6 @@ const App: VFC = () => {
         </div>
       </div>
 
-      <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={open}
-        onClose={() => setOpen(false)}
-        autoHideDuration={5000}
-        message="Unable to retrieve data. Switched to mock data."
-      />
     </div>
   );
 }
