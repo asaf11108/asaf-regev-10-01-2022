@@ -21,7 +21,7 @@ This project uses packages such as: `react-redux`, `@reduxjs/toolkit`, `@mui/mat
 9. `Animation` can be found in favorites component, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/pages/favorites/favorites.tsx).
 10. `App routing` contains lazy loaded routes and guards in case there is no data, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/app-routing.tsx).
 11. Implemented [new react design pattern return component from hooks]https://blog.bitsrc.io/new-react-design-pattern-return-component-from-hooks-79215c3eac00) in toolbar component, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/hooks/menu).
-12. Date fns locale, [usage example](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/components/table/columns.hook.tsx).
+12. Date fns with lazy locale fetch, [usage example](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/providers/locale/locale.provider.tsx).
 13. Generate react cli, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/generate-react-cli.json).
 14. Improvements to be done: add `OpenAPI` to the project, use `style components` instead of SASS.
 
@@ -38,3 +38,6 @@ This project uses packages such as: `react-redux`, `@reduxjs/toolkit`, `@mui/mat
 React component re-rendering when: update in State, update in prop, re-rendering of the parent component.<br/>
 Angular component re-rendering when: input / output changed, async event (click / mouse move...).<br/>
 Angular change detection is simplier, no need for useMemo / useCallback that make uglify the code and slower the app.
+
+## Custom table example
+https://www.loom.com/share/319e64b8cd654ee4aff9ad9aa2e62a7a
