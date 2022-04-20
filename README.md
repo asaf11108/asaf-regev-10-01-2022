@@ -20,7 +20,7 @@ This project uses packages such as: `react-redux`, `@reduxjs/toolkit`, `@mui/mat
 8. The toolbar `supports desktop and mobile devices`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/tree/master/src/components/toolbar).
 9. `Animation` can be found in favorites component, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/pages/favorites/favorites.tsx).
 10. `App routing` contains lazy loaded routes and guards in case there is no data, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/app-routing.tsx).
-11. Implemented [new react design pattern return component from hooks]https://blog.bitsrc.io/new-react-design-pattern-return-component-from-hooks-79215c3eac00) in toolbar component, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/hooks/menu).
+11. Implemented [new react design pattern return component from hooks](https://blog.bitsrc.io/new-react-design-pattern-return-component-from-hooks-79215c3eac00) in toolbar component, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/hooks/menu).
 12. Date fns with lazy locale fetch, [usage example](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/providers/locale/locale.provider.tsx).
 13. Generate react cli, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/generate-react-cli.json).
 14. Improvements to be done: add `OpenAPI` to the project, use `style components` instead of SASS.
