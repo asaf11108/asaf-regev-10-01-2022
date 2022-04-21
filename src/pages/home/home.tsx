@@ -14,6 +14,7 @@ import Loader from '../../components/loader/loader';
 import useHomeForm, { HOME_FORM_REG_EXP } from './home-form.hook';
 import useHomeQuery from './home-query.hook';
 import Autocomplete from '../../components/autocomplete/autocomplete';
+import { AutocompleteProps } from '../../components/autocomplete/autocomplete.model';
 
 const Home: VFC = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const Home: VFC = () => {
     dispatch(fetchFavoriteLocation(activeLocation));
   }, [dispatch, activeLocation]);
 
-  const onLocationSelect = (location: Location): void => {
+  const onLocationSelect: AutocompleteProps<Location>['onChange'] = location => {
     dispatch(favoriteLocationsActive(location));
   };
 

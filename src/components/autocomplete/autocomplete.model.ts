@@ -7,7 +7,7 @@ interface BaseAutocompleteProps<T> {
     defaultOption?: T;
     idProp?: string;
     nameProp?: string;
-    onChange: (key: T) => void;
+    onChange: (option: T) => void;
     onInputDebounce?: (query: string) => void;
 }
 

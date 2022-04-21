@@ -7,7 +7,6 @@ import {
 } from "@mui/material";
 import { AutocompleteProps } from "./autocomplete.model";
 import SearchIcon from "@mui/icons-material/Search";
-import { Option } from "../../interfaces/general";
 import { CircularProgress } from "@mui/material";
 import { useDebounce } from "use-debounce";
 import { usePrevious } from "react-use";
@@ -39,12 +38,12 @@ const Autocomplete: FC<AutocompleteProps> = ({
     previousInputDebounce !== inputDebounce && open && valid && onInputDebounce?.(inputDebounce);
   }, [open, valid, inputDebounce, previousInputDebounce, onInputDebounce]);
 
-  const _onInput = (query: string) => {
+  const _onInput: AutocompleteProps['onInput'] = query => {
     setInputValue(query);
     onInput(query);
   }
 
-  const _onChange = (option: Option | null): void => {
+  const _onChange: AutocompleteProps['onChange'] = option => {
     _onInput(get(option, nameProp, ""));
     if (option) {
       setOption(option);
@@ -67,7 +66,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
       options={options}
       onChange={(_, option) => _onChange(option)}
       getOptionLabel={(option) => option[nameProp]}
-      isOptionEqualToValue={(Option, value) => Option[idProp] === value[idProp]}
+      isOptionEqualToValue={(option, value) => option[idProp] === value[idProp]}
       renderInput={(params) => (
         <TextField
           {...params}
