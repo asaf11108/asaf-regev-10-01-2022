@@ -1,12 +1,14 @@
-import { ControllerProps, Option } from "../../interfaces/general";
+import { ControllerProps } from "../../interfaces/general";
 
-interface BaseAutocompleteProps {
-    options: Option[];
+interface BaseAutocompleteProps<T> {
+    options: T[];
     loading?: boolean;
     placeholder?: string;
-    defaultOption?: Option;
-    onChange: (key: Option) => void;
+    defaultOption?: T;
+    idProp?: string;
+    nameProp?: string;
+    onChange: (key: T) => void;
     onInputDebounce?: (query: string) => void;
 }
 
-export type AutocompleteProps = BaseAutocompleteProps & ControllerProps;
+export type AutocompleteProps<T = any> = BaseAutocompleteProps<T> & ControllerProps;

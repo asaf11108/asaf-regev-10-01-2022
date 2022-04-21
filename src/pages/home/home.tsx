@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-locations.thunk';
 import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../store/favorite-locations/favorite-locations.action';
 import { FavoriteLocationSelectActive, FavoriteLocationSelectActiveEntity, FavoriteLocationSelectError, FavoriteLocationSelectLoading } from '../../store/favorite-locations/favorite-locations.selector';
-import { Option } from '../../interfaces/general';
 import Favorite from '../../components/favorite/favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
@@ -30,14 +29,11 @@ const Home: VFC = () => {
   const { setQuery: onInputDebounce, promiseQuery: [response,, loadingState] } = useHomeQuery(activeLocation);
   const formProps = useHomeForm(activeLocation.localizedName);
 
-  const locationToOption = (location: Location): Option => ({ id: location.key, label: location.localizedName });
-
   useEffect(() => {
     dispatch(fetchFavoriteLocation(activeLocation));
   }, [dispatch, activeLocation]);
 
-  const onLocationSelect = (selectedOption: Option): void => {
-    const location: Location = { key: selectedOption.id as string, localizedName: selectedOption.label };
+  const onLocationSelect = (location: Location): void => {
     dispatch(favoriteLocationsActive(location));
   };
 
@@ -45,11 +41,10 @@ const Home: VFC = () => {
     dispatch(favoriteLocationsToggleFavorite());
   }
 
-  const options = useMemo<Option[]>(() => {
+  const options = useMemo<Location[]>(() => {
     return (response || [])
     .filter(location => HOME_FORM_REG_EXP.test(location.LocalizedName))
-    .map<Location>(location => ({ key: location.Key, localizedName: location.LocalizedName }))
-    .map(locationToOption);
+    .map<Location>(location => ({ key: location.Key, localizedName: location.LocalizedName }));
   }, [response])
 
   return (
@@ -61,10 +56,12 @@ const Home: VFC = () => {
               {...formProps}
               onChange={onLocationSelect}
               onInputDebounce={onInputDebounce}
-              defaultOption={locationToOption(activeLocation)}
+              defaultOption={activeLocation}
               options={options}
               loading={loadingState === 'pending'}
               placeholder="Search location"
+              idProp='key'
+              nameProp='localizedName'
             />
           </form>
         </CardContent>

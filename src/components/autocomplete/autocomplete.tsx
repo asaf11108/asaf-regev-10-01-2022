@@ -11,12 +11,15 @@ import { Option } from "../../interfaces/general";
 import { CircularProgress } from "@mui/material";
 import { useDebounce } from "use-debounce";
 import { usePrevious } from "react-use";
+import { get } from "lodash-es";
 
 const Autocomplete: FC<AutocompleteProps> = ({
   options = [],
   loading = false,
   placeholder = "option",
   defaultOption,
+  idProp = 'id',
+  nameProp = 'name',
   onChange,
   onInputDebounce,
   innerRef,
@@ -25,7 +28,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
   onBlur,
   error
 }) => {
-  const [inputValue, setInputValue] = useState(defaultOption?.label || "");
+  const [inputValue, setInputValue] = useState(get(defaultOption, nameProp, ""));
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(defaultOption);
 
@@ -42,7 +45,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
   }
 
   const _onChange = (option: Option | null): void => {
-    _onInput(option?.label || "");
+    _onInput(get(option, nameProp, ""));
     if (option) {
       setOption(option);
       onChange(option);
@@ -63,8 +66,8 @@ const Autocomplete: FC<AutocompleteProps> = ({
       onClose={() => setOpen(false)}
       options={options}
       onChange={(_, option) => _onChange(option)}
-      getOptionLabel={(option) => option.label}
-      isOptionEqualToValue={(Option, value) => Option.id === value.id}
+      getOptionLabel={(option) => option[nameProp]}
+      isOptionEqualToValue={(Option, value) => Option[idProp] === value[idProp]}
       renderInput={(params) => (
         <TextField
           {...params}
