@@ -1,6 +1,5 @@
-import { FC, useEffect } from 'react';
+import { VFC, useEffect, useMemo } from 'react';
 import './home.scss';
-import ControllerAutocomplete from '../../components/autocomplete/controller-autocomplete';
 import { Button, Card, CardContent, Typography } from '@mui/material';
 import Forecast from '../../components/forecast/forecast';
 import { FavoriteLocation, Location } from "../../store/favorite-locations/favorite-locations.model";
@@ -8,94 +7,91 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-locations.thunk';
 import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../store/favorite-locations/favorite-locations.action';
 import { FavoriteLocationSelectActive, FavoriteLocationSelectActiveEntity, FavoriteLocationSelectError, FavoriteLocationSelectLoading } from '../../store/favorite-locations/favorite-locations.selector';
-import { Option } from '../../interfaces/general';
-import { AutocompleteProps } from '../../components/autocomplete/autocomplete.model';
-import { useForm } from 'react-hook-form';
-import API from '../../api/api';
 import Favorite from '../../components/favorite/favorite';
 import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import Loader from '../../components/loader/loader';
+import useHomeForm, { HOME_FORM_REG_EXP } from './home-form.hook';
+import useHomeQuery from './home-query.hook';
+import Autocomplete from '../../components/autocomplete/autocomplete';
+import { AutocompleteProps } from '../../components/autocomplete/autocomplete.model';
 
-const Home: FC = () => {
+const Home: VFC = () => {
   const dispatch = useDispatch();
-  const loading = useSelector(FavoriteLocationSelectLoading);
-  const error = useSelector(FavoriteLocationSelectError);
+  const loadingLocation = useSelector(FavoriteLocationSelectLoading);
+  const errorLocation = useSelector(FavoriteLocationSelectError);
   const favoriteLocation: FavoriteLocation = flow([
     useSelector,
     useOneTemperatureType,
   ])(FavoriteLocationSelectActiveEntity);
-  const { control } = useForm({ mode: 'onChange' });
 
   const activeLocation = useSelector(FavoriteLocationSelectActive);
 
-  const locationToOption = (location: Location): Option => ({ id: location.key, label: location.localizedName });
+  const { setQuery: onInputDebounce, promiseQuery: [response,, loadingState] } = useHomeQuery(activeLocation);
+  const formProps = useHomeForm(activeLocation.localizedName);
 
   useEffect(() => {
     dispatch(fetchFavoriteLocation(activeLocation));
   }, [dispatch, activeLocation]);
 
-  const handleSelectLocation = (selectedOption: Option): void => {
-    const location: Location = { key: selectedOption.id as string, localizedName: selectedOption.label };
+  const onLocationSelect: AutocompleteProps<Location>['onChange'] = location => {
     dispatch(favoriteLocationsActive(location));
   };
 
-  const handleFavoriteClick = (): void => {
+  const onFavoriteClick = (): void => {
     dispatch(favoriteLocationsToggleFavorite());
   }
 
-  const promiseOptions: AutocompleteProps['promiseOptions'] = async (query) => {
-    return API.getLocations(query)
-      .then<Location[]>(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName })))
-      .then<Option[]>(res => res.map(locationToOption))
-  };
-
+  const options = useMemo<Location[]>(() => {
+    return (response || [])
+    .filter(location => HOME_FORM_REG_EXP.test(location.LocalizedName))
+    .map<Location>(location => ({ key: location.Key, localizedName: location.LocalizedName }));
+  }, [response])
 
   return (
     <div className="home">
       <Card className="home__autocomplete">
         <CardContent>
           <form>
-            <ControllerAutocomplete
-              onChange={handleSelectLocation}
-              option={locationToOption(activeLocation)}
-              promiseOptions={promiseOptions}
-              optionText="location"
-              name="query"
-              control={control}
+            <Autocomplete
+              {...formProps}
+              onChange={onLocationSelect}
+              onInputDebounce={onInputDebounce}
+              defaultOption={activeLocation}
+              options={options}
+              loading={loadingState === 'pending'}
+              placeholder="Search location"
+              idProp='key'
+              nameProp='localizedName'
             />
           </form>
         </CardContent>
       </Card>
 
-      {
         <Card>
-          {loading
+          {loadingLocation
             ? <div className="home__loader"><Loader /></div>
-            : error
+            : errorLocation
               ? <Typography className="home__error" variant="h1" component="div">NO DATA</Typography>
               : favoriteLocation
               && <CardContent>
                 <Typography className="home__title" gutterBottom variant="h5" component="div">
                   <span>
-                    <span>{favoriteLocation.localizedName}</span>
+                    <span data-testid="localized-name">{favoriteLocation.localizedName}</span>
                     <span>{favoriteLocation.temperature}</span>
                   </span>
-                  <Button disabled={loading} onClick={handleFavoriteClick}>
+                  <Button disabled={loadingLocation} onClick={onFavoriteClick}>
                     <Favorite isFavorite={favoriteLocation.isFavorite} />
                   </Button>
                 </Typography>
                 <div className="home__body">
                   <div className="home__body-header">{favoriteLocation.weatherText}</div>
                   <div className="home__forecasts">
-                    {
-                      favoriteLocation.forecasts.map(forecast => <Forecast key={forecast.title} forecast={forecast} />)
-                    }
+                    {favoriteLocation.forecasts.map(forecast => <Forecast key={forecast.title} forecast={forecast} />)}
                   </div>
                 </div>
               </CardContent>}
         </Card>
-      }
     </div>
   );
 };

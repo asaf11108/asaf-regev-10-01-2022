@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { VFC } from 'react';
 import Forecast from '../../components/forecast/forecast';
 import { _Forecast } from '../../components/forecast/forecast.model';
 import { FavoriteLocation } from '../../store/favorite-locations/favorite-locations.model';
@@ -13,7 +13,7 @@ import { filter } from 'lodash/fp';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { ANIMATION_DELAY } from './favorites.config';
 
-const Favorites: FC = () => {
+const Favorites: VFC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const favoriteLocations: FavoriteLocation[] = flow([
@@ -22,7 +22,7 @@ const Favorites: FC = () => {
     filter('isFavorite')
   ])(FavoriteLocationSelectors.selectAll);
 
-  const handleActiveForecast = (favoriteLocation: FavoriteLocation): void => {
+  const onLocationClick = (favoriteLocation: FavoriteLocation): void => {
     dispatch(favoriteLocationsActive(favoriteLocation));
     navigate('/');
   };
@@ -46,7 +46,7 @@ const Favorites: FC = () => {
           <div
             className="favorites__forecast"
             style={{ transitionDelay: `${ANIMATION_DELAY * index}ms` }}
-            onClick={() => handleActiveForecast(favoriteLocation)}>
+            onClick={() => onLocationClick(favoriteLocation)}>
             <Forecast forecast={mapToForecastComponent(favoriteLocation)} />
           </div>
         </CSSTransition>

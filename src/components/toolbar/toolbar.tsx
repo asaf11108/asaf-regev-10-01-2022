@@ -1,26 +1,23 @@
-import { FC, useState, MouseEvent } from 'react';
+import { VFC } from 'react';
 import './toolbar.scss';
 import { useNavigate, useMatch } from "react-router-dom";
-import { Button, IconButton, Menu, MenuItem, Toolbar as MuiToolbar } from '@mui/material';
+import { Button, IconButton, MenuItem, Toolbar as MuiToolbar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { GITHUB_URL, MENU } from './toolbar.config';
 import ToolbarTemperatureMode from './toolbar-temperature-mode';
 import { useSelector } from 'react-redux';
 import { FavoriteLocationSelectors } from '../../store/favorite-locations/favorite-locations.selector';
+import { useMenu } from '../../providers/menu/menu.hook';
 
-const Toolbar: FC = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+const Toolbar: VFC = () => {
   const navigate = useNavigate();
   const match = useMatch;
+  const { Menu, openMenu, closeMenu } = useMenu();
 
   const favoriteLocations = useSelector(FavoriteLocationSelectors.selectAll);
 
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = (navigatePath: string) => {
-    setAnchorEl(null);
+  const onMenuItemClick = (navigatePath: string) => {
+    closeMenu();
     navigate(navigatePath);
   };
 
@@ -47,19 +44,16 @@ const Toolbar: FC = () => {
       </span>
 
       <span className="toolbar__actions-mobile">
-        <IconButton color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        <IconButton color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
           <MenuIcon />
         </IconButton>
         <Menu
           className="menu"
-          anchorEl={anchorEl}
           keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
         >
           {MENU.map(menuItem => (
             <MenuItem
-              onClick={() => handleClose(menuItem.navigatePath)}
+              onClick={() => onMenuItemClick(menuItem.navigatePath)}
               key={menuItem.label}
               selected={!!match(menuItem.navigatePath)}
               disabled={menuItem.disabled?.(favoriteLocations)}

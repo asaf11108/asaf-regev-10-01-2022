@@ -1,5 +1,6 @@
 import { AutocompleteOption } from '../../api/interfaces/autocomplete';
 import { _Forecast } from "../../components/forecast/forecast.model";
+import { ISOString } from '../../interfaces/general';
 
 type LocationResponse = Pick<AutocompleteOption, 'Key' | 'LocalizedName'>;
 
@@ -11,4 +12,5 @@ export interface FavoriteLocation extends Location {
   icon: string;
   forecasts: _Forecast[];
   isFavorite: boolean;
+  searchedDate: ISOString;
 }

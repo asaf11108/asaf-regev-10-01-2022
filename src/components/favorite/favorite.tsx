@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { VFC } from 'react';
 import { FavoriteProps } from './favorite.model';
 import './favorite.scss';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
-const Favorite: FC<FavoriteProps> = ({ isFavorite }) => {
+const Favorite: VFC<FavoriteProps> = ({ isFavorite }) => {
 
 
     return (
