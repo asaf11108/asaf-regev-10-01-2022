@@ -1,7 +1,7 @@
-import { css, SerializedStyles } from "@emotion/react";
-import { forEach, forIn, get, size, zip } from "lodash-es";
-import { BREAKPOINTS, media } from "./media";
+import { forEach, forIn, size, zip } from "lodash-es";
+import { BREAKPOINTS, device } from "./media";
 import { getValueAndUnit } from "polished";
+import { Styles } from "polished/lib/types/style";
 
 interface ChangeValues {
   start: string;
@@ -9,10 +9,9 @@ interface ChangeValues {
 }
 
 // Adjust values from list
-function adjustValues(progress: number, changeValuesMap: ChangeValues[], _ease: string) {
+function adjustValues(progress: number, changeValuesMap: ChangeValues[], _ease: string): string {
   let adjustedValues: string[] = [];
 
-  // TODO: start value
   changeValuesMap.forEach(({start, change}) => {
       // adjust value based on type of ease
       const [value, unit] = getValueAndUnit(start);
@@ -22,7 +21,7 @@ function adjustValues(progress: number, changeValuesMap: ChangeValues[], _ease: 
       adjustedValues.push(adjusted + unit);
   })
 
-  return adjustedValues;
+  return adjustedValues.join(' ');
 }
 
 function changeMapList(startValue: string, endValue: string): ChangeValues[] {
@@ -140,43 +139,40 @@ function splitList(list: string): string[] {
   return [top, right, bottom, left];
 }
 
-// /// @author Jack McNicol
-// /// @access public
-// ////
+/// @author Jack McNicol
+/// @access public
+////
 
-// ///
-// /// Calculates the difference between property values and distributes them through your include-media breakpoints.
-// ///
+///
+/// Calculates the difference between property values and distributes them through your include-media breakpoints.
+///
 
-// ///  @param {property} $property - CSS property to set
-// //   @param {value | values} $start-values - Start value(s) of the property
-// //   @param {value | values} $end-values - End value(s) of the property
-// //   @param {linear | in-quad | out-quad | in-cubic | out-cubic | in-quart | out-quart | in-quint | out-quint } $ease [linear] - Easing function to use when calculating value helpful for fine-tuning some widths in the mid-range
-// ///
-// ///
-
+///  @param {property} $property - CSS property to set
+//   @param {value | values} $start-values - Start value(s) of the property
+//   @param {value | values} $end-values - End value(s) of the property
+//   @param {linear | in-quad | out-quad | in-cubic | out-cubic | in-quart | out-quart | in-quint | out-quint } $ease [linear] - Easing function to use when calculating value helpful for fine-tuning some widths in the mid-range
+///
+///
 export function spread(
   property: string,
   startValues: string,
   endValues: string,
   _ease = 'linear',
   breakpoints = BREAKPOINTS
-): SerializedStyles {
+): Styles {
   if (startValues === endValues) {
-    console.warn('You are passing the same values');
+    console.warn('CSS spread: you are passing the same values');
   }
-
-  // #{property}: #{startValues}; // default values
 
   const totalIterations = size(breakpoints); // Will loop through number of breakpoints
   let iteration = 1;
   const _changeMapList = changeMapList(startValues, endValues);
-  let sumCss = css`${property}: ${startValues}`;
-debugger
-  forIn(breakpoints, (val, key) => {
-      sumCss += get(media, key)(css`
-        ${property}: ${adjustValues(iteration / totalIterations, _changeMapList, _ease).join(' ')}
-      `);
+  let sumCss: Styles = {[property]: startValues};
+
+  forIn(device, val => {
+      sumCss[`@media ${val}`] = {
+        [property]: adjustValues(iteration / totalIterations, _changeMapList, _ease)
+      };
       iteration++;
   });
 
