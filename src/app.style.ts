@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
-import { media, spread } from "./styles/media";
+import { media } from "./styles/media";
+import { spread } from "./styles/_spread";
 import weather from './assets/weather.jpeg';
 
 const toolbarHeight = '64px';
 const toolbarHeightMobile = '56px';
-
+console.log(spread('marginTop', '10px', '50px'))
 export const Content = styled.div`
   ${spread('marginTop', '10px', '50px')};
   ${spread('marginBottom', '10px', '50px')};
