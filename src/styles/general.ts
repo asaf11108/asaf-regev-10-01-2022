@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-const GlobalStyle = css`
+export const GeneralStyle = css`
     html {
       height: 100%;
     }
@@ -18,6 +18,3 @@ const GlobalStyle = css`
       font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
     }
 `;
-
-
-export default GlobalStyle;

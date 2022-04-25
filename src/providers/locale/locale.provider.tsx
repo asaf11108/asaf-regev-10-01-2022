@@ -6,7 +6,11 @@ import getUserLocale from "get-user-locale";
 import { Locale } from "date-fns";
 import { LocaleContext } from "./locale.context";
 
+// Get user language from the window navigator service
 export const userLocale = getUserLocale();
+
+// Currently the appplication only supports english language
+export const supportedLocale = userLocale.includes('en') ? userLocale : 'en-US';
 
 export const LocaleProvider: FC = ({ children }) => {
   const [locale, setLocale] = useState<Locale>();
@@ -16,7 +20,7 @@ export const LocaleProvider: FC = ({ children }) => {
       // This webpack option stops all of the date-fns files being imported and chunked.
       const localeToSet = await import(
         /* webpackMode: "lazy", webpackChunkName: "df-[index]", webpackExclude: /_lib/ */
-        `date-fns/locale/${userLocale}/index.js`
+        `date-fns/locale/${supportedLocale}/index.js`
       );
       setLocale(localeToSet.default);
     };

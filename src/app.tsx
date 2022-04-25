@@ -7,6 +7,7 @@ import { useFirstMountState } from 'react-use';
 import AppRouting from './app-routing';
 import { Content, ContentWrapper } from './app.style';
 import { useSnackbar } from './providers/snackbar/snackbar.hook';
+import { GlobalStyle } from './styles/global';
 
 const App: VFC = () => {
   const isFirstMount = useFirstMountState();
@@ -19,6 +20,7 @@ const App: VFC = () => {
 
   return (
     <>
+      <GlobalStyle />
       <Toolbar />
 
       <ContentWrapper>

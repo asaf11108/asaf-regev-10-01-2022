@@ -71,6 +71,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
         <TextField
           {...params}
           variant="standard"
+          fullWidth
           placeholder={placeholder}
           data-testid="auto-input"
           InputProps={{
