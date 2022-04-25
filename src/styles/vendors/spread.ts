@@ -1,3 +1,8 @@
+// This library has been transformed from sass to css-in-js
+// An include-media plugin for spreading css properties over breakpoints
+// https://github.com/jackmcpickle/include-media-spread
+
+
 import { forEach, forIn, size, zip } from "lodash-es";
 import { BREAKPOINTS, device } from "./media";
 import { getValueAndUnit } from "polished";

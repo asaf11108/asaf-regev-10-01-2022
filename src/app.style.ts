@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { device } from "./styles/media";
-import { spread } from "./styles/_spread";
+import { device } from "./styles/vendors/media";
+import { spread } from "./styles/vendors/spread";
 import weather from './assets/weather.jpeg';
 
 const toolbarHeight = '64px';
@@ -16,13 +16,13 @@ export const Content = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   background-image: url(${weather});
   background-repeat: no-repeat;
   background-size: cover;
   box-sizing: border-box;
   min-height: calc(100vh - ${toolbarHeight});
-  display: flex;
-  justify-content: center;
 
   @media ${device.sm} {
     min-height: calc(100vh - ${toolbarHeightMobile});
