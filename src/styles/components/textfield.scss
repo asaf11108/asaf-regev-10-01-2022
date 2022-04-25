@@ -1,0 +1,12 @@
+.MuiFormControl-root {
+    position: relative;
+
+    .MuiInputBase-fullWidth {
+        padding-right: 0 !important;
+    }
+
+    .MuiFormHelperText-root {
+        position: absolute;
+        top: 95%;
+    }
+}
