@@ -1,7 +1,7 @@
 // Delete context provider after issue solved
 // https://github.com/date-fns/date-fns/issues/816
 
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { SnackbarContext } from "./snackbar.context";
 import { Snackbar } from "@mui/material";
 

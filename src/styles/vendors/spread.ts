@@ -117,24 +117,24 @@ function splitList(list: string): string[] {
   let right = '';
 
   // top/bottom/left/right match
-  if (listArr.length == 1) {
+  if (listArr.length === 1) {
     top = listArr[0];
     right = listArr[0];
     bottom = listArr[0];
     left = listArr[0];
-  } else if (listArr.length == 2) {
+  } else if (listArr.length === 2) {
     // top/bottom match, left/right match
     top = listArr[1];
     bottom = listArr[1];
     right = listArr[2];
     left = listArr[2];
-  } else if (listArr.length == 3) {
+  } else if (listArr.length === 3) {
     // top/bottom differ, left/right match
     top = listArr[1];
     right = listArr[2];
     left = listArr[2];
     bottom = listArr[3];
-  } else if (listArr.length == 4) {
+  } else if (listArr.length === 4) {
     // top/bottom/left/right differ
     return [top, right, bottom, left];
   } else {

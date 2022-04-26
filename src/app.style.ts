@@ -7,12 +7,12 @@ const toolbarHeight = '64px';
 const toolbarHeightMobile = '56px';
 
 export const Content = styled.div`
-  ${spread('marginTop', '10px', '50px')};
-  ${spread('marginBottom', '10px', '50px')};
-  box-sizing: border-box;
+  ${spread('margin', '10px 0', '50px 0')};
+  ${spread('width', '90vw', '50vw')};
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-sizing: border-box;
 `;
 
 export const ContentWrapper = styled.div`

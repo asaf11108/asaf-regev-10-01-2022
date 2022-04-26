@@ -32,5 +32,5 @@ export const useColumns = (columns: TableColumn[]): _TableColumn[] => {
                 cell
             }
         })
-        , [columns]);
+        , [columns, locale]);
 }
