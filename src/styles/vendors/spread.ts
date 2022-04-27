@@ -4,7 +4,7 @@
 
 
 import { forEach, forIn, size, zip } from "lodash-es";
-import { BREAKPOINTS, device } from "./media";
+import { media } from "./media";
 import { getValueAndUnit } from "polished";
 import { Styles } from "polished/lib/types/style";
 
@@ -163,7 +163,7 @@ export function spread(
   startValues: string,
   endValues: string,
   _ease = 'linear',
-  breakpoints = BREAKPOINTS
+  breakpoints = media.values
 ): Styles {
   if (startValues === endValues) {
     console.warn('CSS spread: you are passing the same values');
@@ -174,8 +174,8 @@ export function spread(
   const _changeMapList = changeMapList(startValues, endValues);
   let sumCss: Styles = {[property]: startValues};
 
-  forIn(device, val => {
-      sumCss[`@media ${val}`] = {
+  forIn(breakpoints, val => {
+      sumCss[media.up(val)] = {
         [property]: adjustValues(iteration / totalIterations, _changeMapList, _ease)
       };
       iteration++;

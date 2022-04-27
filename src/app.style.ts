@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { device } from "./styles/vendors/media";
+import { media } from "./styles/vendors/media";
 import { spread } from "./styles/vendors/spread";
 import weather from './assets/weather.jpeg';
 
@@ -24,7 +24,7 @@ export const ContentWrapper = styled.div`
   box-sizing: border-box;
   min-height: calc(100vh - ${toolbarHeight});
 
-  @media ${device.sm} {
+  ${media.down('sm')} {
     min-height: calc(100vh - ${toolbarHeightMobile});
   }
 `;

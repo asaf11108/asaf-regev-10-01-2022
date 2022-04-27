@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
-import theme from "./styles/theme";
+import { theme } from "./styles/theme";
 import { Provider } from "react-redux";
 import { persistor, store } from "./store/config";
 import { PersistGate } from "redux-persist/integration/react";
