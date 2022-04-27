@@ -7,7 +7,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Favorite: VFC<FavoriteProps> = ({ isFavorite }) => {
 
-
     return (
         <>
             {isFavorite
