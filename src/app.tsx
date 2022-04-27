@@ -4,7 +4,7 @@ import apiKeyInterceptor from './interceptors/api-key.interceptor';
 import errorInterceptor from './interceptors/erros.interceptor';
 import { useFirstMountState } from 'react-use';
 import AppRouting from './app-routing';
-import { Content, ContentWrapper } from './app.style';
+import * as S from './app.style';
 import { useSnackbar } from './providers/snackbar/snackbar.hook';
 import { GlobalStyle } from './styles/global';
 
@@ -22,13 +22,13 @@ const App: VFC = () => {
       <GlobalStyle />
       <Toolbar />
 
-      <ContentWrapper>
-        <Content>
+      <S.ContentWrapper>
+        <S.Content>
 
           <AppRouting />
 
-        </Content>
-      </ContentWrapper>
+        </S.Content>
+      </S.ContentWrapper>
     </>
   );
 }
