@@ -23,6 +23,37 @@ export const theme = createTheme({
       '"Segoe UI Symbol"',
     ].join(","),
   },
+  components: {
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "rgba(255, 255, 255, 0.6)"
+        }
+      }
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          position: 'relative'
+        }
+      }
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          paddingRight: 0
+        }
+      }
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          position: 'absolute',
+          top: '95%'
+        }
+      }
+    }
+  }
 });
 
 declare module "@mui/material/styles" {
