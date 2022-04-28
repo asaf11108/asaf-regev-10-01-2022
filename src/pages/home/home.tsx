@@ -15,6 +15,7 @@ import useHomeForm, { HOME_FORM_REG_EXP } from './home-form.hook';
 import useHomeQuery from './home-query.hook';
 import Autocomplete from '../../components/autocomplete/autocomplete';
 import { AutocompleteProps } from '../../components/autocomplete/autocomplete.model';
+import * as S from "./home.style";
 
 const Home: VFC = () => {
   const dispatch = useDispatch();
@@ -49,8 +50,8 @@ const Home: VFC = () => {
   }, [response])
 
   return (
-    <div className="home">
-      <Card className="home__autocomplete">
+    <S.Home>
+      <S.AutocompleteCard>
         <CardContent>
           <form>
             <Autocomplete
@@ -66,7 +67,7 @@ const Home: VFC = () => {
             />
           </form>
         </CardContent>
-      </Card>
+      </S.AutocompleteCard>
 
         <Card>
           {loadingLocation
@@ -75,7 +76,7 @@ const Home: VFC = () => {
               ? <Typography className="home__error" variant="h1" component="div">NO DATA</Typography>
               : favoriteLocation
               && <CardContent>
-                <Typography className="home__title" gutterBottom variant="h5" component="div">
+                <S.TitleTypography gutterBottom variant="h5">
                   <span>
                     <span data-testid="localized-name">{favoriteLocation.localizedName}</span>
                     <span>{favoriteLocation.temperature}</span>
@@ -83,7 +84,7 @@ const Home: VFC = () => {
                   <Button disabled={loadingLocation} onClick={onFavoriteClick}>
                     <Favorite isFavorite={favoriteLocation.isFavorite} />
                   </Button>
-                </Typography>
+                </S.TitleTypography>
                 <div className="home__body">
                   <div className="home__body-header">{favoriteLocation.weatherText}</div>
                   <div className="home__forecasts">
@@ -92,7 +93,7 @@ const Home: VFC = () => {
                 </div>
               </CardContent>}
         </Card>
-    </div>
+    </S.Home>
   );
 };
 
