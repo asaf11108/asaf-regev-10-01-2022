@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { theme } from './theme';
 
 export const GeneralStyle = css`
     html {
@@ -7,14 +8,9 @@ export const GeneralStyle = css`
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-          "Droid Sans", "Helvetica Neue", sans-serif;
+      font-family: ${theme.typography.fontFamily};
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       min-height: 100%;
-    }
-
-    code {
-      font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
     }
 `;
