@@ -1,6 +1,17 @@
 import styled from "@emotion/styled";
-import { Card, Typography } from "@mui/material";
+import { Card, css, Typography } from "@mui/material";
 import { spread } from "../../styles/vendors/spread";
+
+const SharedBody = css`
+    display: flex;
+    flex-direction: column;
+    ${spread('min-height', '400px', '500px')}
+`;
+
+const SharedBodyStates = css`
+    align-items: center;
+    justify-content: center;
+`;
 
 export const Home = styled.div`
     text-align: center;
@@ -29,38 +40,30 @@ export const TitleTypography = styled(Typography)`
     }
 `;
 
-// export const BodyHeader = 
+export const BodyHeader = styled.div`
+    ${spread('margin', '20px 0', '60px 0')}
+    ${spread('font-size', '50px', '80px')}
+    text-align: center;
+`;
 
-// .home {
+export const Body = styled.div`
+    ${SharedBody}
+    justify-content: center;
+`;
 
-//     &__body-header {
-//         @include vendors.spread(margin, 20px 0, 60px 0);
-//         @include vendors.spread(font-size, 50px, 80px);
-//         text-align: center;
-//     }
+export const Loader = styled.div`
+    ${SharedBody}
+    ${SharedBodyStates}
+`;
 
-//     &__body, &__loader, &__error {
-//         display: flex;
-//         flex-direction: column;
-//         @include vendors.spread(min-height, 400px, 500px);
-//     }
-    
-//     &__body {
-//         justify-content: space-between;
-//     }
+export const Error = styled(Typography)`
+    ${SharedBody}
+    ${SharedBodyStates}
+    font-weight: 600;
+`;
 
-//     &__loader, &__error {
-//         align-items: center;
-//         justify-content: center;
-//     }
-
-//     &__error {
-//         font-weight: 600;
-//     }
-
-//     &__forecasts {
-//         display: flex;
-//         flex-wrap: wrap;
-//         justify-content: center;
-//     }
-// }
+export const Forecasts = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`;

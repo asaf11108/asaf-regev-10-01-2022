@@ -1,6 +1,5 @@
 import { VFC, useEffect, useMemo } from 'react';
-import './home.scss';
-import { Button, Card, CardContent, Typography } from '@mui/material';
+import { Button, Card, CardContent } from '@mui/material';
 import Forecast from '../../components/forecast/forecast';
 import { FavoriteLocation, Location } from "../../store/favorite-locations/favorite-locations.model";
 import { useDispatch, useSelector } from 'react-redux';
@@ -71,9 +70,9 @@ const Home: VFC = () => {
 
         <Card>
           {loadingLocation
-            ? <div className="home__loader"><Loader /></div>
+            ? <S.Loader><Loader /></S.Loader>
             : errorLocation
-              ? <Typography className="home__error" variant="h1" component="div">NO DATA</Typography>
+              ? <S.Error variant="h1">NO DATA</S.Error>
               : favoriteLocation
               && <CardContent>
                 <S.TitleTypography gutterBottom variant="h5">
@@ -85,12 +84,12 @@ const Home: VFC = () => {
                     <Favorite isFavorite={favoriteLocation.isFavorite} />
                   </Button>
                 </S.TitleTypography>
-                <div className="home__body">
-                  <div className="home__body-header">{favoriteLocation.weatherText}</div>
-                  <div className="home__forecasts">
+                <S.Body>
+                  <S.BodyHeader>{favoriteLocation.weatherText}</S.BodyHeader>
+                  <S.Forecasts>
                     {favoriteLocation.forecasts.map(forecast => <Forecast key={forecast.title} forecast={forecast} />)}
-                  </div>
-                </div>
+                  </S.Forecasts>
+                </S.Body>
               </CardContent>}
         </Card>
     </S.Home>
