@@ -2,7 +2,7 @@
 import { SerializedStyles, css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { get } from "lodash-es";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useRef } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
 
 interface InjectedProps<T> {
@@ -35,12 +35,17 @@ const transitionStyles: Record<string, SerializedStyles> = {
   `,
 };
 
-export const ListEntrance: FC<ListEntranceProps> = ({ className, list, idProp = 'id', children }) => (
-  <TransitionGroup className={className}>
-    {list.map((item, index) => 
-      <Transition in={true} timeout={ANIMATION_DELAY * index} appear key={get(item, idProp)}>
-        {(state) => <Animation css={transitionStyles[state]}>{children({ item })}</Animation>}
-      </Transition>
-    )}
-  </TransitionGroup>
-);
+export const ListEntrance: FC<ListEntranceProps> = ({ className, list, idProp = 'id', children }) => {
+  // Issue: https://github.com/reactjs/react-transition-group/issues/668
+  const nodeRef = useRef(null);
+
+  return (
+    <TransitionGroup className={className}>
+      {list.map((item, index) => 
+        <Transition in={true} timeout={ANIMATION_DELAY * index} appear key={get(item, idProp)} nodeRef={nodeRef}>
+          {(state) => <Animation css={transitionStyles[state]} ref={nodeRef}>{children({ item })}</Animation>}
+        </Transition>
+      )}
+    </TransitionGroup>
+  )
+};
