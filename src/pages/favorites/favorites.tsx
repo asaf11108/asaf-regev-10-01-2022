@@ -11,7 +11,6 @@ import { useManyTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import { filter } from 'lodash/fp';
 import { TransitionGroup } from 'react-transition-group';
-import { ANIMATION_DELAY } from './favorites.config';
 import { ListEntrance } from '../../animations/list-entrance';
 
 const Favorites: VFC = () => {
@@ -44,7 +43,6 @@ const Favorites: VFC = () => {
           index={index}>
           <div
             className="favorites__forecast"
-            style={{ transitionDelay: `${ANIMATION_DELAY * index}ms` }}
             onClick={() => onLocationClick(favoriteLocation)}>
             <Forecast forecast={mapToForecastComponent(favoriteLocation)} />
           </div>
