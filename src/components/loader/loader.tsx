@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import { VFC } from 'react';
 import { LoaderProps, LoaderSize } from './loader.model';
 import * as S from "./loader.style";
 
-const Loader: FC<LoaderProps> = ({ color, size = LoaderSize.Medium }) => {
+const Loader: VFC<LoaderProps> = ({ color, size = LoaderSize.Medium }) => {
 
     return (
         <S.Loader size={size}>
