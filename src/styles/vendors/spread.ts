@@ -7,7 +7,7 @@ import { forEach, forIn, size, zip } from "lodash-es";
 import { media } from "./media";
 import { getValueAndUnit } from "polished";
 import { Styles } from "polished/lib/types/style";
-import { PropertiesHyphen } from 'csstype';
+import { CSSProperties } from "react";
 
 interface ChangeValues {
   start: string;
@@ -160,7 +160,7 @@ function splitList(list: string): string[] {
 ///
 ///
 export function spread(
-  property: keyof PropertiesHyphen,
+  property: keyof CSSProperties,
   startValues: string,
   endValues: string,
   _ease = 'linear',

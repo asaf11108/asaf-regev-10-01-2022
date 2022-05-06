@@ -5,7 +5,7 @@ import { spread } from "../../styles/vendors/spread";
 const SharedBody = css`
     display: flex;
     flex-direction: column;
-    ${spread('min-height', '400px', '500px')}
+    ${spread('minHeight', '400px', '500px')}
 `;
 
 const SharedBodyStates = css`
@@ -20,7 +20,7 @@ export const Home = styled.div`
 export const AutocompleteCard = styled(Card)`
     ${spread('width', '90%', '50%')}
     margin: 0 auto;
-    ${spread('margin-bottom', '20px', '30px')}
+    ${spread('marginBottom', '20px', '30px')}
 `;
 
 export const TitleTypography = styled(Typography)`
@@ -42,7 +42,7 @@ export const TitleTypography = styled(Typography)`
 
 export const BodyHeader = styled.div`
     ${spread('margin', '20px 0', '60px 0')}
-    ${spread('font-size', '50px', '80px')}
+    ${spread('fontSize', '50px', '80px')}
     text-align: center;
 `;
 
