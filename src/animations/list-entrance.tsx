@@ -1,12 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { SerializedStyles, css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { FC } from "react";
-import { Transition } from "react-transition-group";
+import { get } from "lodash-es";
+import { FC, ReactNode } from "react";
+import { Transition, TransitionGroup } from "react-transition-group";
 
-export interface ListEntranceProps {
-  index: number;
-  list?: any[];
+interface InjectedProps<T> {
+  item: T;
+}
+
+export interface ListEntranceProps<T = any> {
+  className?: string;
+  list: T[];
+  idProp?: string;
+  children: (props: InjectedProps<T>) => ReactNode
 }
 
 const ANIMATION_DELAY = 300;
@@ -28,8 +35,12 @@ const transitionStyles: Record<string, SerializedStyles> = {
   `,
 };
 
-export const ListEntrance: FC<ListEntranceProps> = ({ index, children }) => (
-  <Transition in={true} timeout={ANIMATION_DELAY * index} appear>
-    {(state) => <Animation css={transitionStyles[state]}>{children}</Animation>}
-  </Transition>
+export const ListEntrance: FC<ListEntranceProps> = ({ className, list, idProp = 'id', children }) => (
+  <TransitionGroup className={className}>
+    {list.map((item, index) => 
+      <Transition in={true} timeout={ANIMATION_DELAY * index} appear key={get(item, idProp)}>
+        {(state) => <Animation css={transitionStyles[state]}>{children({ item })}</Animation>}
+      </Transition>
+    )}
+  </TransitionGroup>
 );

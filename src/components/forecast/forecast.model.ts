@@ -1,3 +1,5 @@
+import { MouseEventHandler } from "react";
+
 export interface _Forecast {
   title: string;
   temperature: string;
@@ -6,4 +8,5 @@ export interface _Forecast {
 
 export interface ForecastProps {
   forecast: _Forecast
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
