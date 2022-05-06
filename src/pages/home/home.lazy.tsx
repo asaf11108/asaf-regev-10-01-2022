@@ -3,9 +3,9 @@ import RouteFallback from '../../components/route-fallback/route-fallback';
 
 const LazyHome = lazy(() => import('./home'));
 
-const Home: VFC = props => (
+const Home: VFC = () => (
   <Suspense fallback={<RouteFallback />}>
-    <LazyHome {...props} />
+    <LazyHome />
   </Suspense>
 );
 

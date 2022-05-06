@@ -3,9 +3,9 @@ import RouteFallback from '../../components/route-fallback/route-fallback';
 
 const LazyHistory = lazy(() => import('./history'));
 
-const History: VFC = props => (
+const History: VFC = () => (
   <Suspense fallback={<RouteFallback />}>
-    <LazyHistory {...props} />
+    <LazyHistory />
   </Suspense>
 );
 
