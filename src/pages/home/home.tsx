@@ -21,7 +21,7 @@ import Favorite from "../../components/favorite/favorite";
 import { useOneTemperatureType } from "../../hooks/temprature-type.hook";
 import { flow } from "lodash-es";
 import Loader from "../../components/loader/loader";
-import useHomeForm, { HOME_FORM_REG_EXP } from "./home-form.hook";
+import useHomeForm, { CONTROLLER_NAME_LOCATION, HOME_FORM_REG_EXP } from "./home-form.hook";
 import useHomeQuery from "./home-query.hook";
 import Autocomplete from "../../components/autocomplete/autocomplete";
 import { AutocompleteProps } from "../../components/autocomplete/autocomplete.model";
@@ -42,7 +42,7 @@ const Home: VFC = () => {
     setQuery: onInputDebounce,
     promiseQuery: [response, , loadingState],
   } = useHomeQuery(activeLocation);
-  const formProps = useHomeForm(activeLocation.localizedName);
+  const { handleSubmit, controls } = useHomeForm(activeLocation.localizedName);
 
   useEffect(() => {
     dispatch(fetchFavoriteLocation(activeLocation));
@@ -71,9 +71,9 @@ const Home: VFC = () => {
     <S.Home>
       <S.AutocompleteCard>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit(() => {})}>
             <Autocomplete<Location>
-              {...formProps}
+              {...controls[CONTROLLER_NAME_LOCATION]}
               onChange={onLocationSelect}
               onInputDebounce={onInputDebounce}
               defaultOption={activeLocation}

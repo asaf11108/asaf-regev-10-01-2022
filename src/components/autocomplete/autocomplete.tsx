@@ -50,11 +50,16 @@ const Autocomplete = <T extends any>({
     }
   };
 
+  const _onBlur: AutocompleteProps<T>['onBlur'] = () => {
+    setOpen(false);
+    onBlur();
+  };
+
   return (
     <MuiAutocomplete
       data-testid="autocomplete"
       ref={innerRef}
-      onBlur={onBlur}
+      onBlur={_onBlur}
       defaultValue={defaultOption}
       value={option}
       onInputChange={(_, query) => _onInput(query)}

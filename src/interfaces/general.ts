@@ -1,5 +1,5 @@
 import { Ref } from "react";
-import { FieldError, Noop } from "react-hook-form";
+import { FieldError, FieldValues, Noop, UseFormHandleSubmit } from "react-hook-form";
 
 export type ISOString = string;
 
@@ -16,4 +16,9 @@ export interface ControllerProps {
     error?: FieldError;
     onInput: (query: string) => void;
     onBlur: Noop;
+}
+
+export interface FormProps {
+    handleSubmit: UseFormHandleSubmit<FieldValues>;
+    controls: Record<string, ControllerProps>;
 }
