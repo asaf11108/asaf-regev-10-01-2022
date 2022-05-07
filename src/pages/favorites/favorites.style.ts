@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { ListEntrance } from "../../animations/list-entrance";
 
-export const Favorites = styled(ListEntrance)`
+export const Favorites = styled.div`
     display: flex;
     flex-wrap: wrap;
 `;

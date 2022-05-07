@@ -10,6 +10,7 @@ import { useManyTemperatureType } from "../../hooks/temprature-type.hook";
 import { flow } from "lodash-es";
 import { filter } from "lodash/fp";
 import * as S from "./favorites.style";
+import { ListEntrance } from "../../animations/list-entrance";
 
 const Favorites: VFC = () => {
   const dispatch = useDispatch();
@@ -36,11 +37,17 @@ const Favorites: VFC = () => {
   };
 
   return (
-    <S.Favorites
-      list={favoriteLocations}
-      idProp="key"
-    >
-      {({ item }) => <Forecast forecast={mapToForecastComponent(item)} onClick={() => onLocationClick(item)} />}
+    <S.Favorites>
+      <ListEntrance<FavoriteLocation>
+        list={favoriteLocations}
+        idProp="key">
+        {({ item }) => (
+          <Forecast
+            forecast={mapToForecastComponent(item)}
+            onClick={() => onLocationClick(item)}
+          />
+        )}
+      </ListEntrance>
     </S.Favorites>
   );
 };

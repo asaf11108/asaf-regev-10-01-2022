@@ -2,15 +2,14 @@
 import { SerializedStyles, css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { get } from "lodash-es";
-import { FC, ReactNode, useRef } from "react";
+import { FC, PropsWithChildren, ReactNode, useRef } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
 
 interface InjectedProps<T> {
   item: T;
 }
 
-export interface ListEntranceProps<T = any> {
-  className?: string;
+export interface ListEntranceProps<T> {
   list: T[];
   idProp?: string;
   children: (props: InjectedProps<T>) => ReactNode
@@ -20,6 +19,10 @@ const ANIMATION_DELAY = 300;
 
 const Animation = styled.div`
   transition-duration: ${ANIMATION_DELAY}ms;
+`;
+
+const StyledTransitionGroup = styled(TransitionGroup)`
+  display: contents;
 `;
 
 const transitionStyles: Record<string, SerializedStyles> = {
@@ -35,17 +38,17 @@ const transitionStyles: Record<string, SerializedStyles> = {
   `,
 };
 
-export const ListEntrance: FC<ListEntranceProps> = ({ className, list, idProp = 'id', children }) => {
+export const ListEntrance = <T extends any>({ list, idProp = 'id', children }: PropsWithChildren<ListEntranceProps<T>>): ReturnType<FC> => {
   // Issue: https://github.com/reactjs/react-transition-group/issues/668
   const nodeRef = useRef(null);
 
   return (
-    <TransitionGroup className={className}>
+    <StyledTransitionGroup>
       {list.map((item, index) => 
-        <Transition in={true} timeout={ANIMATION_DELAY * index} appear key={get(item, idProp)} nodeRef={nodeRef}>
+        <Transition in={true} timeout={ANIMATION_DELAY * index} appear key={get(item, idProp, item)} nodeRef={nodeRef}>
           {(state) => <Animation css={transitionStyles[state]} ref={nodeRef}>{children({ item })}</Animation>}
         </Transition>
       )}
-    </TransitionGroup>
+    </StyledTransitionGroup>
   )
 };
