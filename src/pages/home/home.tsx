@@ -72,7 +72,7 @@ const Home: VFC = () => {
       <S.AutocompleteCard>
         <CardContent>
           <form>
-            <Autocomplete
+            <Autocomplete<Location>
               {...formProps}
               onChange={onLocationSelect}
               onInputDebounce={onInputDebounce}

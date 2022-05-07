@@ -11,7 +11,7 @@ import { useDebounce } from "use-debounce";
 import { usePrevious } from "react-use";
 import { get } from "lodash-es";
 
-const Autocomplete: FC<AutocompleteProps> = ({
+const Autocomplete = <T extends any>({
   options = [],
   loading = false,
   placeholder = "option",
@@ -25,8 +25,8 @@ const Autocomplete: FC<AutocompleteProps> = ({
   onInput,
   onBlur,
   error
-}) => {
-  const [inputValue, setInputValue] = useState(get(defaultOption, nameProp, ""));
+}: AutocompleteProps<T>): ReturnType<FC> => {
+  const [inputValue, setInputValue] = useState(get(defaultOption, nameProp, defaultOption));
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(defaultOption);
 
@@ -43,7 +43,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
   }
 
   const _onChange: AutocompleteProps['onChange'] = option => {
-    _onInput(get(option, nameProp, ""));
+    _onInput(get(option, nameProp, option));
     if (option) {
       setOption(option);
       onChange(option);
@@ -63,8 +63,8 @@ const Autocomplete: FC<AutocompleteProps> = ({
       onClose={() => setOpen(false)}
       options={options}
       onChange={(_, option) => _onChange(option)}
-      getOptionLabel={(option) => option[nameProp]}
-      isOptionEqualToValue={(option, value) => option[idProp] === value[idProp]}
+      getOptionLabel={(option) => get(option, nameProp, option)}
+      isOptionEqualToValue={(option, value) => get(option, idProp, option) === get(value, idProp, value)}
       renderInput={(params) => (
         <TextField
           {...params}
