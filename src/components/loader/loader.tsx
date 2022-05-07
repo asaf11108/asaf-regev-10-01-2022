@@ -1,15 +1,13 @@
-import { FC } from 'react';
+import { VFC } from 'react';
 import { LoaderProps, LoaderSize } from './loader.model';
-import './loader.scss';
-import { CircularProgress } from '@mui/material';
-import clsx from 'clsx';
+import * as S from "./loader.style";
 
-const Loader: FC<LoaderProps> = ({ color, size = LoaderSize.Medium }) => {
+const Loader: VFC<LoaderProps> = ({ color, size = LoaderSize.Medium }) => {
 
     return (
-        <div className={clsx('loader', `loader--${size}`)}>
-            <CircularProgress style={{color}} />
-        </div>
+        <S.Loader size={size}>
+            <S.CircularProgress style={{color}} />
+        </S.Loader>
     );
 }
 

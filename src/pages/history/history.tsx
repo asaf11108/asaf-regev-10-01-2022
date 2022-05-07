@@ -1,16 +1,16 @@
 import { VFC, useState } from 'react';
-import './history.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Table from '../../components/table/table';
 import { COLUMNS } from './history.config';
-import { Card, TextField } from '@mui/material';
+import { Card } from '@mui/material';
 import { FavoriteLocationSelectors } from '../../store/favorite-locations/favorite-locations.selector';
 import { FavoriteLocation } from '../../store/favorite-locations/favorite-locations.model';
 import { favoriteLocationsActive } from '../../store/favorite-locations/favorite-locations.action';
 import { useManyTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import { filter } from 'lodash/fp';
+import * as S from "./history.style";
 
 const History: VFC = () => {
   const dispatch = useDispatch();
@@ -29,9 +29,9 @@ const History: VFC = () => {
   };
 
   return (
-    <Card className="history">
+    <Card>
 
-      <TextField className="history__search" label="Search by city" variant="standard" onChange={event => setQuery(event.target.value)} />
+      <S.Search label="Search by city" variant="standard" onChange={event => setQuery(event.target.value)} />
 
       <Table
         columns={COLUMNS}

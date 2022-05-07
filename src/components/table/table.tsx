@@ -2,7 +2,7 @@ import { FC } from "react";
 import { TableContainer, Table as MuiTable, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 import { useColumns } from "./columns.hook";
 import { TableProps } from "./table.model";
-import './table.scss';
+import * as S from "./table.style";
 
 
 const Table: FC<TableProps> = ({ columns, rows, rowClick, idProp = 'id' }) => {
@@ -25,13 +25,13 @@ const Table: FC<TableProps> = ({ columns, rows, rowClick, idProp = 'id' }) => {
                     {rows
                         .map((row) => {
                             return (
-                                <TableRow hover key={row[idProp]} onClick={() => rowClick && rowClick(row)}>
+                                <S.TableRow hover key={row[idProp]} onClick={() => rowClick && rowClick(row)}>
                                     {cols.map((col) =>
                                         <TableCell key={col.prop} sx={{width: col.width}}>
                                             {col.cell(row)}
                                         </TableCell>
                                     )}
-                                </TableRow>
+                                </S.TableRow>
                             );
                         })}
                 </TableBody>

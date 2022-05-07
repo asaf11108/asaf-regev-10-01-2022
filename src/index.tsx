@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom';
-import './styles/index.scss';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
 import { providersWrapper } from './providers-wrapper';

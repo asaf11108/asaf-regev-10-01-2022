@@ -1,12 +1,13 @@
-import { FC, MouseEvent } from "react";
-import './toolbar-temperature-mode.scss'
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { VFC, MouseEvent } from "react";
+import { ToggleButtonGroup } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { generalTemperatureMode } from "../../store/general/general.action";
 import { TemperatureType } from "../../store/general/general.model";
 import { GeneralTemperatureModeSelect } from "../../store/general/general.selector";
+import { ToolbarTemperatureModeProps } from "./toolbar-temperature-mode.model";
+import * as S from "./toolbar-temperature-mode.style";
 
-const ToolbarTemperatureMode: FC = () => {
+const ToolbarTemperatureMode: VFC<ToolbarTemperatureModeProps> = ({ style }) => {
     const dispatch = useDispatch();
     const temperatureMode = useSelector(GeneralTemperatureModeSelect);
     
@@ -20,17 +21,18 @@ const ToolbarTemperatureMode: FC = () => {
     return (
         <ToggleButtonGroup
             className="temperature-toggle"
+            style={style}
             size="small"
             value={temperatureMode}
             exclusive
             onChange={onTemperatureModeChange}
         >
-            <ToggleButton value={TemperatureType.Celsius}>
+            <S.ToggleButton value={TemperatureType.Celsius}>
                 &#176;C
-            </ToggleButton>
-            <ToggleButton value={TemperatureType.Fahrenheit}>
+            </S.ToggleButton>
+            <S.ToggleButton value={TemperatureType.Fahrenheit}>
                 &#176;F
-            </ToggleButton>
+            </S.ToggleButton>
         </ToggleButtonGroup>
     );
 }

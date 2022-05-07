@@ -1,9 +1,9 @@
 import { VFC } from 'react';
-import './forecast.scss';
 import { ForecastProps } from './forecast.model';
 import { Typography } from '@mui/material';
+import * as S from "./forecast.style";
 
-const Forecast: VFC<ForecastProps> = ({ forecast }) => {
+const Forecast: VFC<ForecastProps> = ({ forecast, onClick }) => {
   const buildIconUrl = (icon?: string): string => {
     if (!icon) {
       return "";
@@ -17,13 +17,13 @@ const Forecast: VFC<ForecastProps> = ({ forecast }) => {
   };
 
   return (
-    <div className="forecast">
-      <Typography variant="h5" className="card-title">
+    <S.Forecast onClick={onClick}>
+      <Typography variant="h5">
           <p>{forecast.title}</p>
           <p>{forecast.temperature}</p>
           {forecast.icon && <img src={forecast.icon} alt="Weather icon" />}
       </Typography>
-    </div>
+    </S.Forecast>
   );
 };
 

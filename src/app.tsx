@@ -1,11 +1,12 @@
 import { VFC } from 'react';
-import './app.scss';
 import Toolbar from './components/toolbar/toolbar';
 import apiKeyInterceptor from './interceptors/api-key.interceptor';
 import errorInterceptor from './interceptors/erros.interceptor';
 import { useFirstMountState } from 'react-use';
 import AppRouting from './app-routing';
+import * as S from './app.style';
 import { useSnackbar } from './providers/snackbar/snackbar.hook';
+import { GlobalStyle } from './styles/global';
 
 const App: VFC = () => {
   const isFirstMount = useFirstMountState();
@@ -17,18 +18,18 @@ const App: VFC = () => {
   }
 
   return (
-    <div className="app">
+    <>
+      <GlobalStyle />
       <Toolbar />
 
-      <div className="app__content-wrapper">
-        <div className="app__content">
+      <S.ContentWrapper>
+        <S.Content>
 
           <AppRouting />
 
-        </div>
-      </div>
-
-    </div>
+        </S.Content>
+      </S.ContentWrapper>
+    </>
   );
 }
 

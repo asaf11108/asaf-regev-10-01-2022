@@ -1,5 +1,4 @@
 import { FC, useEffect } from "react";
-import "./autocomplete.scss";
 import { useState } from "react";
 import {
   Autocomplete as MuiAutocomplete,
@@ -53,7 +52,6 @@ const Autocomplete: FC<AutocompleteProps> = ({
 
   return (
     <MuiAutocomplete
-      className="autocomplete"
       data-testid="autocomplete"
       ref={innerRef}
       onBlur={onBlur}

@@ -1,20 +1,31 @@
-import { VFC, useEffect, useMemo } from 'react';
-import './home.scss';
-import { Button, Card, CardContent, Typography } from '@mui/material';
-import Forecast from '../../components/forecast/forecast';
-import { FavoriteLocation, Location } from "../../store/favorite-locations/favorite-locations.model";
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchFavoriteLocation } from '../../store/favorite-locations/favorite-locations.thunk';
-import { favoriteLocationsActive, favoriteLocationsToggleFavorite } from '../../store/favorite-locations/favorite-locations.action';
-import { FavoriteLocationSelectActive, FavoriteLocationSelectActiveEntity, FavoriteLocationSelectError, FavoriteLocationSelectLoading } from '../../store/favorite-locations/favorite-locations.selector';
-import Favorite from '../../components/favorite/favorite';
-import { useOneTemperatureType } from '../../hooks/temprature-type.hook';
-import { flow } from 'lodash-es';
-import Loader from '../../components/loader/loader';
-import useHomeForm, { HOME_FORM_REG_EXP } from './home-form.hook';
-import useHomeQuery from './home-query.hook';
-import Autocomplete from '../../components/autocomplete/autocomplete';
-import { AutocompleteProps } from '../../components/autocomplete/autocomplete.model';
+import { VFC, useEffect, useMemo } from "react";
+import { Button, Card, CardContent } from "@mui/material";
+import Forecast from "../../components/forecast/forecast";
+import {
+  FavoriteLocation,
+  Location,
+} from "../../store/favorite-locations/favorite-locations.model";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchFavoriteLocation } from "../../store/favorite-locations/favorite-locations.thunk";
+import {
+  favoriteLocationsActive,
+  favoriteLocationsToggleFavorite,
+} from "../../store/favorite-locations/favorite-locations.action";
+import {
+  FavoriteLocationSelectActive,
+  FavoriteLocationSelectActiveEntity,
+  FavoriteLocationSelectError,
+  FavoriteLocationSelectLoading,
+} from "../../store/favorite-locations/favorite-locations.selector";
+import Favorite from "../../components/favorite/favorite";
+import { useOneTemperatureType } from "../../hooks/temprature-type.hook";
+import { flow } from "lodash-es";
+import Loader from "../../components/loader/loader";
+import useHomeForm, { HOME_FORM_REG_EXP } from "./home-form.hook";
+import useHomeQuery from "./home-query.hook";
+import Autocomplete from "../../components/autocomplete/autocomplete";
+import { AutocompleteProps } from "../../components/autocomplete/autocomplete.model";
+import * as S from "./home.style";
 
 const Home: VFC = () => {
   const dispatch = useDispatch();
@@ -27,30 +38,38 @@ const Home: VFC = () => {
 
   const activeLocation = useSelector(FavoriteLocationSelectActive);
 
-  const { setQuery: onInputDebounce, promiseQuery: [response,, loadingState] } = useHomeQuery(activeLocation);
+  const {
+    setQuery: onInputDebounce,
+    promiseQuery: [response, , loadingState],
+  } = useHomeQuery(activeLocation);
   const formProps = useHomeForm(activeLocation.localizedName);
 
   useEffect(() => {
     dispatch(fetchFavoriteLocation(activeLocation));
   }, [dispatch, activeLocation]);
 
-  const onLocationSelect: AutocompleteProps<Location>['onChange'] = location => {
+  const onLocationSelect: AutocompleteProps<Location>["onChange"] = (
+    location
+  ) => {
     dispatch(favoriteLocationsActive(location));
   };
 
   const onFavoriteClick = (): void => {
     dispatch(favoriteLocationsToggleFavorite());
-  }
+  };
 
   const options = useMemo<Location[]>(() => {
     return (response || [])
-    .filter(location => HOME_FORM_REG_EXP.test(location.LocalizedName))
-    .map<Location>(location => ({ key: location.Key, localizedName: location.LocalizedName }));
-  }, [response])
+      .filter((location) => HOME_FORM_REG_EXP.test(location.LocalizedName))
+      .map<Location>((location) => ({
+        key: location.Key,
+        localizedName: location.LocalizedName,
+      }));
+  }, [response]);
 
   return (
-    <div className="home">
-      <Card className="home__autocomplete">
+    <S.Home>
+      <S.AutocompleteCard>
         <CardContent>
           <form>
             <Autocomplete
@@ -59,40 +78,47 @@ const Home: VFC = () => {
               onInputDebounce={onInputDebounce}
               defaultOption={activeLocation}
               options={options}
-              loading={loadingState === 'pending'}
+              loading={loadingState === "pending"}
               placeholder="Search location"
-              idProp='key'
-              nameProp='localizedName'
+              idProp="key"
+              nameProp="localizedName"
             />
           </form>
         </CardContent>
-      </Card>
+      </S.AutocompleteCard>
 
-        <Card>
-          {loadingLocation
-            ? <div className="home__loader"><Loader /></div>
-            : errorLocation
-              ? <Typography className="home__error" variant="h1" component="div">NO DATA</Typography>
-              : favoriteLocation
-              && <CardContent>
-                <Typography className="home__title" gutterBottom variant="h5" component="div">
-                  <span>
-                    <span data-testid="localized-name">{favoriteLocation.localizedName}</span>
-                    <span>{favoriteLocation.temperature}</span>
-                  </span>
-                  <Button disabled={loadingLocation} onClick={onFavoriteClick}>
-                    <Favorite isFavorite={favoriteLocation.isFavorite} />
-                  </Button>
-                </Typography>
-                <div className="home__body">
-                  <div className="home__body-header">{favoriteLocation.weatherText}</div>
-                  <div className="home__forecasts">
-                    {favoriteLocation.forecasts.map(forecast => <Forecast key={forecast.title} forecast={forecast} />)}
-                  </div>
-                </div>
-              </CardContent>}
-        </Card>
-    </div>
+      <Card>
+        {loadingLocation ? (
+          <S.Loader>
+            <Loader />
+          </S.Loader>
+        ) : errorLocation || !favoriteLocation ? (
+          <S.Error variant="h1">NO DATA</S.Error>
+        ) : (
+          <CardContent>
+            <S.TitleTypography gutterBottom variant="h5">
+              <span>
+                <span data-testid="localized-name">
+                  {favoriteLocation.localizedName}
+                </span>
+                <span>{favoriteLocation.temperature}</span>
+              </span>
+              <Button disabled={loadingLocation} onClick={onFavoriteClick}>
+                <Favorite isFavorite={favoriteLocation.isFavorite} />
+              </Button>
+            </S.TitleTypography>
+            <S.Body>
+              <S.BodyHeader>{favoriteLocation.weatherText}</S.BodyHeader>
+              <S.Forecasts>
+                {favoriteLocation.forecasts.map((forecast) => (
+                  <Forecast key={forecast.title} forecast={forecast} />
+                ))}
+              </S.Forecasts>
+            </S.Body>
+          </CardContent>
+        )}
+      </Card>
+    </S.Home>
   );
 };
 
