@@ -11,4 +11,4 @@ interface BaseAutocompleteProps<T> {
     onInputDebounce?: (query: string) => void;
 }
 
-export type AutocompleteProps<T = any> = BaseAutocompleteProps<T> & ControllerProps;
+export type AutocompleteProps<T> = BaseAutocompleteProps<T> & ControllerProps;

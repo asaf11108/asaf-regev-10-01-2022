@@ -26,7 +26,7 @@ const Autocomplete = <T extends any>({
   onBlur,
   error
 }: AutocompleteProps<T>): ReturnType<FC> => {
-  const [inputValue, setInputValue] = useState(get(defaultOption, nameProp, defaultOption));
+  const [inputValue, setInputValue] = useState(get(defaultOption, nameProp, ''));
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(defaultOption);
 
@@ -37,13 +37,13 @@ const Autocomplete = <T extends any>({
     previousInputDebounce !== inputDebounce && open && valid && onInputDebounce?.(inputDebounce);
   }, [open, valid, inputDebounce, previousInputDebounce, onInputDebounce]);
 
-  const _onInput: AutocompleteProps['onInput'] = query => {
+  const _onInput: AutocompleteProps<T>['onInput'] = query => {
     setInputValue(query);
     onInput(query);
   }
 
-  const _onChange: AutocompleteProps['onChange'] = option => {
-    _onInput(get(option, nameProp, option));
+  const _onChange: AutocompleteProps<T>['onChange'] = option => {
+    _onInput(get(option, nameProp, ''));
     if (option) {
       setOption(option);
       onChange(option);
@@ -62,7 +62,7 @@ const Autocomplete = <T extends any>({
       onOpen={() => setOpen(true)}
       onClose={() => setOpen(false)}
       options={options}
-      onChange={(_, option) => _onChange(option)}
+      onChange={(_, option) => _onChange(option!)}
       getOptionLabel={(option) => get(option, nameProp, option)}
       isOptionEqualToValue={(option, value) => get(option, idProp, option) === get(value, idProp, value)}
       renderInput={(params) => (
