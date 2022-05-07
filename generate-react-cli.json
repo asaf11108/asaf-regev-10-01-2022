@@ -8,14 +8,14 @@
         "path": "src/components",
         "withLazy": false,
         "withStory": true,
-        "withStyle": true,
+        "withStyle": false,
         "withTest": false
       },
       "page": {
         "path": "src/pages",
         "withLazy": true,
         "withStory": true,
-        "withStyle": true,
+        "withStyle": false,
         "withTest": true
       }
     }
