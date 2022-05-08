@@ -41,7 +41,7 @@ const Home: VFC = () => {
   const {
     setQuery,
     promiseQuery: [response, , loadingState],
-  } = useHomeQuery(activeLocation);
+  } = useHomeQuery();
   const { handleSubmit, controls } = useHomeForm(activeLocation.localizedName);
 
   useEffect(() => {
