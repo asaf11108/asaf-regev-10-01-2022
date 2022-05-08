@@ -20,6 +20,7 @@ const Autocomplete = <T extends any>({
   nameProp = 'name',
   onChange,
   onInputDebounce,
+  onFocus,
   innerRef,
   valid = true,
   onInput,
@@ -73,10 +74,10 @@ const Autocomplete = <T extends any>({
       renderInput={(params) => (
         <TextField
           {...params}
+          data-testid="auto-input"
           variant="standard"
           fullWidth
           placeholder={placeholder}
-          data-testid="auto-input"
           InputProps={{
             ...params.InputProps,
             startAdornment: <SearchIcon />,
@@ -84,6 +85,7 @@ const Autocomplete = <T extends any>({
           }}
           error={!valid}
           helperText={error?.message}
+          onFocus={() => option && onFocus?.(option)}
         />
       )}
     />

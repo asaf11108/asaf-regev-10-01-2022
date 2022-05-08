@@ -9,6 +9,7 @@ interface BaseAutocompleteProps<T> {
     nameProp?: string;
     onChange: (option: T) => void;
     onInputDebounce?: (query: string) => void;
+    onFocus?: (option: T) => void;
 }
 
 export type AutocompleteProps<T> = BaseAutocompleteProps<T> & ControllerProps;

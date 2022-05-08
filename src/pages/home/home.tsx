@@ -39,7 +39,7 @@ const Home: VFC = () => {
   const activeLocation = useSelector(FavoriteLocationSelectActive);
 
   const {
-    setQuery: onInputDebounce,
+    setQuery,
     promiseQuery: [response, , loadingState],
   } = useHomeQuery(activeLocation);
   const { handleSubmit, controls } = useHomeForm(activeLocation.localizedName);
@@ -75,7 +75,8 @@ const Home: VFC = () => {
             <Autocomplete<Location>
               {...controls[CONTROLLER_NAME_LOCATION]}
               onChange={onLocationSelect}
-              onInputDebounce={onInputDebounce}
+              onInputDebounce={setQuery}
+              onFocus={option => setQuery(option.localizedName)}
               defaultOption={activeLocation}
               options={options}
               loading={loadingState === "pending"}
