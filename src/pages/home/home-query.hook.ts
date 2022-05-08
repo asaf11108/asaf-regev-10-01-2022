@@ -6,7 +6,7 @@ import { AutocompleteOption } from "../../api/interfaces/autocomplete";
 const useHomeQuery = () => {
     const [query, setQuery] = useState<string>();
     const promiseQuery = usePromise<AutocompleteOption[]>(
-      () => query ? API.getLocations(query) : Promise.resolve<AutocompleteOption[]>([]),
+      () => query ? API.getLocations(query) : Promise.resolve([]),
       [query]
     );
 

@@ -1,3 +1,4 @@
+import { memoize } from "lodash-es";
 import { getMockCurrentConditions, getMockForecasts, getMockLocations } from "./api-mock.service";
 import { getCurrentConditions, getForecasts, getLocations } from "./api.service";
 import { AutocompleteOption } from "./interfaces/autocomplete";
@@ -21,5 +22,7 @@ const API: IApiService = process.env.REACT_APP_PRODUCTION === 'true'
     getCurrentConditions: getMockCurrentConditions,
     getForecasts: getMockForecasts
   });
+
+API.getLocations = memoize(API.getLocations);
 
 export default API;
