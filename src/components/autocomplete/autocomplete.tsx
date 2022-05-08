@@ -58,7 +58,6 @@ const Autocomplete = <T extends any>({
 
   return (
     <MuiAutocomplete
-      data-testid="autocomplete"
       ref={innerRef}
       onBlur={_onBlur}
       defaultValue={defaultOption}
@@ -74,7 +73,7 @@ const Autocomplete = <T extends any>({
       renderInput={(params) => (
         <TextField
           {...params}
-          data-testid="auto-input"
+          data-testid="autocomplete-textfield"
           variant="standard"
           fullWidth
           placeholder={placeholder}

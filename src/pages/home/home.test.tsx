@@ -13,7 +13,7 @@ describe('Home', () => {
     
     it('should select different location', async () => {
       render(providersWrapper(<Home />));
-      const inputWrapper = screen.getByTestId<HTMLInputElement>('auto-input');
+      const inputWrapper = screen.getByTestId<HTMLInputElement>('autocomplete-textfield');
       const input = within(inputWrapper).getByRole<HTMLInputElement>('textbox');
       input.setSelectionRange(0, input.value.length);
       userEvent.type(input, 'paris');
