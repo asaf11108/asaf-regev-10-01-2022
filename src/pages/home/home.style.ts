@@ -56,7 +56,7 @@ export const Loader = styled.div`
     ${SharedBodyStates}
 `;
 
-export const Error = styled(Typography)`
+export const ErrorTypography = styled(Typography)`
     ${SharedBody}
     ${SharedBodyStates}
     font-weight: 600;

@@ -94,7 +94,7 @@ const Home: VFC = () => {
             <Loader />
           </S.Loader>
         ) : errorLocation || !favoriteLocation ? (
-          <S.Error variant="h1">NO DATA</S.Error>
+          <S.ErrorTypography variant="h1">NO DATA</S.ErrorTypography>
         ) : (
           <CardContent>
             <S.TitleTypography gutterBottom variant="h5">
