@@ -10,7 +10,7 @@ const Table: FC<TableProps> = ({ columns, rows, rowClick, idProp = 'id' }) => {
     const cols = useColumns(columns);
 
     return (
-        <TableContainer className="table" sx={{ maxHeight: 440 }}>
+        <TableContainer sx={{ maxHeight: 440 }}>
             <MuiTable stickyHeader>
                 <TableHead>
                     <TableRow>

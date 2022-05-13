@@ -55,7 +55,7 @@ const Toolbar: VFC = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Menu className="menu" keepMounted>
+          <Menu>
             {MENU.map((menuItem) => (
               <MenuItem
                 onClick={() => onMenuItemClick(menuItem.navigatePath)}

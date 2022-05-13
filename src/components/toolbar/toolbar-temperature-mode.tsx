@@ -20,7 +20,6 @@ const ToolbarTemperatureMode: VFC<ToolbarTemperatureModeProps> = ({ style }) => 
 
     return (
         <ToggleButtonGroup
-            className="temperature-toggle"
             style={style}
             size="small"
             value={temperatureMode}
