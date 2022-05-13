@@ -42,7 +42,7 @@ const Home: VFC = () => {
     setQuery,
     promiseQuery: [response, , loadingState],
   } = useHomeQuery();
-  const { handleSubmit, controls } = useHomeForm(activeLocation.localizedName);
+  const { controls } = useHomeForm(activeLocation.localizedName);
 
   useEffect(() => {
     dispatch(fetchFavoriteLocation(activeLocation));
@@ -71,20 +71,18 @@ const Home: VFC = () => {
     <S.Home>
       <S.AutocompleteCard>
         <CardContent>
-          <form onSubmit={handleSubmit(() => {})}>
-            <Autocomplete<Location>
-              {...controls[CONTROLLER_NAME_LOCATION]}
-              onChange={onLocationSelect}
-              onInputDebounce={setQuery}
-              onFocus={option => setQuery(option.localizedName)}
-              defaultOption={activeLocation}
-              options={options}
-              loading={loadingState === "pending"}
-              placeholder="Search location"
-              idProp="key"
-              nameProp="localizedName"
-            />
-          </form>
+          <Autocomplete<Location>
+            {...controls[CONTROLLER_NAME_LOCATION]}
+            onChange={onLocationSelect}
+            onInputDebounce={setQuery}
+            onFocus={option => setQuery(option.localizedName)}
+            defaultOption={activeLocation}
+            options={options}
+            loading={loadingState === "pending"}
+            placeholder="Search location"
+            idProp="key"
+            nameProp="localizedName"
+          />
         </CardContent>
       </S.AutocompleteCard>
 
