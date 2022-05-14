@@ -15,11 +15,11 @@ export interface TableColumn {
     width?: string;
 }
 
-export interface _TableColumn<T = any> extends TableColumn {
+export interface _TableColumn<T> extends TableColumn {
     cell: (row: T) => JSX.Element;
 }
 
-export interface TableProps<T = any> {
+export interface TableProps<T> {
     rows: T[];
     columns: TableColumn[];
     rowClick?: (row: T) => void;

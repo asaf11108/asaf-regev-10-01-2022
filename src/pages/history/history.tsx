@@ -11,6 +11,7 @@ import { useManyTemperatureType } from '../../hooks/temprature-type.hook';
 import { flow } from 'lodash-es';
 import { filter } from 'lodash/fp';
 import * as S from "./history.style";
+import { TableProps } from '../../components/table/table.model';
 
 const History: VFC = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const History: VFC = () => {
     filter((favoriteLocation: FavoriteLocation) => favoriteLocation.localizedName.toLowerCase().includes(query.toLowerCase()))
   ])(FavoriteLocationSelectors.selectAll);
 
-  const onRowClick = (favoriteLocation: FavoriteLocation): void => {
+  const onRowClick: TableProps<FavoriteLocation>['rowClick'] = favoriteLocation => {
     dispatch(favoriteLocationsActive(favoriteLocation));
     navigate('/');
   };
@@ -33,7 +34,7 @@ const History: VFC = () => {
 
       <S.Search label="Search by city" variant="standard" onChange={event => setQuery(event.target.value)} />
 
-      <Table
+      <Table<FavoriteLocation>
         columns={COLUMNS}
         rows={favoriteLocations}
         rowClick={onRowClick}

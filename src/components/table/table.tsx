@@ -3,9 +3,10 @@ import { TableContainer, Table as MuiTable, TableHead, TableRow, TableCell, Tabl
 import { useColumns } from "./columns.hook";
 import { TableProps } from "./table.model";
 import * as S from "./table.style";
+import { get } from "lodash-es";
 
 
-const Table: FC<TableProps> = ({ columns, rows, rowClick, idProp = 'id' }) => {
+const Table = <T extends any>({ columns, rows, rowClick, idProp = 'id' }: TableProps<T>): ReturnType<FC> => {
 
     const cols = useColumns(columns);
 
@@ -25,7 +26,7 @@ const Table: FC<TableProps> = ({ columns, rows, rowClick, idProp = 'id' }) => {
                     {rows
                         .map((row) => {
                             return (
-                                <S.TableRow hover key={row[idProp]} onClick={() => rowClick && rowClick(row)}>
+                                <S.TableRow hover key={get(row, idProp)} onClick={() => rowClick?.(row)}>
                                     {cols.map((col) =>
                                         <TableCell key={col.prop} sx={{width: col.width}}>
                                             {col.cell(row)}

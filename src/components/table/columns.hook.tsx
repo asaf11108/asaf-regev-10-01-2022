@@ -5,12 +5,12 @@ import { get } from "lodash-es";
 import { format } from "date-fns";
 import { useLocale } from "../../providers/locale/locale.hook";
 
-export const useColumns = (columns: TableColumn[]): _TableColumn[] => {
+export const useColumns = <T extends any>(columns: TableColumn[]): _TableColumn<T>[] => {
     const locale = useLocale();
 
     return useMemo(() =>
         columns.map(col => {
-            let cell: _TableColumn['cell'] = () => <></>;
+            let cell: _TableColumn<T>['cell'] = () => <></>;
 
             switch (col.type) {
                 case ColumnType.Favorite:
