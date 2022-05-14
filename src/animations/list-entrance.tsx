@@ -12,7 +12,7 @@ interface InjectedProps<T> {
 export interface ListEntranceProps<T> {
   list: T[];
   idProp?: string;
-  children: (props: InjectedProps<T>) => ReactNode
+  children: (props: InjectedProps<T>) => ReturnType<FC>
 }
 
 const ANIMATION_DELAY = 300;

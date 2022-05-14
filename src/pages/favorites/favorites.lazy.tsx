@@ -1,9 +1,9 @@
-import { lazy, Suspense, VFC } from 'react';
+import { lazy, Suspense, FC } from 'react';
 import RouteFallback from '../../components/route-fallback/route-fallback';
 
 const LazyFavorites = lazy(() => import('./favorites'));
 
-const Favorites: VFC = () => (
+const Favorites: FC = () => (
   <Suspense fallback={<RouteFallback />}>
     <LazyFavorites />
   </Suspense>

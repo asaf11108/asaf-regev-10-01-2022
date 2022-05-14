@@ -1,5 +1,7 @@
-import { Ref } from "react";
+import { FC, ReactNode, Ref } from "react";
 import { FieldError, FieldValues, Noop, UseFormHandleSubmit } from "react-hook-form";
+
+export type FCC<P = {}> = FC<{ children: ReactNode } & P>;
 
 export type ISOString = string;
 

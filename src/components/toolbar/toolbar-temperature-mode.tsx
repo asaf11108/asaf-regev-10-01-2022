@@ -1,4 +1,4 @@
-import { VFC, MouseEvent } from "react";
+import { FC, MouseEvent } from "react";
 import { ToggleButtonGroup } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { generalTemperatureMode } from "../../store/general/general.action";
@@ -7,7 +7,7 @@ import { GeneralTemperatureModeSelect } from "../../store/general/general.select
 import { ToolbarTemperatureModeProps } from "./toolbar-temperature-mode.model";
 import * as S from "./toolbar-temperature-mode.style";
 
-const ToolbarTemperatureMode: VFC<ToolbarTemperatureModeProps> = ({ style }) => {
+const ToolbarTemperatureMode: FC<ToolbarTemperatureModeProps> = ({ style }) => {
     const dispatch = useDispatch();
     const temperatureMode = useSelector(GeneralTemperatureModeSelect);
     

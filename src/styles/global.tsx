@@ -1,8 +1,8 @@
 import { Global } from "@emotion/react";
-import { VFC } from "react";
+import { FC } from "react";
 import { GeneralStyle } from "./general";
 
-export const GlobalStyle: VFC = () => {
+export const GlobalStyle: FC = () => {
     return (
         <>
             <Global styles={GeneralStyle} />

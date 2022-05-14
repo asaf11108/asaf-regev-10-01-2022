@@ -1,4 +1,4 @@
-import { VFC } from 'react';
+import { FC } from 'react';
 import Toolbar from './components/toolbar/toolbar';
 import apiKeyInterceptor from './interceptors/api-key.interceptor';
 import errorInterceptor from './interceptors/erros.interceptor';
@@ -8,7 +8,7 @@ import * as S from './app.style';
 import { useSnackbar } from './providers/snackbar/snackbar.hook';
 import { GlobalStyle } from './styles/global';
 
-const App: VFC = () => {
+const App: FC = () => {
   const isFirstMount = useFirstMountState();
   const openSnackbar = useSnackbar();
 

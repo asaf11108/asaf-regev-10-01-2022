@@ -1,9 +1,9 @@
-import { VFC } from 'react';
+import { FC } from 'react';
 import { ForecastProps } from './forecast.model';
 import { Typography } from '@mui/material';
 import * as S from "./forecast.style";
 
-const Forecast: VFC<ForecastProps> = ({ forecast, onClick }) => {
+const Forecast: FC<ForecastProps> = ({ forecast, onClick }) => {
   const buildIconUrl = (icon?: string): string => {
     if (!icon) {
       return "";

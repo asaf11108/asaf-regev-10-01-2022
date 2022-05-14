@@ -1,4 +1,4 @@
-import { VFC } from "react";
+import { FC } from "react";
 import Forecast from "../../components/forecast/forecast";
 import { _Forecast } from "../../components/forecast/forecast.model";
 import { FavoriteLocation } from "../../store/favorite-locations/favorite-locations.model";
@@ -12,7 +12,7 @@ import { filter } from "lodash/fp";
 import * as S from "./favorites.style";
 import { ListEntrance } from "../../animations/list-entrance";
 
-const Favorites: VFC = () => {
+const Favorites: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const favoriteLocations: FavoriteLocation[] = flow([
@@ -41,12 +41,12 @@ const Favorites: VFC = () => {
       <ListEntrance<FavoriteLocation>
         list={favoriteLocations}
         idProp="key">
-        {({ item }) => (
+        {/* {({ item }) => (
           <Forecast
             forecast={mapToForecastComponent(item)}
             onClick={() => onLocationClick(item)}
           />
-        )}
+        )} */}
       </ListEntrance>
     </S.Favorites>
   );

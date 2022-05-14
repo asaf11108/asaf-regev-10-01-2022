@@ -5,6 +5,7 @@ import { FC, useEffect, useState } from "react";
 import getUserLocale from "get-user-locale";
 import { Locale } from "date-fns";
 import { LocaleContext } from "./locale.context";
+import { FCC } from "../../interfaces/general";
 
 // Get user language from the window navigator service
 export const userLocale = getUserLocale();
@@ -12,7 +13,7 @@ export const userLocale = getUserLocale();
 // Currently the appplication only supports english language
 export const supportedLocale = userLocale.includes('en') ? userLocale : 'en-US';
 
-export const LocaleProvider: FC = ({ children }) => {
+export const LocaleProvider: FCC = ({ children }) => {
   const [locale, setLocale] = useState<Locale>();
   
   useEffect(() => {
