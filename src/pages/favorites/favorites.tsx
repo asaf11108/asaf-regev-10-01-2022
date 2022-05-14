@@ -38,15 +38,13 @@ const Favorites: FC = () => {
 
   return (
     <S.Favorites>
-      <ListEntrance<FavoriteLocation>
-        list={favoriteLocations}
-        idProp="key">
-        {/* {({ item }) => (
+      <ListEntrance<FavoriteLocation> list={favoriteLocations} idProp="key">
+        {({ item }) => (
           <Forecast
             forecast={mapToForecastComponent(item)}
             onClick={() => onLocationClick(item)}
           />
-        )} */}
+        )}
       </ListEntrance>
     </S.Favorites>
   );
