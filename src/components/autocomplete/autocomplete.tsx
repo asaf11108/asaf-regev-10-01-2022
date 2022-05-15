@@ -11,7 +11,7 @@ import { useDebounce } from "use-debounce";
 import { usePrevious } from "react-use";
 import { get } from "lodash-es";
 
-const Autocomplete = <T extends any>({
+const Autocomplete = <T extends {}>({
   options = [],
   loading = false,
   placeholder = "option",

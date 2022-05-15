@@ -5,7 +5,7 @@ import { get } from "lodash-es";
 import { format } from "date-fns";
 import { useLocale } from "../../providers/locale/locale.hook";
 
-export const useColumns = <T extends any>(columns: TableColumn[]): _TableColumn<T>[] => {
+export const useColumns = <T extends {}>(columns: TableColumn[]): _TableColumn<T>[] => {
     const locale = useLocale();
 
     return useMemo(() =>

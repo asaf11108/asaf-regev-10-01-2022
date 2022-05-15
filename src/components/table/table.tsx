@@ -6,7 +6,7 @@ import * as S from "./table.style";
 import { get } from "lodash-es";
 
 
-const Table = <T extends any>({ columns, rows, rowClick, idProp = 'id' }: TableProps<T>): ReturnType<FC> => {
+const Table = <T extends {}>({ columns, rows, rowClick, idProp = 'id' }: TableProps<T>): ReturnType<FC> => {
 
     const cols = useColumns(columns);
 
