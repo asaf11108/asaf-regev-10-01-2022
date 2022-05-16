@@ -42,7 +42,7 @@ const Home: VFC = () => {
     setQuery,
     promiseQuery: [response, , loadingState],
   } = useHomeQuery();
-  const { controls } = useHomeForm(activeLocation.localizedName);
+  const { register, getFieldState } = useHomeForm();
 
   useEffect(() => {
     dispatch(fetchFavoriteLocation(activeLocation));
@@ -72,10 +72,11 @@ const Home: VFC = () => {
       <S.AutocompleteCard>
         <CardContent>
           <Autocomplete<Location>
-            {...controls[CONTROLLER_NAME_LOCATION]}
+            formRegisterReturn={register(CONTROLLER_NAME_LOCATION, { required: true })}
+            error={getFieldState(CONTROLLER_NAME_LOCATION).error}
             onChange={onLocationSelect}
             onInputDebounce={setQuery}
-            onFocus={option => setQuery(option.localizedName)}
+            onInputFocus={option => setQuery(option.localizedName)}
             defaultOption={activeLocation}
             options={options}
             loading={loadingState === "pending"}
