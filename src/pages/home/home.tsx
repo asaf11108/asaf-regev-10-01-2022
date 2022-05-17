@@ -48,7 +48,7 @@ const Home: VFC = () => {
     dispatch(fetchFavoriteLocation(activeLocation));
   }, [dispatch, activeLocation]);
 
-  const onLocationSelect: AutocompleteProps<Location>["onChange"] = (
+  const onLocationSelect: AutocompleteProps<Location>["onSelect"] = (
     location
   ) => {
     dispatch(favoriteLocationsActive(location));
@@ -72,9 +72,9 @@ const Home: VFC = () => {
       <S.AutocompleteCard>
         <CardContent>
           <Autocomplete<Location>
-            formRegisterReturn={register(CONTROLLER_NAME_LOCATION, { required: true })}
+            {...register(CONTROLLER_NAME_LOCATION, { required: true })}
             error={getFieldState(CONTROLLER_NAME_LOCATION).error}
-            onChange={onLocationSelect}
+            onSelect={onLocationSelect}
             onInputDebounce={setQuery}
             onInputFocus={option => setQuery(option.localizedName)}
             defaultOption={activeLocation}

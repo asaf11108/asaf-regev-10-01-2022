@@ -8,6 +8,7 @@ import { useDebounce } from "use-debounce";
 import { usePrevious } from "react-use";
 import { get } from "lodash-es";
 import { useController, useForm } from "react-hook-form";
+import { useAutocompleteInput } from "./autocomplete-input.hook";
 
 const Autocomplete = <T extends {}>({
   options = [],
@@ -17,44 +18,36 @@ const Autocomplete = <T extends {}>({
   idProp = "id",
   nameProp = "name",
   inputRules,
-  onChange,
+  onSelect: onChange,
+  onBlur,
+  ref,
   onInputDebounce,
   onInputFocus,
   onInput,
-  onInputBlur,
-  formRegisterReturn,
   error
 }: AutocompleteProps<T>): ReturnType<FC> => {
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(defaultOption);
 
-  const { control } = useForm({ mode: 'onChange' });
-  const {
-    field: { onChange: onFormInput, onBlur: _onInputFormBlur, ref, value: inputValue },
-    fieldState: { error: inputError },
-  } = useController({
-    name: "name",
-    control,
-    defaultValue: get(defaultOption, nameProp, ""),
-    rules: inputRules,
-  });
-  const [inputDebounce] = useDebounce(inputValue, 1000);
+  const inputController = useAutocompleteInput(get(defaultOption, nameProp, ""), inputRules);
+
+  const [inputDebounce] = useDebounce(inputController.field.value, 1000);
   const previousInputDebounce = usePrevious(inputDebounce);
 
   useEffect(() => {
     previousInputDebounce !== inputDebounce &&
       open &&
-      !inputError &&
+      !inputController.fieldState.error &&
       !error &&
       onInputDebounce?.(inputDebounce);
-  }, [open, inputError, error, inputDebounce, previousInputDebounce, onInputDebounce]);
+  }, [open, inputController.fieldState.error, error, inputDebounce, previousInputDebounce, onInputDebounce]);
 
   const _onInput: AutocompleteProps<T>["onInput"] = query => {
-    onFormInput(query);
+    inputController.field.onChange(query);
     onInput?.(query);
   };
 
-  const _onChange: AutocompleteProps<T>["onChange"] = option => {
+  const _onChange: AutocompleteProps<T>["onSelect"] = option => {
     _onInput(get(option, nameProp, ""));
     if (option) {
       setOption(option);
@@ -62,23 +55,24 @@ const Autocomplete = <T extends {}>({
     }
   };
 
-  const _onInputBlur: AutocompleteProps<T>["onInputBlur"] = () => {
-    _onInputFormBlur();
+  const _onBlur: AutocompleteProps<T>["onBlur"] = async event => {
+    inputController.field.onBlur();
     setOpen(false);
-    onInputBlur?.();
+    onBlur?.(event);
   };
 
   return (
     <MuiAutocomplete
+      ref={ref}
       defaultValue={defaultOption}
       value={option}
-      open={open && !inputError}
+      open={open && !inputController.fieldState.error}
       onOpen={() => setOpen(true)}
       onClose={() => setOpen(false)}
       options={options}
       onChange={(_, option) => _onChange(option!)}
       onInputChange={(_, query) => _onInput(query)}
-      onBlur={_onInputBlur}
+      onBlur={_onBlur}
       getOptionLabel={(option) => get(option, nameProp, option)}
       isOptionEqualToValue={(option, value) =>
         get(option, idProp, option) === get(value, idProp, value)
@@ -95,8 +89,8 @@ const Autocomplete = <T extends {}>({
             startAdornment: <SearchIcon />,
             endAdornment: loading && <CircularProgress size="1em" />,
           }}
-          error={!!inputError || !!error}
-          helperText={inputError?.message || error?.message}
+          error={!!inputController.fieldState.error || !!error}
+          helperText={inputController.fieldState.error?.message || error?.message}
           onFocus={() => option && onInputFocus?.(option)}
         />
       )}
