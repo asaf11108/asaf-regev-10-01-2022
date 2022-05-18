@@ -18,7 +18,7 @@ const Autocomplete = <T extends {}>({
   idProp = "id",
   nameProp = "name",
   inputRules,
-  onSelect: onChange,
+  onSelect,
   onBlur,
   ref,
   onInputDebounce,
@@ -47,11 +47,11 @@ const Autocomplete = <T extends {}>({
     onInput?.(query);
   };
 
-  const _onChange: AutocompleteProps<T>["onSelect"] = option => {
+  const _onSelect: AutocompleteProps<T>["onSelect"] = option => {
     _onInput(get(option, nameProp, ""));
     if (option) {
       setOption(option);
-      onChange(option);
+      onSelect(option);
     }
   };
 
@@ -70,7 +70,7 @@ const Autocomplete = <T extends {}>({
       onOpen={() => setOpen(true)}
       onClose={() => setOpen(false)}
       options={options}
-      onChange={(_, option) => _onChange(option!)}
+      onChange={(_, option) => _onSelect(option!)}
       onInputChange={(_, query) => _onInput(query)}
       onBlur={_onBlur}
       getOptionLabel={(option) => get(option, nameProp, option)}
