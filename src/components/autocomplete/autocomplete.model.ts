@@ -13,6 +13,7 @@ interface BaseAutocompleteProps<T> {
     onInputDebounce?: (query: string) => void;
     onInputFocus?: (option: T) => void;
     onInput?: (query: string) => void;
+    controlRef?: RefCallBack;
 }
 
 export type AutocompleteProps<T> = BaseAutocompleteProps<T> & Partial<UseFormRegisterReturn>;

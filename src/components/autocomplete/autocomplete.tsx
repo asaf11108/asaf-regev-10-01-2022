@@ -17,13 +17,13 @@ const Autocomplete = <T extends {}>({
   idProp = "id",
   nameProp = "name",
   inputRules,
+  error,
   onSelect,
   onBlur,
-  ref,
+  controlRef,
   onInputDebounce,
   onInputFocus,
   onInput,
-  error
 }: AutocompleteProps<T>): ReturnType<FC> => {
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(defaultOption);
@@ -62,7 +62,7 @@ const Autocomplete = <T extends {}>({
 
   return (
     <MuiAutocomplete
-      ref={ref}
+      ref={controlRef}
       defaultValue={defaultOption}
       value={option}
       open={open && !inputController.fieldState.error}
