@@ -21,7 +21,7 @@ import Favorite from "../../components/favorite/favorite";
 import { useOneTemperatureType } from "../../hooks/temprature-type.hook";
 import { flow } from "lodash-es";
 import Loader from "../../components/loader/loader";
-import useHomeForm, { CONTROLLER_NAME_LOCATION, HOME_FORM_REG_EXP } from "./home-form.hook";
+import useHomeForm, { CONTROLLER_LOCATION_INPUT_RULES, CONTROLLER_NAME_LOCATION, HOME_FORM_REG_EXP } from "./home-form.hook";
 import useHomeQuery from "./home-query.hook";
 import Autocomplete from "../../components/autocomplete/autocomplete";
 import { AutocompleteProps } from "../../components/autocomplete/autocomplete.model";
@@ -72,7 +72,7 @@ const Home: VFC = () => {
       <S.AutocompleteCard>
         <CardContent>
           <Autocomplete<Location>
-            {...form.control[CONTROLLER_NAME_LOCATION]}
+            {...form.controls[CONTROLLER_NAME_LOCATION]}
             onSelect={onLocationSelect}
             onInputDebounce={setQuery}
             onInputFocus={option => setQuery(option.localizedName)}
@@ -82,6 +82,7 @@ const Home: VFC = () => {
             placeholder="Search location"
             idProp="key"
             nameProp="localizedName"
+            inputRules={CONTROLLER_LOCATION_INPUT_RULES}
           />
         </CardContent>
       </S.AutocompleteCard>

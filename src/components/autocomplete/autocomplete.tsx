@@ -19,14 +19,14 @@ const Autocomplete = <T extends {}>({
   inputRules,
   error,
   onSelect,
-  onBlur,
-  controlRef,
   onInputDebounce,
   onInputFocus,
   onInput,
+  control
 }: AutocompleteProps<T>): ReturnType<FC> => {
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(defaultOption);
+  //defualt value
 
   const inputController = useAutocompleteInput(get(defaultOption, nameProp, ""), inputRules);
 
@@ -50,6 +50,7 @@ const Autocomplete = <T extends {}>({
     _onInput(get(option, nameProp, ""));
     if (option) {
       setOption(option);
+      control?.onChange(get(option, idProp, option));
       onSelect(option);
     }
   };
@@ -57,12 +58,12 @@ const Autocomplete = <T extends {}>({
   const _onBlur: AutocompleteProps<T>["onBlur"] = async event => {
     inputController.field.onBlur();
     setOpen(false);
-    onBlur?.(event);
+    control?.onBlur(event);
   };
 
   return (
     <MuiAutocomplete
-      ref={controlRef}
+      ref={control?.ref}
       defaultValue={defaultOption}
       value={option}
       open={open && !inputController.fieldState.error}

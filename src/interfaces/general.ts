@@ -1,5 +1,4 @@
-import { Ref } from "react";
-import { FieldError, FieldValues, Noop, UseFormHandleSubmit } from "react-hook-form";
+import { ChangeHandler, FieldError, FieldValues, RefCallBack, UseControllerProps, UseFormHandleSubmit } from "react-hook-form";
 
 export type ISOString = string;
 
@@ -11,11 +10,10 @@ export interface Option {
 }
 
 export interface ControllerProps {
-    valid: boolean;
-    innerRef: Ref<any>;
     error?: FieldError;
-    onInput: (query: string) => void;
-    onBlur: Noop;
+    ref: RefCallBack;
+    onChange: ChangeHandler;
+    onBlur: ChangeHandler;
 }
 
 export interface FormProps {

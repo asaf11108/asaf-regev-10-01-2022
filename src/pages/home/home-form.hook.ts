@@ -1,10 +1,11 @@
 import { UseControllerProps, useForm } from "react-hook-form";
+import { FormProps } from "../../interfaces/general";
 
 export const CONTROLLER_NAME_LOCATION = 'location';
 
 export const HOME_FORM_REG_EXP = /^[a-zA-Z ]+$/;
 
-const CONTROLLER_LOCATION_INPUT_RULES: UseControllerProps['rules'] = {
+export const CONTROLLER_LOCATION_INPUT_RULES: UseControllerProps['rules'] = {
     required: {
         value: true,
         message: `Please enter location`,
@@ -15,20 +16,15 @@ const CONTROLLER_LOCATION_INPUT_RULES: UseControllerProps['rules'] = {
     },
 }
 
-const useHomeForm = () => {
+const useHomeForm = (): FormProps => {
     const { handleSubmit, register, getFieldState } = useForm({ mode: 'onChange' });
-
-    const { ref, onBlur, onChange } = register(CONTROLLER_NAME_LOCATION);
 
     return { 
         handleSubmit,
-        control: {
+        controls: {
             [CONTROLLER_NAME_LOCATION]: {
-                controlRef: ref,
-                onBlur,
-                onChange,
+                ...register(CONTROLLER_NAME_LOCATION),
                 error: getFieldState(CONTROLLER_NAME_LOCATION).error,
-                inputRules: CONTROLLER_LOCATION_INPUT_RULES
             }
         }
     };

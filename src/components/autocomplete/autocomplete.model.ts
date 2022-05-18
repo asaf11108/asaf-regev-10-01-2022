@@ -1,4 +1,5 @@
-import { FieldError, RefCallBack, UseControllerProps, UseFormRegisterReturn } from "react-hook-form";
+import { ChangeHandler, FieldError, UseControllerProps } from "react-hook-form";
+import { ControllerProps } from "../../interfaces/general";
 
 interface BaseAutocompleteProps<T> {
     options: T[];
@@ -13,7 +14,8 @@ interface BaseAutocompleteProps<T> {
     onInputDebounce?: (query: string) => void;
     onInputFocus?: (option: T) => void;
     onInput?: (query: string) => void;
-    controlRef?: RefCallBack;
+    onBlur?: ChangeHandler;
+    control?: ControllerProps;
 }
 
-export type AutocompleteProps<T> = BaseAutocompleteProps<T> & Partial<UseFormRegisterReturn>;
+export type AutocompleteProps<T> = BaseAutocompleteProps<T>;
