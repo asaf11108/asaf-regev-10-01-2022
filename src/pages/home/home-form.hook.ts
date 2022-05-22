@@ -1,5 +1,6 @@
 import { UseControllerProps, useForm } from "react-hook-form";
 import { FormProps } from "../../interfaces/general";
+import { Location } from "../../store/favorite-locations/favorite-locations.model";
 
 export const CONTROLLER_NAME_LOCATION = 'location';
 
@@ -17,7 +18,7 @@ export const CONTROLLER_LOCATION_INPUT_RULES: UseControllerProps['rules'] = {
 }
 
 const useHomeForm = (): FormProps => {
-    const { handleSubmit, register, getFieldState } = useForm({ mode: 'onChange' });
+    const { handleSubmit, register, getFieldState } = useForm<{[CONTROLLER_NAME_LOCATION]: Location['key']}>({ mode: 'onChange' });
 
     return { 
         handleSubmit,

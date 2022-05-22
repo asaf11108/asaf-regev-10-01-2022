@@ -72,7 +72,7 @@ const Home: VFC = () => {
       <S.AutocompleteCard>
         <CardContent>
           <Autocomplete<Location>
-            {...form.controls[CONTROLLER_NAME_LOCATION]}
+            control={form.controls[CONTROLLER_NAME_LOCATION]}
             onSelect={onLocationSelect}
             onInputDebounce={setQuery}
             onInputFocus={option => setQuery(option.localizedName)}
