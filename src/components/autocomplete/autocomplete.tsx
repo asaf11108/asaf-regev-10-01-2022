@@ -26,7 +26,6 @@ const Autocomplete = <T extends {}>({
 }: AutocompleteProps<T>): ReturnType<FC> => {
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(defaultOption);
-  //defualt value
 
   const inputController = useAutocompleteInput(get(defaultOption, nameProp, ""), inputRules);
 
