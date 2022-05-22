@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, SyntheticEvent, useEffect } from "react";
 import { useState } from "react";
 import { Autocomplete as MuiAutocomplete, TextField } from "@mui/material";
 import { AutocompleteProps } from "./autocomplete.model";
@@ -45,11 +45,11 @@ const Autocomplete = <T extends {}>({
     onInput?.(query);
   };
 
-  const _onSelect: AutocompleteProps<T>["onSelect"] = option => {
+  const _onSelect = (event: SyntheticEvent, option: T) => {
     _onInput(get(option, nameProp, ""));
     if (option) {
       setOption(option);
-      control?.onChange(get(option, idProp, option));
+      control?.onChange(event);
       onSelect(option);
     }
   };
@@ -69,7 +69,7 @@ const Autocomplete = <T extends {}>({
       onOpen={() => setOpen(true)}
       onClose={() => setOpen(false)}
       options={options}
-      onChange={(_, option) => _onSelect(option!)}
+      onChange={(event, option) => _onSelect(event, option!)}
       onInputChange={(_, query) => _onInput(query)}
       onBlur={_onBlur}
       getOptionLabel={(option) => get(option, nameProp, option)}

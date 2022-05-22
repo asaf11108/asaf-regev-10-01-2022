@@ -4,11 +4,6 @@ export type ISOString = string;
 
 export type ID = string | number;
 
-export interface Option {
-    id: ID;
-    name: string;
-}
-
 export interface ControllerProps {
     error?: FieldError;
     ref: RefCallBack;

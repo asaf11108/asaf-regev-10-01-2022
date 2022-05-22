@@ -18,7 +18,7 @@ export const CONTROLLER_LOCATION_INPUT_RULES: UseControllerProps['rules'] = {
 }
 
 const useHomeForm = (): FormProps => {
-    const { handleSubmit, register, getFieldState } = useForm<{[CONTROLLER_NAME_LOCATION]: Location['key']}>({ mode: 'onChange' });
+    const { handleSubmit, register, getFieldState, getValues } = useForm<{[CONTROLLER_NAME_LOCATION]: Location['key']}>({ mode: 'onChange' });
 
     return { 
         handleSubmit,
