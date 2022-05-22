@@ -11,8 +11,8 @@ This project uses packages such as: `react-redux`, `@reduxjs/toolkit`, `@mui/mat
 ## Code notes
 1. The code of temperature type toggle is being done by `custom hook`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/hooks/temprature-type.hook.ts).
 2. The are 2 `interceptors`: one is attaching API_KEY to each request, and the other for showing any server error by snackbar, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/tree/master/src/interceptors).
-3. Generic `table`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/tree/master/src/components/table).
-4. The autocomplete is also generic, so it could be used as basic and as form controller, [link]().
+3. `Generic table`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/tree/master/src/components/table).
+4. `Generic autocomplete`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/tree/master/src/components/autocomplete).
 5. `Advance TS`, [example](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/store/favorite-locations/favorite-locations.model.ts).
 6. `Media breakpoints`: 'xs': 600px, 'sm': 960px, 'md': 1280px, 'lg': 1920px, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/styles/vendors/_vendors.scss).
 7. The Home component contains `unit tests`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/pages/home/home.test.tsx).
@@ -20,9 +20,10 @@ This project uses packages such as: `react-redux`, `@reduxjs/toolkit`, `@mui/mat
 9. `Generic Animation`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/pages/favorites/favorites.tsx).
 10. `App routing` contains lazy loaded routes and guards in case there is no data, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/app-routing.tsx).
 11. Implemented [new react design pattern return component from hooks](https://blog.bitsrc.io/new-react-design-pattern-return-component-from-hooks-79215c3eac00) in toolbar component, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/hooks/menu).
-12. Date fns with lazy locale fetch, [usage example](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/providers/locale/locale.provider.tsx).
-13. Generate react cli, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/generate-react-cli.json).
-14. Improvements to be done: add `OpenAPI` to the project, use `style components` instead of SASS.
+12. `Snackbar provider`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/tree/master/src/providers/snackbar).
+12. Date fns with lazy `locale` fetch, [usage example](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/providers/locale/locale.provider.tsx).
+13. Generate `react cli`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/generate-react-cli.json).
+14. Improvements to be done: add `OpenAPI` to the project.
 
 ## React vs Angular
 1. `SASS VS css-in-js`.<br />
