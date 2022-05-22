@@ -9,7 +9,7 @@ import { usePrevious } from "react-use";
 import { get } from "lodash-es";
 import { useAutocompleteInput } from "./autocomplete-input.hook";
 
-const Autocomplete = <T extends {}>({
+const Autocomplete = <T extends {}, P>({
   options = [],
   loading = false,
   placeholder = "option",
@@ -23,10 +23,10 @@ const Autocomplete = <T extends {}>({
   onInputFocus,
   onInput,
   control
-}: AutocompleteProps<T>): ReturnType<FC> => {
+}: AutocompleteProps<T, P>): ReturnType<FC> => {
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(defaultOption);
-
+  // select defualt
   const inputController = useAutocompleteInput(get(defaultOption, nameProp, ""), inputRules);
 
   const [inputDebounce] = useDebounce(inputController.field.value, 1000);
@@ -50,6 +50,7 @@ const Autocomplete = <T extends {}>({
     if (option) {
       setOption(option);
       control?.onChange(event);
+      control?.setValue(get(option, idProp, option));
       onSelect(option);
     }
   };
