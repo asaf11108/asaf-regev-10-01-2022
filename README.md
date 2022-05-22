@@ -1,7 +1,7 @@
 # Weather App
 
 This project presents the weather of different locations around the world and cache history of locations.<br/>
-This project uses packages such as: `react-redux`, `@reduxjs/toolkit`, `@mui/material`...<br/>
+This project uses packages such as: `react`, `@reduxjs/toolkit`, `@mui/material`...<br/>
 [Deployed App](https://master.d3gu4qyc5vhimx.amplifyapp.com/).
 
 ## API notes
