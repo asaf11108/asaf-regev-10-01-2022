@@ -21,7 +21,7 @@ import Favorite from "../../components/favorite/favorite";
 import { useOneTemperatureType } from "../../hooks/temprature-type.hook";
 import { flow } from "lodash-es";
 import Loader from "../../components/loader/loader";
-import useHomeForm, { CONTROLLER_LOCATION_INPUT_RULES, CONTROLLER_NAME_LOCATION, HOME_FORM_REG_EXP } from "./home-form.hook";
+import { CONTROLLER_LOCATION_INPUT_RULES, HOME_FORM_REG_EXP } from "./home-form.hook";
 import useHomeQuery from "./home-query.hook";
 import Autocomplete from "../../components/autocomplete/autocomplete";
 import { AutocompleteProps } from "../../components/autocomplete/autocomplete.model";
@@ -42,7 +42,6 @@ const Home: VFC = () => {
     setQuery,
     promiseQuery: [response, , loadingState],
   } = useHomeQuery();
-  const form = useHomeForm(activeLocation);
 
   useEffect(() => {
     dispatch(fetchFavoriteLocation(activeLocation));
@@ -72,16 +71,16 @@ const Home: VFC = () => {
       <S.AutocompleteCard>
         <CardContent>
           <Autocomplete<Location, Location['key']>
-            control={form.controls[CONTROLLER_NAME_LOCATION]}
+            idProp="key"
+            nameProp="localizedName"
+            placeholder="Search location"
+            inputRules={CONTROLLER_LOCATION_INPUT_RULES}
+            loading={loadingState === "pending"}
+            defaultOption={activeLocation}
+            options={options}
             onSelect={onLocationSelect}
             onInputDebounce={setQuery}
             onInputFocus={option => setQuery(option.localizedName)}
-            options={options}
-            loading={loadingState === "pending"}
-            placeholder="Search location"
-            idProp="key"
-            nameProp="localizedName"
-            inputRules={CONTROLLER_LOCATION_INPUT_RULES}
           />
         </CardContent>
       </S.AutocompleteCard>
