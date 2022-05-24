@@ -42,7 +42,7 @@ const Home: VFC = () => {
     setQuery,
     promiseQuery: [response, , loadingState],
   } = useHomeQuery();
-  const form = useHomeForm();
+  const form = useHomeForm(activeLocation);
 
   useEffect(() => {
     dispatch(fetchFavoriteLocation(activeLocation));

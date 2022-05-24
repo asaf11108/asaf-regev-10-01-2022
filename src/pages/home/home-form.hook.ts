@@ -1,4 +1,4 @@
-import { SetValueConfig, UseControllerProps, useForm } from "react-hook-form";
+import { UseControllerProps, useForm } from "react-hook-form";
 import { FormProps } from "../../interfaces/general";
 import { Location } from "../../store/favorite-locations/favorite-locations.model";
 
@@ -20,8 +20,8 @@ export const CONTROLLER_LOCATION_INPUT_RULES: UseControllerProps['rules'] = {
     },
 }
 
-const useHomeForm = (): FormProps<HomeForm> => {
-    const { handleSubmit, register, getFieldState, setValue } = useForm<HomeForm>({ mode: 'onChange' });
+const useHomeForm = (defaultLocation: Location): FormProps<HomeForm, Location, Location['key']> => {
+    const { handleSubmit, register, getFieldState, setValue } = useForm<HomeForm>({ mode: 'onChange', defaultValues: { [CONTROLLER_NAME_LOCATION]: defaultLocation.key } });
     
     return { 
         handleSubmit,
@@ -29,7 +29,8 @@ const useHomeForm = (): FormProps<HomeForm> => {
             [CONTROLLER_NAME_LOCATION]: {
                 ...register(CONTROLLER_NAME_LOCATION),
                 error: getFieldState(CONTROLLER_NAME_LOCATION).error,
-                setValue: (val, options) => setValue(CONTROLLER_NAME_LOCATION, val, options)
+                setValue: (val, options) => setValue(CONTROLLER_NAME_LOCATION, val, options),
+                defaultOption: defaultLocation
             }
         }
     };

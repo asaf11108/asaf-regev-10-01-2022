@@ -1,7 +1,7 @@
 import { ChangeHandler, FieldError, UseControllerProps } from "react-hook-form";
 import { ControllerProps } from "../../interfaces/general";
 
-interface BaseAutocompleteProps<T, P> {
+interface BaseAutocompleteProps<T, Val> {
     options: T[];
     loading?: boolean;
     placeholder?: string;
@@ -15,7 +15,7 @@ interface BaseAutocompleteProps<T, P> {
     onInputFocus?: (option: T) => void;
     onInput?: (query: string) => void;
     onBlur?: ChangeHandler;
-    control?: ControllerProps<P>;
+    control?: ControllerProps<T, Val>;
 }
 
-export type AutocompleteProps<T, P = any> = BaseAutocompleteProps<T, P>;
+export type AutocompleteProps<T, Val = any> = BaseAutocompleteProps<T, Val>;

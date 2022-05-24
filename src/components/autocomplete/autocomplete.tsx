@@ -9,7 +9,7 @@ import { usePrevious } from "react-use";
 import { get } from "lodash-es";
 import { useAutocompleteInput } from "./autocomplete-input.hook";
 
-const Autocomplete = <T extends {}, P>({
+const Autocomplete = <T extends {}, Val>({
   options = [],
   loading = false,
   placeholder = "option",
@@ -23,10 +23,10 @@ const Autocomplete = <T extends {}, P>({
   onInputFocus,
   onInput,
   control
-}: AutocompleteProps<T, P>): ReturnType<FC> => {
+}: AutocompleteProps<T, Val>): ReturnType<FC> => {
   const [open, setOpen] = useState(false);
-  const [option, setOption] = useState(defaultOption);
-  // select defualt
+  const [option, setOption] = useState(defaultOption || control?.defaultOption);
+
   const inputController = useAutocompleteInput(get(defaultOption, nameProp, ""), inputRules);
 
   const [inputDebounce] = useDebounce(inputController.field.value, 1000);
@@ -64,7 +64,7 @@ const Autocomplete = <T extends {}, P>({
   return (
     <MuiAutocomplete
       ref={control?.ref}
-      defaultValue={defaultOption}
+      defaultValue={defaultOption || control?.defaultOption}
       value={option}
       open={open && !inputController.fieldState.error}
       onOpen={() => setOpen(true)}
