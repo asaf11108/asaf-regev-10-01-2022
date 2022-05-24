@@ -1,24 +1,19 @@
-import { Ref } from "react";
-import { FieldError, FieldValues, Noop, UseFormHandleSubmit } from "react-hook-form";
+import { ChangeHandler, FieldError, FieldValues, RefCallBack, SetValueConfig, UseFormHandleSubmit } from "react-hook-form";
 
 export type ISOString = string;
 
 export type ID = string | number;
 
-export interface Option {
-    id: ID;
-    name: string;
-}
-
-export interface ControllerProps {
-    valid: boolean;
-    innerRef: Ref<any>;
+export interface ControllerProps<T, Val> {
     error?: FieldError;
-    onInput: (query: string) => void;
-    onBlur: Noop;
+    defaultOption?: T;
+    ref: RefCallBack;
+    onChange: ChangeHandler;
+    onBlur: ChangeHandler;
+    setValue: (val: Val, options?: SetValueConfig) => void;
 }
 
-export interface FormProps {
+export interface FormProps<Form extends {}, T = any, Val = any> {
     handleSubmit: UseFormHandleSubmit<FieldValues>;
-    controls: Record<string, ControllerProps>;
+    controls: Record<keyof Form, ControllerProps<T, Val>>;
 }
