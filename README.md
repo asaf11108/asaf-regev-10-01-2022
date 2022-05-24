@@ -38,6 +38,7 @@ This project uses packages such as: `react`, `@reduxjs/toolkit`, `@mui/material`
 React component re-rendering when: update in State, update in prop, re-rendering of the parent component.<br/>
 Angular component re-rendering when: input / output changed, async event (click / mouse move...).<br/>
 Angular change detection is simplier, no need for useMemo / useCallback that make the code ugly and slower the app (memory usage).
+8. Typescript in react is stricter.
 
 ## Latest developments
 https://www.loom.com/share/319e64b8cd654ee4aff9ad9aa2e62a7a
