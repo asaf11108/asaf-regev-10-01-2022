@@ -76,7 +76,6 @@ const Home: VFC = () => {
             onSelect={onLocationSelect}
             onInputDebounce={setQuery}
             onInputFocus={option => setQuery(option.localizedName)}
-            defaultOption={activeLocation}
             options={options}
             loading={loadingState === "pending"}
             placeholder="Search location"
