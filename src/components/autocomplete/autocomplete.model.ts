@@ -16,6 +16,7 @@ interface BaseAutocompleteProps<T, Val> {
     onInput?: (query: string) => void;
     onBlur?: ChangeHandler;
     control?: ControllerProps<T, Val>;
+    // TODO: add rest of props
 }
 
 export type AutocompleteProps<T, Val = any> = BaseAutocompleteProps<T, Val>;

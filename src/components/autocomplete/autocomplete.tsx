@@ -24,8 +24,10 @@ const Autocomplete = <T extends {}, Val>({
   onInput,
   control
 }: AutocompleteProps<T, Val>): ReturnType<FC> => {
+  // throw error
+
   const [open, setOpen] = useState(false);
-  const [option, setOption] = useState(defaultOption || control?.defaultOption);
+  const [option, setOption] = useState(control?.defaultOption || defaultOption);
 
   const inputController = useAutocompleteInput(get(defaultOption, nameProp, ""), inputRules);
 
@@ -36,9 +38,10 @@ const Autocomplete = <T extends {}, Val>({
     previousInputDebounce !== inputDebounce &&
       open &&
       !inputController.fieldState.error &&
+      !control?.error &&
       !error &&
       onInputDebounce?.(inputDebounce);
-  }, [open, inputController.fieldState.error, error, inputDebounce, previousInputDebounce, onInputDebounce]);
+  }, [open, inputController.fieldState.error, control?.error, error, inputDebounce, previousInputDebounce, onInputDebounce]);
 
   const _onInput: AutocompleteProps<T>["onInput"] = query => {
     inputController.field.onChange(query);
@@ -49,9 +52,12 @@ const Autocomplete = <T extends {}, Val>({
     _onInput(get(option, nameProp, ""));
     if (option) {
       setOption(option);
-      control?.onChange(event);
-      control?.setValue(get(option, idProp, option));
-      onSelect(option);
+      if (control) {
+        control?.onChange(event);
+        control?.setValue(get(option, idProp, option));
+      } else {
+        onSelect(option);
+      }
     }
   };
 
@@ -64,7 +70,7 @@ const Autocomplete = <T extends {}, Val>({
   return (
     <MuiAutocomplete
       ref={control?.ref}
-      defaultValue={defaultOption || control?.defaultOption}
+      defaultValue={control?.defaultOption || defaultOption}
       value={option}
       open={open && !inputController.fieldState.error}
       onOpen={() => setOpen(true)}
@@ -89,8 +95,8 @@ const Autocomplete = <T extends {}, Val>({
             startAdornment: <SearchIcon />,
             endAdornment: loading && <CircularProgress size="1em" />,
           }}
-          error={!!inputController.fieldState.error || !!error}
-          helperText={inputController.fieldState.error?.message || error?.message}
+          error={!!inputController.fieldState.error || !!control?.error || !!error}
+          helperText={inputController.fieldState.error?.message ||  control?.error || error?.message}
           onFocus={() => option && onInputFocus?.(option)}
         />
       )}
