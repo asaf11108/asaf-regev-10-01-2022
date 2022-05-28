@@ -23,11 +23,14 @@ export const CONTROLLER_LOCATION_INPUT_RULES: UseControllerProps['rules'] = {
 // export const useHomeForm = (defaultLocation: Location): FormProps<HomeForm, Location, Location['key']> => {
 //     const { handleSubmit, register, getFieldState, setValue } = useForm<HomeForm>({ mode: 'onChange', defaultValues: { [CONTROLLER_NAME_LOCATION]: defaultLocation.key } });
     
+//     const { ref: controlRef, ...registerProps } = register(CONTROLLER_NAME_LOCATION);
+
 //     return { 
 //         handleSubmit,
 //         controls: {
 //             [CONTROLLER_NAME_LOCATION]: {
-//                 ...register(CONTROLLER_NAME_LOCATION),
+//                 ...registerProps,
+//                 controlRef,
 //                 error: getFieldState(CONTROLLER_NAME_LOCATION).error,
 //                 setValue: (val, options) => setValue(CONTROLLER_NAME_LOCATION, val, options),
 //                 defaultOption: defaultLocation

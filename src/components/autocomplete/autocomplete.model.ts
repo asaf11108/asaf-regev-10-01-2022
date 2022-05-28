@@ -15,8 +15,7 @@ interface BaseAutocompleteProps<T, Val> {
     onInputFocus?: (option: T) => void;
     onInput?: (query: string) => void;
     onBlur?: ChangeHandler;
-    control?: ControllerProps<T, Val>;
     // TODO: add rest of props
 }
 
-export type AutocompleteProps<T, Val = any> = BaseAutocompleteProps<T, Val>;
+export type AutocompleteProps<T, Val = any> = BaseAutocompleteProps<T, Val> & Partial<ControllerProps<T, Val>>;

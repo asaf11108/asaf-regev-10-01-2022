@@ -1,15 +1,13 @@
-import { ChangeHandler, FieldError, FieldValues, RefCallBack, SetValueConfig, UseFormHandleSubmit } from "react-hook-form";
+import { ChangeHandler, FieldError, FieldValues, RefCallBack, SetValueConfig, UseFormHandleSubmit, UseFormRegisterReturn } from "react-hook-form";
 
 export type ISOString = string;
 
 export type ID = string | number;
 
-export interface ControllerProps<T, Val> {
+export interface ControllerProps<T, Val> extends Omit<UseFormRegisterReturn, 'ref'> {
     error?: FieldError;
     defaultOption?: T;
-    ref: RefCallBack;
-    onChange: ChangeHandler;
-    onBlur: ChangeHandler;
+    controlRef: RefCallBack;
     setValue: (val: Val, options?: SetValueConfig) => void;
 }
 

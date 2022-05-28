@@ -22,12 +22,15 @@ const Autocomplete = <T extends {}, Val>({
   onInputDebounce,
   onInputFocus,
   onInput,
-  control
+  controlRef,
+  onChange,
+  onBlur,
+  setValue
 }: AutocompleteProps<T, Val>): ReturnType<FC> => {
   // throw error
 
   const [open, setOpen] = useState(false);
-  const [option, setOption] = useState(control?.defaultOption || defaultOption);
+  const [option, setOption] = useState(defaultOption);
 
   const inputController = useAutocompleteInput(get(defaultOption, nameProp, ""), inputRules);
 
@@ -38,10 +41,9 @@ const Autocomplete = <T extends {}, Val>({
     previousInputDebounce !== inputDebounce &&
       open &&
       !inputController.fieldState.error &&
-      !control?.error &&
       !error &&
       onInputDebounce?.(inputDebounce);
-  }, [open, inputController.fieldState.error, control?.error, error, inputDebounce, previousInputDebounce, onInputDebounce]);
+  }, [open, inputController.fieldState.error, error, inputDebounce, previousInputDebounce, onInputDebounce]);
 
   const _onInput: AutocompleteProps<T>["onInput"] = query => {
     inputController.field.onChange(query);
@@ -52,25 +54,22 @@ const Autocomplete = <T extends {}, Val>({
     _onInput(get(option, nameProp, ""));
     if (option) {
       setOption(option);
-      if (control) {
-        control?.onChange(event);
-        control?.setValue(get(option, idProp, option));
-      } else {
-        onSelect(option);
-      }
+      onChange?.(event);
+      setValue?.(get(option, idProp, option));
+      onSelect(option);
     }
   };
 
   const _onBlur: AutocompleteProps<T>["onBlur"] = async event => {
     inputController.field.onBlur();
     setOpen(false);
-    control?.onBlur(event);
+    onBlur?.(event);
   };
 
   return (
     <MuiAutocomplete
-      ref={control?.ref}
-      defaultValue={control?.defaultOption || defaultOption}
+      ref={controlRef}
+      defaultValue={defaultOption}
       value={option}
       open={open && !inputController.fieldState.error}
       onOpen={() => setOpen(true)}
@@ -95,8 +94,8 @@ const Autocomplete = <T extends {}, Val>({
             startAdornment: <SearchIcon />,
             endAdornment: loading && <CircularProgress size="1em" />,
           }}
-          error={!!inputController.fieldState.error || !!control?.error || !!error}
-          helperText={inputController.fieldState.error?.message ||  control?.error || error?.message}
+          error={!!inputController.fieldState.error || !!error}
+          helperText={inputController.fieldState.error?.message || error?.message}
           onFocus={() => option && onInputFocus?.(option)}
         />
       )}
