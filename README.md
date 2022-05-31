@@ -15,7 +15,7 @@ The app supports all devices and most browsers.
 3. `Generic table`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/tree/master/src/components/table).
 4. `Generic autocomplete`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/tree/master/src/components/autocomplete).
 5. `Advance TS`, [example](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/store/favorite-locations/favorite-locations.model.ts).
-6. `Media breakpoints`: 'xs': 600px, 'sm': 960px, 'md': 1280px, 'lg': 1920px, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/styles/vendors/_vendors.scss).
+6. `Media breakpoints`: 'xs': 600em, 'sm': 960em, 'md': 1280em, 'lg': 1920em, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/styles/vendors/_vendors.scss).
 7. The Home component contains `unit tests`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/pages/home/home.test.tsx).
 8. The toolbar `supports desktop and mobile devices`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/tree/master/src/components/toolbar).
 9. `Generic Animation`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/pages/favorites/favorites.tsx).
