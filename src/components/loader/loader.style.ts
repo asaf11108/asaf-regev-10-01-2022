@@ -1,14 +1,15 @@
 import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import MuiCircularProgress from "@mui/material/CircularProgress";
+import { rem } from "polished";
 import { spread } from "../../styles/vendors/spread";
 import { LoaderProps, LoaderSize } from "./loader.model";
 
 const SIZE = 500;
 
 const loaderSize = (shrinkSize: number) => css`
-    ${spread('width', `${SIZE - shrinkSize * 2}px`, `${SIZE - shrinkSize}px`)}
-    ${spread('height', `${SIZE - shrinkSize * 2}px`, `${SIZE - shrinkSize}`)}
+    ${spread('width', rem(`${SIZE - shrinkSize * 2}px`), rem(`${SIZE - shrinkSize}px`))}
+    ${spread('height', rem(`${SIZE - shrinkSize * 2}px`), rem(`${SIZE - shrinkSize}px`))}
 `;
 
 const sizes: Record<number, SerializedStyles> = {
