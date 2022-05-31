@@ -1,12 +1,13 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Card } from "@mui/material";
+import { em, rem } from "polished";
 import { spread } from "../../styles/vendors/spread";
 import { ForecastProps } from "./forecast.model";
 
 export const Forecast = styled(Card)<Pick<ForecastProps, 'onClick'>> `
-    ${spread('width', '110px', '150px')}
-    ${spread('margin', '5px', '15px')}
+    ${spread('width', rem('112px'), rem('152px'))}
+    ${spread('margin', em('4px'), em('16px'))}
     text-align: center;
     background-color: white;
 
