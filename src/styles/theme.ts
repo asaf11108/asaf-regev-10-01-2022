@@ -1,13 +1,15 @@
 import { createTheme } from "@mui/material/styles";
+import { rem } from "polished";
 
 export const theme = createTheme({
   breakpoints: {
     values: {
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
+      sm: Number(rem(600)),
+      md: Number(rem(960)),
+      lg: Number(rem(1280)),
+      xl: Number(rem(1920)),
     },
+    unit: 'em'
   },
   typography: {
     fontFamily: [
