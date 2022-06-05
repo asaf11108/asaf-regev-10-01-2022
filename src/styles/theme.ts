@@ -4,10 +4,10 @@ import { rem } from "polished";
 export const theme = createTheme({
   breakpoints: {
     values: {
-      sm: Number(rem(600)),
-      md: Number(rem(960)),
-      lg: Number(rem(1280)),
-      xl: Number(rem(1920)),
+      sm: parseInt(rem(600)),
+      md: parseInt(rem(960)),
+      lg: parseInt(rem(1280)),
+      xl: parseInt(rem(1920)),
     },
     unit: 'em'
   },
