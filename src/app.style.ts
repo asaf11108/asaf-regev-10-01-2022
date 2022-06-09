@@ -2,12 +2,13 @@ import styled from "@emotion/styled";
 import { media } from "./styles/vendors/media";
 import { spread } from "./styles/vendors/spread";
 import weather from './assets/weather.jpeg';
+import { rem } from "polished";
 
-const toolbarHeight = '64px';
-const toolbarHeightMobile = '56px';
+const toolbarHeight = rem('64px');
+const toolbarHeightMobile = rem('56px');
 
 export const Content = styled.div`
-  ${spread('margin', '10px 0', '50px 0')};
+  ${spread('margin', `${rem('12px')} 0`, `${rem('52px')} 0`)};
   ${spread('width', '90vw', '50vw')};
   display: flex;
   flex-direction: column;
