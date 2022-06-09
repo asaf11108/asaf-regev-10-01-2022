@@ -1,5 +1,7 @@
 import { ChangeHandler, FieldError, UseControllerProps } from "react-hook-form";
 import { ControllerProps } from "../../interfaces/general";
+import { AutocompleteProps as MuiAutocompleteProps } from '@mui/material';
+import { Merge } from "type-fest";
 
 interface BaseAutocompleteProps<T, Val> {
     options: T[];
@@ -15,7 +17,10 @@ interface BaseAutocompleteProps<T, Val> {
     onInputFocus?: (option: T) => void;
     onInput?: (query: string) => void;
     onBlur?: ChangeHandler;
-    // TODO: add rest of props
 }
 
-export type AutocompleteProps<T, Val = any> = BaseAutocompleteProps<T, Val> & Partial<ControllerProps<T, Val>>;
+export type AutocompleteProps<T, Val = any> = Merge<
+    Omit<MuiAutocompleteProps<T, false, false, false>, 'renderInput'>,
+    BaseAutocompleteProps<T, Val> &
+    Partial<ControllerProps<T, Val>>
+>;

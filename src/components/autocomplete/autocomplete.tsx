@@ -1,9 +1,8 @@
 import { FC, SyntheticEvent, useEffect } from "react";
 import { useState } from "react";
-import { Autocomplete as MuiAutocomplete, TextField } from "@mui/material";
 import { AutocompleteProps } from "./autocomplete.model";
 import SearchIcon from "@mui/icons-material/Search";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Autocomplete as MuiAutocomplete, TextField } from "@mui/material";
 import { useDebounce } from "use-debounce";
 import { usePrevious } from "react-use";
 import { get } from "lodash-es";
@@ -25,7 +24,8 @@ const Autocomplete = <T extends {}, Val>({
   controlRef,
   onChange,
   onBlur,
-  setValue
+  setValue,
+  ...otherAutocompleteProps
 }: AutocompleteProps<T, Val>): ReturnType<FC> => {
   // throw error
 
@@ -68,6 +68,7 @@ const Autocomplete = <T extends {}, Val>({
 
   return (
     <MuiAutocomplete
+      {...otherAutocompleteProps}
       ref={controlRef}
       defaultValue={defaultOption}
       value={option}

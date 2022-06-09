@@ -1,15 +1,15 @@
 import { createTheme } from "@mui/material/styles";
-import { rem } from "polished";
+import { em } from "polished";
 
 export const theme = createTheme({
   breakpoints: {
     values: {
-      sm: parseInt(rem(600)),
-      md: parseInt(rem(960)),
-      lg: parseInt(rem(1280)),
-      xl: parseInt(rem(1920)),
+      sm: parseInt(em(600)),
+      md: parseInt(em(960)),
+      lg: parseInt(em(1280)),
+      xl: parseInt(em(1920)),
     },
-    unit: 'em'
+    unit: 'em' // em media query: https://zellwk.com/blog/media-query-units/ss
   },
   typography: {
     fontFamily: [
