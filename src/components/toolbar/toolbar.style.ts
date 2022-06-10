@@ -8,16 +8,10 @@ export const Toolbar = styled(MuiToolbar)`
     display: flex;
     justify-content: space-between;
     background-color: white;
-    padding-left: 1em;
-    padding-right: 1em;
-    min-height: ${em('54px')};
     ${media.up('sm')} {
         position: sticky !important;
         top: 0;
         z-index: 1;
-        padding-left: ${em('24px')};
-        padding-right: ${em('24px')};
-        min-height: ${em('64px')};
     }
 `;
 

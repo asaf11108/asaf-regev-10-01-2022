@@ -1,14 +1,18 @@
 import { createTheme } from "@mui/material/styles";
+import { map, mapValues } from "lodash-es";
 import { em } from "polished";
+import { media } from "./vendors/media";
+
+const BREAKPOINTS = {
+  sm: em(608),
+  md: em(960),
+  lg: em(1280),
+  xl: em(1920),
+}
 
 export const theme = createTheme({
   breakpoints: {
-    values: {
-      sm: parseInt(em(600)),
-      md: parseInt(em(960)),
-      lg: parseInt(em(1280)),
-      xl: parseInt(em(1920)),
-    },
+    values: mapValues(BREAKPOINTS, x => parseInt(x)),
     unit: 'em' // em media query: https://zellwk.com/blog/media-query-units/ss
   },
   typography: {
@@ -52,6 +56,20 @@ export const theme = createTheme({
         root: {
           position: 'absolute',
           top: '95%'
+        }
+      }
+    },
+    MuiToolbar: {
+      styleOverrides: {
+        root: {
+          paddingLeft: '1em',
+          paddingRight: '1em',
+          minHeight: em('54px'),
+          [`@media (min-width: ${BREAKPOINTS.sm})`]: {
+            paddingLeft: em('24px'),
+            paddingRight: em('24px'),
+            minHeight: em('64px')
+          }
         }
       }
     }
