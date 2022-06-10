@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 import { Card, css, Typography } from "@mui/material";
+import { em, rem } from "polished";
 import { spread } from "../../styles/vendors/spread";
 
 const SharedBody = css`
     display: flex;
     flex-direction: column;
-    ${spread('minHeight', '400px', '500px')}
+    ${spread('minHeight', rem('400px'), rem('500px'))}
 `;
 
 const SharedBodyStates = css`
@@ -20,7 +21,7 @@ export const Home = styled.div`
 export const AutocompleteCard = styled(Card)`
     ${spread('width', '90%', '50%')}
     margin: 0 auto;
-    ${spread('marginBottom', '20px', '30px')}
+    ${spread('marginBottom', rem('20px'), rem('30px'))}
 `;
 
 export const TitleTypography = styled(Typography)`
@@ -31,18 +32,18 @@ export const TitleTypography = styled(Typography)`
     & > span {
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: ${rem('5px')};
         align-items: center;
     }
 
     .MuiButton-root {
-        font-size: 40px;
+        font-size: ${em('40px')};
     }
 `;
 
 export const BodyHeader = styled.div`
-    ${spread('margin', '20px 0', '60px 0')}
-    ${spread('fontSize', '50px', '80px')}
+    ${spread('margin', `${rem('20px')} 0`, `${rem('60px')} 0`)}
+    ${spread('fontSize', em('50px'), em('80px'))}
     text-align: center;
 `;
 

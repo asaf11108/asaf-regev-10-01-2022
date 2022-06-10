@@ -32,7 +32,7 @@ export const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundColor: "rgba(255, 255, 255, 0.6)"
+          backgroundColor: "rgba(255, 255, 255, 0.6)",
         }
       }
     },

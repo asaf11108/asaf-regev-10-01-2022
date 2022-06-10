@@ -9,6 +9,7 @@ import { FavoriteLocationSelectors } from "../../store/favorite-locations/favori
 import { useMenu } from "../../providers/menu/menu.hook";
 import * as S from "./toolbar.style";
 import { media } from "../../styles/vendors/media";
+import { rem } from "polished";
 
 const Toolbar: VFC = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const Toolbar: VFC = () => {
 
       {matches ? (
         <span>
-          <ToolbarTemperatureMode style={{ marginRight: '20px' }}/>
+          <ToolbarTemperatureMode style={{ marginRight: rem('20px') }}/>
           {MENU.map((menuItem) => (
             <S.Button
               key={menuItem.label}
