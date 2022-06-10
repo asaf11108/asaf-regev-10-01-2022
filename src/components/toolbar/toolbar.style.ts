@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import MuiButton from "@mui/material/Button";
 import MuiToolbar from "@mui/material/Toolbar";
-import { em, rem } from "polished";
+import { rem } from "polished";
 import { media } from "../../styles/vendors/media";
 
 export const Toolbar = styled(MuiToolbar)`

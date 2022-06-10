@@ -1,7 +1,6 @@
 import { createTheme } from "@mui/material/styles";
-import { map, mapValues } from "lodash-es";
+import { mapValues } from "lodash-es";
 import { em } from "polished";
-import { media } from "./vendors/media";
 
 const BREAKPOINTS = {
   sm: em(608),
