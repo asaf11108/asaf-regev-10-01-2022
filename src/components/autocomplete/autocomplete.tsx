@@ -25,7 +25,8 @@ const Autocomplete = <T extends {}, Val>({
   controlRef,
   onChange,
   onBlur,
-  setValue
+  setValue,
+  ...otherProps
 }: AutocompleteProps<T, Val>): ReturnType<FC> => {
   // throw error
 
@@ -68,6 +69,7 @@ const Autocomplete = <T extends {}, Val>({
 
   return (
     <MuiAutocomplete
+      {...otherProps}
       ref={controlRef}
       defaultValue={defaultOption}
       value={option}
