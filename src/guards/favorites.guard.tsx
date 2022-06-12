@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { flow } from 'lodash-es';
 import { filter } from 'lodash/fp';
 import { FavoriteLocationSelectors } from '../store/favorite-locations/favorite-locations.selector';

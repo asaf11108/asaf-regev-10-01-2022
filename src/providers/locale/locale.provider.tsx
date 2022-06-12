@@ -1,7 +1,7 @@
 // Delete context provider after issue solved
 // https://github.com/date-fns/date-fns/issues/816
 
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import getUserLocale from "get-user-locale";
 import { Locale } from "date-fns";
 import { LocaleContext } from "./locale.context";
