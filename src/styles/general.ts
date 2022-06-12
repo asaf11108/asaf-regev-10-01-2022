@@ -1,16 +1,14 @@
 import { css } from '@emotion/react';
-import { theme } from './theme';
+import { normalize } from 'polished';
 
 export const GeneralStyle = css`
+    ${normalize()}
+
     html {
       height: 100%;
     }
 
     body {
-      margin: 0;
-      font-family: ${theme.typography.fontFamily};
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       min-height: 100%;
     }
 `;

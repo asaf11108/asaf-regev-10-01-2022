@@ -1,38 +1,40 @@
-import { useController, useForm } from "react-hook-form";
-import { FormProps } from "../../interfaces/general";
+import { UseControllerProps } from "react-hook-form";
 
 export const HOME_FORM_REG_EXP = /^[a-zA-Z ]+$/;
 
-export const CONTROLLER_NAME_LOCATION = 'location';
-
-const useHomeForm = (localizedName: string): FormProps => {
-    const { control, handleSubmit } = useForm({ mode: 'onChange' });
-
-    const {
-        field: { onChange, onBlur, ref },
-        fieldState: { invalid, error },
-    } = useController({
-        name: CONTROLLER_NAME_LOCATION,
-        control,
-        defaultValue: localizedName,
-        rules: {
-            required: {
-                value: true,
-                message: `Please enter location`,
-            },
-            pattern: {
-                value: HOME_FORM_REG_EXP,
-                message: "Only letters are allowed",
-            },
-        },
-    });
-
-    return { 
-        handleSubmit,
-        controls: {
-            [CONTROLLER_NAME_LOCATION]: { onInput: onChange, onBlur, innerRef: ref, valid: !invalid, error }
-        }
-    };
+export const CONTROLLER_LOCATION_INPUT_RULES: UseControllerProps['rules'] = {
+    required: {
+        value: true,
+        message: `Please enter location`,
+    },
+    pattern: {
+        value: HOME_FORM_REG_EXP,
+        message: "Only letters are allowed",
+    },
 }
 
-export default useHomeForm;
+// INFO: this relavent for autocomplete with form and submit
+// export const CONTROLLER_NAME_LOCATION = 'location';
+
+// export interface HomeForm {
+//     [CONTROLLER_NAME_LOCATION]: Location['key'];
+// }
+
+// export const useHomeForm = (defaultLocation: Location): FormProps<HomeForm, Location, Location['key']> => {
+//     const { handleSubmit, register, getFieldState, setValue } = useForm<HomeForm>({ mode: 'onChange', defaultValues: { [CONTROLLER_NAME_LOCATION]: defaultLocation.key } });
+    
+//     const { ref: controlRef, ...registerProps } = register(CONTROLLER_NAME_LOCATION);
+
+//     return { 
+//         handleSubmit,
+//         controls: {
+//             [CONTROLLER_NAME_LOCATION]: {
+//                 ...registerProps,
+//                 controlRef,
+//                 error: getFieldState(CONTROLLER_NAME_LOCATION).error,
+//                 setValue: (val, options) => setValue(CONTROLLER_NAME_LOCATION, val, options),
+//                 defaultOption: defaultLocation
+//             }
+//         }
+//     };
+// }
