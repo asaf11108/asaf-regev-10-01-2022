@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/asaf-regev-10-01-2022/static/js/main.0e3b359a.js",
+    "main.js": "/asaf-regev-10-01-2022/static/js/main.5c09d1cb.js",
     "static/js/9248.6df85a0b.chunk.js": "/asaf-regev-10-01-2022/static/js/9248.6df85a0b.chunk.js",
     "static/js/7848.80bd8ac5.chunk.js": "/asaf-regev-10-01-2022/static/js/7848.80bd8ac5.chunk.js",
     "static/js/7666.2268a98f.chunk.js": "/asaf-regev-10-01-2022/static/js/7666.2268a98f.chunk.js",
@@ -12,7 +12,7 @@
     "df-5.js": "/asaf-regev-10-01-2022/static/js/df-5.1b026e11.chunk.js",
     "df-6.js": "/asaf-regev-10-01-2022/static/js/df-6.eb76b3d7.chunk.js",
     "df-7.js": "/asaf-regev-10-01-2022/static/js/df-7.8f0dc54e.chunk.js",
-    "df-8.js": "/asaf-regev-10-01-2022/static/js/df-8.fbcc7b88.chunk.js",
+    "df-8.js": "/asaf-regev-10-01-2022/static/js/df-8.0877d3fb.chunk.js",
     "df-9.js": "/asaf-regev-10-01-2022/static/js/df-9.08a51900.chunk.js",
     "df-10.js": "/asaf-regev-10-01-2022/static/js/df-10.f2ab06f8.chunk.js",
     "df-11.js": "/asaf-regev-10-01-2022/static/js/df-11.deb2a6a5.chunk.js",
@@ -95,7 +95,7 @@
     "df-88.js": "/asaf-regev-10-01-2022/static/js/df-88.0806aec4.chunk.js",
     "df-89.js": "/asaf-regev-10-01-2022/static/js/df-89.27ee890a.chunk.js",
     "static/js/787.ee1c9ceb.chunk.js": "/asaf-regev-10-01-2022/static/js/787.ee1c9ceb.chunk.js",
-    "static/js/8594.8e0b386d.chunk.js": "/asaf-regev-10-01-2022/static/js/8594.8e0b386d.chunk.js",
+    "static/js/8594.f4f11b97.chunk.js": "/asaf-regev-10-01-2022/static/js/8594.f4f11b97.chunk.js",
     "static/js/8602.6d8e2d89.chunk.js": "/asaf-regev-10-01-2022/static/js/8602.6d8e2d89.chunk.js",
     "static/js/2598.7ac044eb.chunk.js": "/asaf-regev-10-01-2022/static/js/2598.7ac044eb.chunk.js",
     "static/media/weather.jpeg": "/asaf-regev-10-01-2022/static/media/weather.03dff4cc619829df0d55.jpeg",
@@ -104,7 +104,7 @@
     "static/media/16.png": "/asaf-regev-10-01-2022/static/media/16.02f6796a4b217cbdd262.png",
     "static/media/15.png": "/asaf-regev-10-01-2022/static/media/15.9aac7942a26db293440b.png",
     "index.html": "/asaf-regev-10-01-2022/index.html",
-    "main.0e3b359a.js.map": "/asaf-regev-10-01-2022/static/js/main.0e3b359a.js.map",
+    "main.5c09d1cb.js.map": "/asaf-regev-10-01-2022/static/js/main.5c09d1cb.js.map",
     "9248.6df85a0b.chunk.js.map": "/asaf-regev-10-01-2022/static/js/9248.6df85a0b.chunk.js.map",
     "7848.80bd8ac5.chunk.js.map": "/asaf-regev-10-01-2022/static/js/7848.80bd8ac5.chunk.js.map",
     "7666.2268a98f.chunk.js.map": "/asaf-regev-10-01-2022/static/js/7666.2268a98f.chunk.js.map",
@@ -116,7 +116,7 @@
     "df-5.1b026e11.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-5.1b026e11.chunk.js.map",
     "df-6.eb76b3d7.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-6.eb76b3d7.chunk.js.map",
     "df-7.8f0dc54e.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-7.8f0dc54e.chunk.js.map",
-    "df-8.fbcc7b88.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-8.fbcc7b88.chunk.js.map",
+    "df-8.0877d3fb.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-8.0877d3fb.chunk.js.map",
     "df-9.08a51900.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-9.08a51900.chunk.js.map",
     "df-10.f2ab06f8.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-10.f2ab06f8.chunk.js.map",
     "df-11.deb2a6a5.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-11.deb2a6a5.chunk.js.map",
@@ -199,11 +199,11 @@
     "df-88.0806aec4.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-88.0806aec4.chunk.js.map",
     "df-89.27ee890a.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-89.27ee890a.chunk.js.map",
     "787.ee1c9ceb.chunk.js.map": "/asaf-regev-10-01-2022/static/js/787.ee1c9ceb.chunk.js.map",
-    "8594.8e0b386d.chunk.js.map": "/asaf-regev-10-01-2022/static/js/8594.8e0b386d.chunk.js.map",
+    "8594.f4f11b97.chunk.js.map": "/asaf-regev-10-01-2022/static/js/8594.f4f11b97.chunk.js.map",
     "8602.6d8e2d89.chunk.js.map": "/asaf-regev-10-01-2022/static/js/8602.6d8e2d89.chunk.js.map",
     "2598.7ac044eb.chunk.js.map": "/asaf-regev-10-01-2022/static/js/2598.7ac044eb.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.0e3b359a.js"
+    "static/js/main.5c09d1cb.js"
   ]
 }
