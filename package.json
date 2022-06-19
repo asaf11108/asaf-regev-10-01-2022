@@ -32,7 +32,8 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --transformIgnorePatterns \"node_modules/(?!@toolz/allow-react)/\" --env=jsdom",
     "eject": "react-scripts eject",
-    "lint": "eslint --fix ./src"
+    "lint": "eslint --fix ./src",
+    "deploy": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -67,6 +68,7 @@
     "babel-jest": "^27.5.1",
     "customize-cra": "^1.0.0",
     "generate-react-cli": "^7.0.6",
+    "gh-pages": "^4.0.0",
     "react-app-rewired": "^2.1.11",
     "type-fest": "^2.13.0"
   }
