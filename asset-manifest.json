@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.js": "/asaf-regev-10-01-2022/static/js/main.5c09d1cb.js",
+    "main.js": "/asaf-regev-10-01-2022/static/js/main.a312fcad.js",
     "static/js/9248.6df85a0b.chunk.js": "/asaf-regev-10-01-2022/static/js/9248.6df85a0b.chunk.js",
-    "static/js/7848.80bd8ac5.chunk.js": "/asaf-regev-10-01-2022/static/js/7848.80bd8ac5.chunk.js",
-    "static/js/7666.2268a98f.chunk.js": "/asaf-regev-10-01-2022/static/js/7666.2268a98f.chunk.js",
+    "static/js/7848.9bb11dd8.chunk.js": "/asaf-regev-10-01-2022/static/js/7848.9bb11dd8.chunk.js",
+    "static/js/7666.6dd4f2b1.chunk.js": "/asaf-regev-10-01-2022/static/js/7666.6dd4f2b1.chunk.js",
     "df-0.js": "/asaf-regev-10-01-2022/static/js/df-0.ea10fb6d.chunk.js",
     "df-1.js": "/asaf-regev-10-01-2022/static/js/df-1.f849e32b.chunk.js",
     "df-2.js": "/asaf-regev-10-01-2022/static/js/df-2.b36f26ec.chunk.js",
@@ -97,17 +97,17 @@
     "static/js/787.ee1c9ceb.chunk.js": "/asaf-regev-10-01-2022/static/js/787.ee1c9ceb.chunk.js",
     "static/js/8594.f4f11b97.chunk.js": "/asaf-regev-10-01-2022/static/js/8594.f4f11b97.chunk.js",
     "static/js/8602.6d8e2d89.chunk.js": "/asaf-regev-10-01-2022/static/js/8602.6d8e2d89.chunk.js",
-    "static/js/2598.7ac044eb.chunk.js": "/asaf-regev-10-01-2022/static/js/2598.7ac044eb.chunk.js",
+    "static/js/2598.a632f7e5.chunk.js": "/asaf-regev-10-01-2022/static/js/2598.a632f7e5.chunk.js",
     "static/media/weather.jpeg": "/asaf-regev-10-01-2022/static/media/weather.03dff4cc619829df0d55.jpeg",
     "static/media/17.png": "/asaf-regev-10-01-2022/static/media/17.4b8d4543699af9743509.png",
     "static/media/41.png": "/asaf-regev-10-01-2022/static/media/41.da8960711b2a7bdd80c0.png",
     "static/media/16.png": "/asaf-regev-10-01-2022/static/media/16.02f6796a4b217cbdd262.png",
     "static/media/15.png": "/asaf-regev-10-01-2022/static/media/15.9aac7942a26db293440b.png",
     "index.html": "/asaf-regev-10-01-2022/index.html",
-    "main.5c09d1cb.js.map": "/asaf-regev-10-01-2022/static/js/main.5c09d1cb.js.map",
+    "main.a312fcad.js.map": "/asaf-regev-10-01-2022/static/js/main.a312fcad.js.map",
     "9248.6df85a0b.chunk.js.map": "/asaf-regev-10-01-2022/static/js/9248.6df85a0b.chunk.js.map",
-    "7848.80bd8ac5.chunk.js.map": "/asaf-regev-10-01-2022/static/js/7848.80bd8ac5.chunk.js.map",
-    "7666.2268a98f.chunk.js.map": "/asaf-regev-10-01-2022/static/js/7666.2268a98f.chunk.js.map",
+    "7848.9bb11dd8.chunk.js.map": "/asaf-regev-10-01-2022/static/js/7848.9bb11dd8.chunk.js.map",
+    "7666.6dd4f2b1.chunk.js.map": "/asaf-regev-10-01-2022/static/js/7666.6dd4f2b1.chunk.js.map",
     "df-0.ea10fb6d.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-0.ea10fb6d.chunk.js.map",
     "df-1.f849e32b.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-1.f849e32b.chunk.js.map",
     "df-2.b36f26ec.chunk.js.map": "/asaf-regev-10-01-2022/static/js/df-2.b36f26ec.chunk.js.map",
@@ -201,9 +201,9 @@
     "787.ee1c9ceb.chunk.js.map": "/asaf-regev-10-01-2022/static/js/787.ee1c9ceb.chunk.js.map",
     "8594.f4f11b97.chunk.js.map": "/asaf-regev-10-01-2022/static/js/8594.f4f11b97.chunk.js.map",
     "8602.6d8e2d89.chunk.js.map": "/asaf-regev-10-01-2022/static/js/8602.6d8e2d89.chunk.js.map",
-    "2598.7ac044eb.chunk.js.map": "/asaf-regev-10-01-2022/static/js/2598.7ac044eb.chunk.js.map"
+    "2598.a632f7e5.chunk.js.map": "/asaf-regev-10-01-2022/static/js/2598.a632f7e5.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.5c09d1cb.js"
+    "static/js/main.a312fcad.js"
   ]
 }
