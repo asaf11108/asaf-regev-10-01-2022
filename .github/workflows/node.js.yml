@@ -18,9 +18,6 @@ jobs:
       matrix:
         node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-    env:
-      REACT_APP_PRODUCTION: ${{ secrets.REACT_APP_PRODUCTION }}
-      REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
 
     steps:
     - uses: actions/checkout@v3
@@ -31,6 +28,9 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
+      env:
+        REACT_APP_PRODUCTION: ${{ secrets.REACT_APP_PRODUCTION }}
+        REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
     - run: npm test
     
     - name: Deploy 🚀
@@ -38,5 +38,3 @@ jobs:
       with:
         branch: gh-pages # The branch the action should deploy to.
         folder: build # The folder the action should deploy.
-        REACT_APP_PRODUCTION: ${{ secrets.REACT_APP_PRODUCTION }}
-        REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
