@@ -3,7 +3,7 @@
 This project presents the weather of different locations around the world and cache history of locations.<br/>
 This project uses packages such as: `react`, `@reduxjs/toolkit`, `@mui/material`...<br/>
 The app supports all devices and most browsers.
-[Deployed App](https://master.d3gu4qyc5vhimx.amplifyapp.com/).
+[Deployed App](https://asaf11108.github.io/asaf-regev-10-01-2022/).
 
 ## API notes
 1. I used the following API to fetch data: https://developer.accuweather.com/.
