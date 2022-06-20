@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/asaf-regev-10-01-2022/static/js/main.5c09d1cb.js",
+    "main.js": "/asaf-regev-10-01-2022/static/js/main.c6715676.js",
     "static/js/9248.6df85a0b.chunk.js": "/asaf-regev-10-01-2022/static/js/9248.6df85a0b.chunk.js",
     "static/js/7848.80bd8ac5.chunk.js": "/asaf-regev-10-01-2022/static/js/7848.80bd8ac5.chunk.js",
     "static/js/7666.2268a98f.chunk.js": "/asaf-regev-10-01-2022/static/js/7666.2268a98f.chunk.js",
@@ -104,7 +104,7 @@
     "static/media/16.png": "/asaf-regev-10-01-2022/static/media/16.02f6796a4b217cbdd262.png",
     "static/media/15.png": "/asaf-regev-10-01-2022/static/media/15.9aac7942a26db293440b.png",
     "index.html": "/asaf-regev-10-01-2022/index.html",
-    "main.5c09d1cb.js.map": "/asaf-regev-10-01-2022/static/js/main.5c09d1cb.js.map",
+    "main.c6715676.js.map": "/asaf-regev-10-01-2022/static/js/main.c6715676.js.map",
     "9248.6df85a0b.chunk.js.map": "/asaf-regev-10-01-2022/static/js/9248.6df85a0b.chunk.js.map",
     "7848.80bd8ac5.chunk.js.map": "/asaf-regev-10-01-2022/static/js/7848.80bd8ac5.chunk.js.map",
     "7666.2268a98f.chunk.js.map": "/asaf-regev-10-01-2022/static/js/7666.2268a98f.chunk.js.map",
@@ -204,6 +204,6 @@
     "2598.7ac044eb.chunk.js.map": "/asaf-regev-10-01-2022/static/js/2598.7ac044eb.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.5c09d1cb.js"
+    "static/js/main.c6715676.js"
   ]
 }
