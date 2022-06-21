@@ -11,8 +11,6 @@ export interface IApiService {
     getForecasts(key: string): Promise<Forecasts['DailyForecasts']>;
 }
 
-console.log(process.env)
-
 const API: IApiService = process.env.REACT_APP_PRODUCTION === 'true'
   ? ({
     getLocations,
