@@ -34,10 +34,10 @@ jobs:
     - run: npm test
 
     - name: Echo event
-      run: 'echo ::set-output name=event::${{ github.event }}'
+      run: echo ${{ fromJSON(github.event) }}
     
     - name: Deploy 🚀
-      if: fromJSON(github.event.push)
+      if: fromJSON(github.event.pull_request)
       uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
         branch: gh-pages # The branch the action should deploy to.
