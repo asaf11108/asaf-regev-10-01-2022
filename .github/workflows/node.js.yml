@@ -34,7 +34,7 @@ jobs:
     - run: npm test
 
     - name: Echo event
-      run: echo "${{ github.event }}"
+      run: echo "::set-output name=event::${{ github.event }}"
     
     - name: Deploy 🚀
       if: github.event.push
