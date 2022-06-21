@@ -34,7 +34,7 @@ jobs:
     - run: npm test
 
     - name: Echo event
-      run: echo ${{ fromJSON(github.event) }}
+      run: echo "::debug::${{ fromJSON(github.event) }}"
     
     - name: Deploy 🚀
       if: fromJSON(github.event.pull_request)
