@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    uses: ./reusable-build.yml
+    uses: ./.github/workflows/reusable-build.yml
   
   deploy:
     needs: build
