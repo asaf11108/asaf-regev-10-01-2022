@@ -32,6 +32,9 @@ jobs:
         REACT_APP_PRODUCTION: ${{ secrets.REACT_APP_PRODUCTION }}
         REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
     - run: npm test
+
+    - name: Echo event
+      run: echo "${{ github.event }}"
     
     - name: Deploy 🚀
       if: github.event.push
