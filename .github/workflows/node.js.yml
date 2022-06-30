@@ -51,7 +51,7 @@ jobs:
 
     - name: echo cache
       env:
-        CACHE: ${{ toJson(steps.cache-npm.outputs.cache-hit) }}
+        CACHE: ${{ steps.cache-npm.outputs.cache-hit }}
       run:
         echo "$CACHE"
 
