@@ -48,7 +48,9 @@ jobs:
       run: npm list
 
     - run: npm ci
-      if: ${{ steps.cache-npm.outputs.cache-hit == 'false' }}
+
+    - name: echo cache
+      run: echo ${{ steps.cache-npm }}
 
     - run: npm run build --if-present
       env:
