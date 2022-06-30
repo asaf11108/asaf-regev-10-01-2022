@@ -50,7 +50,10 @@ jobs:
     - run: npm ci
 
     - name: echo cache
-      run: echo ${{ toJson(steps.cache-npm) }}
+      env:
+        CACHE: ${{ toJson(steps.cache-npm.output) }}
+      run:
+        echo "$CACHE"
 
     - run: npm run build --if-present
       env:
