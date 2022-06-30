@@ -42,12 +42,13 @@ jobs:
           ${{ runner.os }}-build-
           ${{ runner.os }}-
 
-    - if: ${{ steps.cache-npm.outputs.cache-hit == 'false' }}
-      name: List the state of node modules
+    - name: List the state of node modules
+      if: steps.cache-npm.outputs.cache-hit == 'false'
       continue-on-error: true
       run: npm list
 
     - run: npm ci
+      if: steps.cache-npm.outputs.cache-hit == 'false'
 
     - run: npm run build --if-present
       env:
