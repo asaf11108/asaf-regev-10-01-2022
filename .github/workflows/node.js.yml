@@ -51,7 +51,7 @@ jobs:
 
     - name: echo cache
       env:
-        CACHE: ${{ steps.cache-npm.outputs.cache-hit }}
+        CACHE: ${{ steps.cache-npm.outputs.cache-hit == 'true' }}
       run:
         echo "$CACHE"
 
