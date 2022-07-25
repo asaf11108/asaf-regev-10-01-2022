@@ -8,10 +8,7 @@ const ENDPOINT = "https://dataservice.accuweather.com/";
 
 export async function getLocations(query: string): Promise<AutocompleteOption[]> {
   return axios.get<AutocompleteOption[]>(
-    `${ENDPOINT}locations/v1/cities/autocomplete`,
-    {
-      params: { q: encodeURIComponent(query) }
-    }
+    `${ENDPOINT}locations/v1/cities/autocomplete?q=${encodeURIComponent(query)}`
   )
     .then((res) => res.data)
     .catch(() => {

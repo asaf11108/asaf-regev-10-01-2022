@@ -3,7 +3,7 @@
 This project presents the weather of different locations around the world and cache history of locations.<br/>
 This project uses packages such as: `react`, `@reduxjs/toolkit`, `@mui/material`...<br/>
 The app supports all devices and most browsers.
-[Deployed App](https://master.d3gu4qyc5vhimx.amplifyapp.com/).
+[Deployed App](https://asaf11108.github.io/asaf-regev-10-01-2022/).
 
 ## API notes
 1. I used the following API to fetch data: https://developer.accuweather.com/.
@@ -23,8 +23,9 @@ The app supports all devices and most browsers.
 11. Implemented [new react design pattern return component from hooks](https://blog.bitsrc.io/new-react-design-pattern-return-component-from-hooks-79215c3eac00) in toolbar component, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/tree/master/src/providers/menu).
 12. `Snackbar provider`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/tree/master/src/providers/snackbar).
 13. Date fns with lazy `locale` fetch, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/src/providers/locale/locale.provider.tsx).
-14. Generate `react cli`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/generate-react-cli.json).
-15. Improvements to be done: add `OpenAPI` to the project.
+14. `Github actions` - build, test, deploy. [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/.github/workflows/node.js.yml).
+15. Generate `react cli`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/generate-react-cli.json).
+16. Improvements to be done: add `OpenAPI` to the project.
 
 ## React vs Angular
 1. `SASS VS css-in-js`.<br/>
@@ -44,6 +45,7 @@ Angular onPush kind of forces the developer to separate from business to UI comp
 8. Typescript in react is stricter.
 9. Angular's Input/Output is more suitable for web development. In JS the events are propagated up the DOM tree but in React it's only unidirectional.
 10. Akita store management can be supported in Angular. It produces very little boilerplate and can make the code simpler.
+11. Easier to make `shallow testing` in Angular.
 
 ## Latest developments
 https://www.loom.com/share/319e64b8cd654ee4aff9ad9aa2e62a7a
