@@ -7,10 +7,13 @@ import AppRouting from './app-routing';
 import * as S from './app.style';
 import { useSnackbar } from './providers/snackbar/snackbar.hook';
 import { GlobalStyle } from './styles/global';
+import { useLocale } from './hooks/locale.hook';
 
 const App: VFC = () => {
   const isFirstMount = useFirstMountState();
   const openSnackbar = useSnackbar();
+
+  useLocale();
 
   if (isFirstMount) {
     apiKeyInterceptor();

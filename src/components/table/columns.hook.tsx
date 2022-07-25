@@ -3,10 +3,8 @@ import Favorite from "../favorite/favorite";
 import { ColumnType, TableColumn, _TableColumn } from "./table.model";
 import { get } from "lodash-es";
 import { format } from "date-fns";
-import { useLocale } from "../../providers/locale/locale.hook";
 
 export const useColumns = <T extends {}>(columns: TableColumn[]): _TableColumn<T>[] => {
-    const locale = useLocale();
 
     return useMemo(() =>
         columns.map(col => {
@@ -17,10 +15,10 @@ export const useColumns = <T extends {}>(columns: TableColumn[]): _TableColumn<T
                     cell = row => <span style={{ fontSize: '1.2em' }}><Favorite isFavorite={get(row, col.prop)} /></span>
                     break;
                 case ColumnType.Date:
-                    cell = row => <span>{format(new Date(get(row, col.prop)), 'P', { locale })}</span>
+                    cell = row => <span>{format(new Date(get(row, col.prop)), 'P')}</span>
                     break;
                 case ColumnType.LongDate:
-                    cell = row => <span>{format(new Date(get(row, col.prop)), 'Pp', { locale })}</span>
+                    cell = row => <span>{format(new Date(get(row, col.prop)), 'Pp')}</span>
                     break;
                 default:
                     cell = row => <span>{get(row, col.prop)}</span>
@@ -32,5 +30,5 @@ export const useColumns = <T extends {}>(columns: TableColumn[]): _TableColumn<T
                 cell
             }
         })
-        , [columns, locale]);
+        , [columns]);
 }
