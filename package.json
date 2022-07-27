@@ -8,7 +8,7 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.7",
-    "@reduxjs/toolkit": "^1.7.1",
+    "@reduxjs/toolkit": "^1.8.3",
     "axios": "^0.27.2",
     "date-fns": "^2.29.1",
     "get-user-locale": "^1.4.0",
