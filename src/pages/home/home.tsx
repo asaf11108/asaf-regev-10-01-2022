@@ -37,6 +37,7 @@ const Home: VFC = () => {
   ])(FavoriteLocationSelectActiveEntity);
 
   const activeLocation = useSelector(FavoriteLocationSelectActive);
+  
   const {
     setQuery,
     promiseQuery: [response, , loadingState],
