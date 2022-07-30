@@ -26,10 +26,6 @@ import useHomeQuery from "./home-query.hook";
 import Autocomplete from "../../components/autocomplete/autocomplete";
 import { AutocompleteProps } from "../../components/autocomplete/autocomplete.model";
 import * as S from "./home.style";
-import {ReactComponent as Star} from '../../assets/star.svg';
-import Star1 from '../../assets/star.svg?url';
-console.log(Star1)
-console.log(Star)
 
 const Home: VFC = () => {
   const dispatch = useDispatch();
@@ -101,8 +97,6 @@ const Home: VFC = () => {
               <span>
                 <span data-testid="localized-name">
                   {favoriteLocation.localizedName}
-                  <Star />
-                  <img src={Star1} />
                 </span>
                 <span>{favoriteLocation.temperature}</span>
               </span>
