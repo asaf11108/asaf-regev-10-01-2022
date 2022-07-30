@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkherolo_weather_react2=self.webpackChunkherolo_weather_react2||[]).push([[6235],{96235:function(e,a,t){e.exports=t.p+"static/media/41.da8960711b2a7bdd80c0.png"}}]);
