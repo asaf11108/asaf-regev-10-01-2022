@@ -57,6 +57,7 @@
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.12.13",
     "@emotion/babel-plugin": "^11.7.2",
+    "@svgr/webpack": "^6.3.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",

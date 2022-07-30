@@ -2,26 +2,22 @@ import { VFC } from 'react';
 import { ForecastProps } from './forecast.model';
 import { Typography } from '@mui/material';
 import * as S from "./forecast.style";
+import usePromise from 'react-use-promise';
 
 const Forecast: VFC<ForecastProps> = ({ forecast, onClick }) => {
-  const buildIconUrl = (icon?: string): string => {
-    if (!icon) {
-      return "";
-    }
-    return require(`../../assets/weather-icons/${icon}.png`);
-  };
-
-  forecast = {
-    ...forecast,
-    icon: buildIconUrl(forecast.icon),
-  };
+  const [icon] = usePromise(
+    () => forecast.icon ?
+      import(`../../assets/weather-icons/${forecast.icon}.png`).then(res => res.default) :
+      Promise.resolve(''),
+    [forecast]
+  );
 
   return (
     <S.Forecast onClick={onClick}>
       <Typography variant="h5">
           <p>{forecast.title}</p>
           <p>{forecast.temperature}</p>
-          {forecast.icon && <img src={forecast.icon} alt="Weather icon" />}
+          <img src={icon} alt="Weather icon" />
       </Typography>
     </S.Forecast>
   );
