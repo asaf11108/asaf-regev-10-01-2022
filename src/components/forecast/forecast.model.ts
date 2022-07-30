@@ -7,6 +7,6 @@ export interface _Forecast {
 }
 
 export interface ForecastProps {
-  forecast: _Forecast
+  forecast: _Forecast;
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
