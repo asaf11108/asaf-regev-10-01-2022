@@ -4,7 +4,7 @@
   "private": false,
   "homepage": "https://asaf11108.github.io/asaf-regev-10-01-2022",
   "dependencies": {
-    "@emotion/react": "^11.7.1",
+    "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.7",
