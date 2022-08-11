@@ -28,8 +28,6 @@ const Autocomplete = <T extends {}, Val>({
   setValue,
   ...otherProps
 }: AutocompleteProps<T, Val>): ReturnType<FC> => {
-  // throw error
-
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(defaultOption);
 

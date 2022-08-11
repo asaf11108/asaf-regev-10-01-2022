@@ -17,7 +17,7 @@ const Forecast: VFC<ForecastProps> = ({ forecast, onClick }) => {
       <Typography variant="h5">
           <p>{forecast.title}</p>
           <p>{forecast.temperature}</p>
-          <img src={icon} alt="Weather icon" />
+          {icon && <img src={icon} alt="Weather icon" />}
       </Typography>
     </S.Forecast>
   );
