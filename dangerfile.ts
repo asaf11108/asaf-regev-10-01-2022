@@ -15,6 +15,6 @@ if (danger.github.pr.additions + danger.github.pr.deletions > bigPRThreshold) {
 
 danger.git.commits.forEach(commit => {
     if (!commit.message.match(/^(feat:)|(fix:)|(major:)|(chore:)/g)) {
-        fail(`Commit message '${commit.message}' does match the correct format`);
+        warn(`Commit message '${commit.message}' does match the correct format`);
     }
 })
