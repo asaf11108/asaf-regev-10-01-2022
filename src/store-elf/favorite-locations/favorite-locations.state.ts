@@ -1,4 +1,4 @@
-import { createStore } from '@ngneat/elf';
+import { createStore, setProp, withProps } from '@ngneat/elf';
 import { upsertEntities, withActiveId, withEntities } from '@ngneat/elf-entities';
 import { format } from 'date-fns';
 import API from '../../api/api';
@@ -7,11 +7,13 @@ import { FavoriteLocation, Location } from '../../store/favorite-locations/favor
 
 const favoriteLocationsStore = createStore(
   { name: 'favoriteLocation',  },
+  withProps({ loading: false, error: null as any }),
   withEntities<FavoriteLocation, 'key'>({ idKey: 'key' }),
   withActiveId()
 );
 
 export function fetchFavoriteLocation(selectedOption: Location) {
+    favoriteLocationsStore.update(setProp('loading', true));
     return Promise.all([
         API.getCurrentConditions(selectedOption.key),
         API.getForecasts(selectedOption.key)
@@ -32,6 +34,9 @@ export function fetchFavoriteLocation(selectedOption: Location) {
             searchedDate: new Date().toISOString()
         } as FavoriteLocation;
     }).then(favoriteLocation => {
-        favoriteLocationsStore.update(upsertEntities([favoriteLocation]));
+        favoriteLocationsStore.update(
+            upsertEntities([favoriteLocation]),
+            setProp('loading', true)
+        );
     });
 }
