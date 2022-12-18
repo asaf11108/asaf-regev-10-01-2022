@@ -1,4 +1,4 @@
-import { createStore, setProp, withProps } from '@ngneat/elf';
+import { createStore, setProp, setProps, withProps } from '@ngneat/elf';
 import { upsertEntities, withActiveId, withEntities } from '@ngneat/elf-entities';
 import { format } from 'date-fns';
 import API from '../../api/api';
@@ -36,7 +36,11 @@ export function fetchFavoriteLocation(selectedOption: Location) {
     }).then(favoriteLocation => {
         favoriteLocationsStore.update(
             upsertEntities([favoriteLocation]),
-            setProp('loading', true)
+            setProps({ loading: false, error: null }),
+        );
+    }).catch(() => {
+        favoriteLocationsStore.update(
+            setProps({ loading: false, error: true }),
         );
     });
 }
