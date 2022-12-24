@@ -44,7 +44,7 @@ Angular change detection is simplier, no need for useMemo / useCallback that mak
 Angular onPush kind of forces the developer to separate from business to UI components.
 8. Typescript in react is stricter.
 9. Angular's Input/Output is more suitable for web development. In JS the events are propagated up the DOM tree but in React it's only unidirectional.
-10. Akita store management can be supported in Angular. It produces very little boilerplate and can make the code simpler.
+10. Elf store management can be supported in Angular and React. It's based on RxJS. It produces very little boilerplate and can make the code simpler.
 11. Easier to make `shallow testing` in Angular.
 
 ## Latest developments
