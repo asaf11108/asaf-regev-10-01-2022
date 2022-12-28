@@ -13,3 +13,4 @@ jobs:
       - uses: codelytv/pr-size-labeler@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          files_to_ignore: 'package-lock.json'
