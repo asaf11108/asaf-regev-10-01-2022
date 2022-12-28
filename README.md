@@ -37,14 +37,14 @@ The app supports all devices and most browsers.
 4. `RxJS` doesn't go along well with React. For example making a polling mechanism is easy with RxJS.
 5. In material UI [Textfield](https://mui.com/components/text-fields/#components) is very powerful and easy to customise in respect to Angular material form field, [article](https://medium.com/geekculture/what-really-happens-when-you-use-the-textfield-component-in-material-ui-1e62652196f).
 6. React is much `simpler`! there are no modules / services / pipes / ... like Angular.
-7. `Rendering` in react can be slow in contrast to Angular (OnPush).<br/>
+7. `Rendering` in React is more complex compared to Angular (on push).<br/>
 React component re-rendering when: update in State, update in prop, re-rendering of the parent component.<br/>
 Angular component re-rendering when: input / output changed, async event (click / mouse move...).<br/>
-Angular change detection is simplier, no need for useMemo / useCallback that make the code ugly and slower the app (memory usage).<br/>
+Angular change detection is simplier, no need for useMemo / useCallback that make the code ugly.<br/>
 Angular onPush kind of forces the developer to separate from business to UI components.
 8. Typescript in react is stricter.
 9. Angular's Input/Output is more suitable for web development. In JS the events are propagated up the DOM tree but in React it's only unidirectional.
-10. Akita store management can be supported in Angular. It produces very little boilerplate and can make the code simpler.
+10. Elf store management can be supported in Angular and React. It's based on RxJS. It produces very little boilerplate and can make the code simpler.
 11. Easier to make `shallow testing` in Angular.
 
 ## Latest developments
