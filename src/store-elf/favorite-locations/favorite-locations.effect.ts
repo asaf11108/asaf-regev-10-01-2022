@@ -1,5 +1,3 @@
-import { setProp, setProps } from "@ngneat/elf";
-import { upsertEntities } from "@ngneat/elf-entities";
 import { format } from "date-fns";
 import API from "../../api/api";
 import { _Forecast } from "../../components/forecast/forecast.model";
@@ -8,10 +6,20 @@ import { favoriteLocationsStore } from "./favorite-locations.state";
 import { createEffectFn } from '@ngneat/effects';
 import { forkJoin, Observable } from "rxjs";
 import { map, tap, switchMap } from "rxjs/operators";
+import { createRequestDataSource } from "@ngneat/elf-requests";
+import { selectAllEntities, upsertEntities } from "@ngneat/elf-entities";
+
+export const favoriteLocationsDataSource =
+  createRequestDataSource({
+    data$: () => favoriteLocationsStore.pipe(selectAllEntities()),
+    requestKey: 'favoriteLocation',
+    dataKey: 'favoriteLocations',
+    store: favoriteLocationsStore,
+  });
 
 export const loadFavoriteLocation$ = createEffectFn((selectedOption$: Observable<Location>) => {
     return selectedOption$.pipe(
-        tap(() => favoriteLocationsStore.update(setProp('loading', true))),
+        favoriteLocationsDataSource.trackRequestStatus(),
         switchMap(selectedOption => forkJoin([
             API.getCurrentConditions(selectedOption.key),
             API.getForecasts(selectedOption.key)
@@ -33,18 +41,8 @@ export const loadFavoriteLocation$ = createEffectFn((selectedOption$: Observable
                 searchedDate: new Date().toISOString()
             } as FavoriteLocation;
         }),
-        tap({
-            next: favoriteLocation => {
-                favoriteLocationsStore.update(
-                    upsertEntities([favoriteLocation]),
-                    setProps({ loading: false, error: null }),
-                );
-            },
-            error: () => {
-                favoriteLocationsStore.update(
-                    setProps({ loading: false, error: true }),
-                );
-            }
+        tap(favoriteLocation => {
+            favoriteLocationsStore.update(upsertEntities(favoriteLocation), favoriteLocationsDataSource.setSuccess());
         })
     );
 })
