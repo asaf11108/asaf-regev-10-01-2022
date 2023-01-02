@@ -5,12 +5,6 @@ import {
   FavoriteLocation,
   Location,
 } from "../../store/favorite-locations/favorite-locations.model";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchFavoriteLocation } from "../../store/favorite-locations/favorite-locations.thunk";
-import {
-  favoriteLocationsActive,
-  favoriteLocationsToggleFavorite,
-} from "../../store/favorite-locations/favorite-locations.action";
 import {
   FavoriteLocationSelectActive,
   FavoriteLocationSelectActiveEntity,
@@ -26,35 +20,36 @@ import useHomeQuery from "./home-query.hook";
 import Autocomplete from "../../components/autocomplete/autocomplete";
 import { AutocompleteProps } from "../../components/autocomplete/autocomplete.model";
 import * as S from "./home.style";
+import { useEffectFn } from "@ngneat/effects-hooks";
+import { activeFavoriteLocationsDataSource, loadFavoriteLocation$ } from "../../store-elf/favorite-locations/favorite-locations.effect";
+import { favoriteLocationsStore } from "../../store-elf/favorite-locations/favorite-locations.state";
+import { selectActiveEntity } from "@ngneat/elf-entities";
+import { useObservable } from "@ngneat/react-rxjs";
 
 const Home: VFC = () => {
-  const dispatch = useDispatch();
-  const loadingLocation = useSelector(FavoriteLocationSelectLoading);
-  const errorLocation = useSelector(FavoriteLocationSelectError);
-  const favoriteLocation: FavoriteLocation = flow([
-    useSelector,
-    useOneTemperatureType,
-  ])(FavoriteLocationSelectActiveEntity);
+  const [{ favoriteLocation, loading, error }] = useObservable(activeFavoriteLocationsDataSource.data$());
 
-  const activeLocation = useSelector(FavoriteLocationSelectActive);
+  const loadFavoriteLocation = useEffectFn(loadFavoriteLocation$);
+
+  const [activeLocation] = useObservable(favoriteLocationsStore.pipe(selectActiveEntity()));
+  useEffect(() => {
+    activeLocation && loadFavoriteLocation(activeLocation)
+  }, [activeLocation]);
   
   const {
     setQuery,
     promiseQuery: [response, , loadingState],
   } = useHomeQuery();
 
-  useEffect(() => {
-    dispatch(fetchFavoriteLocation(activeLocation));
-  }, [dispatch, activeLocation]);
 
   const onLocationSelect: AutocompleteProps<Location>["onSelect"] = (
     location
   ) => {
-    dispatch(favoriteLocationsActive(location));
+    loadFavoriteLocation(location);
   };
 
   const onFavoriteClick = (): void => {
-    dispatch(favoriteLocationsToggleFavorite());
+    // dispatch(favoriteLocationsToggleFavorite());
   };
 
   const options = useMemo<Location[]>(() => {
@@ -86,11 +81,11 @@ const Home: VFC = () => {
       </S.AutocompleteCard>
 
       <Card>
-        {loadingLocation ? (
+        {loading ? (
           <S.Loader>
             <Loader />
           </S.Loader>
-        ) : errorLocation || !favoriteLocation ? (
+        ) : error || !favoriteLocation ? (
           <S.ErrorTypography variant="h1">NO DATA</S.ErrorTypography>
         ) : (
           <CardContent>
@@ -101,7 +96,7 @@ const Home: VFC = () => {
                 </span>
                 <span>{favoriteLocation.temperature}</span>
               </span>
-              <Button disabled={loadingLocation} onClick={onFavoriteClick}>
+              <Button disabled={loading} onClick={onFavoriteClick}>
                 <Favorite isFavorite={favoriteLocation.isFavorite} />
               </Button>
             </S.TitleTypography>

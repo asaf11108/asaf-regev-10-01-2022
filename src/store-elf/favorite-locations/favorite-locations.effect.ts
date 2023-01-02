@@ -7,19 +7,19 @@ import { createEffectFn } from '@ngneat/effects';
 import { forkJoin, Observable } from "rxjs";
 import { map, tap, switchMap } from "rxjs/operators";
 import { createRequestDataSource } from "@ngneat/elf-requests";
-import { selectAllEntities, upsertEntities } from "@ngneat/elf-entities";
+import { selectActiveEntity, upsertEntities } from "@ngneat/elf-entities";
 
-export const favoriteLocationsDataSource =
+export const activeFavoriteLocationsDataSource =
   createRequestDataSource({
-    data$: () => favoriteLocationsStore.pipe(selectAllEntities()),
+    data$: () => favoriteLocationsStore.pipe(selectActiveEntity()),
     requestKey: 'favoriteLocation',
-    dataKey: 'favoriteLocations',
+    dataKey: 'favoriteLocation',
     store: favoriteLocationsStore,
   });
 
 export const loadFavoriteLocation$ = createEffectFn((selectedOption$: Observable<Location>) => {
     return selectedOption$.pipe(
-        favoriteLocationsDataSource.trackRequestStatus(),
+        activeFavoriteLocationsDataSource.trackRequestStatus(),
         switchMap(selectedOption => forkJoin([
             API.getCurrentConditions(selectedOption.key),
             API.getForecasts(selectedOption.key)
@@ -42,7 +42,7 @@ export const loadFavoriteLocation$ = createEffectFn((selectedOption$: Observable
             } as FavoriteLocation;
         }),
         tap(favoriteLocation => {
-            favoriteLocationsStore.update(upsertEntities(favoriteLocation), favoriteLocationsDataSource.setSuccess());
+            favoriteLocationsStore.update(upsertEntities(favoriteLocation), activeFavoriteLocationsDataSource.setSuccess());
         })
     );
 })
