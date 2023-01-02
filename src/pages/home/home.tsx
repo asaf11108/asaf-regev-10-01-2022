@@ -37,7 +37,7 @@ const Home: FC = () => {
   ])(FavoriteLocationSelectActiveEntity);
 
   const activeLocation = useSelector(FavoriteLocationSelectActive);
-
+  
   const {
     setQuery,
     promiseQuery: [response, , loadingState],
