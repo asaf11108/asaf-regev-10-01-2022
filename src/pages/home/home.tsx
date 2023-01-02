@@ -44,7 +44,7 @@ const Home: FC = () => {
   } = useHomeQuery();
 
   useEffect(() => {
-    dispatch(fetchFavoriteLocation(activeLocation));
+    dispatch(fetchFavoriteLocation(activeLocation) as any);
   }, [dispatch, activeLocation]);
 
   const onLocationSelect: AutocompleteProps<Location>["onSelect"] = (
