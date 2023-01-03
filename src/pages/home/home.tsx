@@ -26,7 +26,7 @@ import { favoriteLocationsStore } from "../../store-elf/favorite-locations/favor
 import { selectActiveEntity } from "@ngneat/elf-entities";
 import { useObservable } from "@ngneat/react-rxjs";
 
-const Home: VFC = () => {
+const Home: FC = () => {
   const [{ favoriteLocation, loading, error }] = useObservable(activeFavoriteLocationsDataSource.data$());
 
   const loadFavoriteLocation = useEffectFn(loadFavoriteLocation$);

@@ -2,7 +2,9 @@ import ReactDOM from 'react-dom';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
 import { providersWrapper } from './providers-wrapper';
+import { devTools } from "@ngneat/elf-devtools";
 
+devTools()
 
 ReactDOM.render(
   providersWrapper(<App />),
