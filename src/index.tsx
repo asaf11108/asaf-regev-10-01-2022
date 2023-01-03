@@ -4,7 +4,9 @@ import reportWebVitals from './reportWebVitals';
 import { providersWrapper } from './providers-wrapper';
 import { devTools } from "@ngneat/elf-devtools";
 
-devTools()
+if (process.env.REACT_APP_PRODUCTION !== 'true') {
+  devTools();
+}
 
 ReactDOM.render(
   providersWrapper(<App />),

@@ -22,19 +22,26 @@ import { AutocompleteProps } from "../../components/autocomplete/autocomplete.mo
 import * as S from "./home.style";
 import { useEffectFn } from "@ngneat/effects-hooks";
 import { activeFavoriteLocationsDataSource, loadFavoriteLocation$ } from "../../store-elf/favorite-locations/favorite-locations.effect";
-import { favoriteLocationsStore } from "../../store-elf/favorite-locations/favorite-locations.state";
-import { selectActiveEntity } from "@ngneat/elf-entities";
+import { DEAFUALT_LOCATION, favoriteLocationsStore } from "../../store-elf/favorite-locations/favorite-locations.state";
+import { selectActiveEntity, setActiveId } from "@ngneat/elf-entities";
 import { useObservable } from "@ngneat/react-rxjs";
+import { tap } from "rxjs";
 
 const Home: FC = () => {
   const [{ favoriteLocation, loading, error }] = useObservable(activeFavoriteLocationsDataSource.data$());
 
   const loadFavoriteLocation = useEffectFn(loadFavoriteLocation$);
 
-  const [activeLocation] = useObservable(favoriteLocationsStore.pipe(selectActiveEntity()));
-  useEffect(() => {
-    activeLocation && loadFavoriteLocation(activeLocation)
-  }, [activeLocation]);
+  const [activeLocation] = useObservable(favoriteLocationsStore.pipe(
+    selectActiveEntity(),
+    tap(activeLocation => {
+      if (!activeLocation) {
+        favoriteLocationsStore.update(setActiveId(DEAFUALT_LOCATION.key));
+      } else {
+        loadFavoriteLocation(activeLocation)
+      }
+    })
+  ));
   
   const {
     setQuery,
