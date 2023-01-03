@@ -2,7 +2,7 @@
 import { SerializedStyles, css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { get } from "lodash-es";
-import { FC, PropsWithChildren, ReactNode, useRef } from "react";
+import { FC, useRef } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
 
 interface InjectedProps<T> {
@@ -12,7 +12,7 @@ interface InjectedProps<T> {
 export interface ListEntranceProps<T> {
   list: T[];
   idProp?: string;
-  children: (props: InjectedProps<T>) => ReactNode
+  children: (props: InjectedProps<T>) => ReturnType<FC>
 }
 
 const ANIMATION_DELAY = 300;
@@ -38,7 +38,7 @@ const transitionStyles: Record<string, SerializedStyles> = {
   `,
 };
 
-export const ListEntrance = <T extends any>({ list, idProp = 'id', children }: PropsWithChildren<ListEntranceProps<T>>): ReturnType<FC> => {
+export const ListEntrance = <T extends any>({ list, idProp = 'id', children }: ListEntranceProps<T>): ReturnType<FC> => {
   // Issue: https://github.com/reactjs/react-transition-group/issues/668
   const nodeRef = useRef(null);
 

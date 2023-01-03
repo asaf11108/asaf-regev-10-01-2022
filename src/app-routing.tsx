@@ -1,4 +1,4 @@
-import { VFC } from "react";
+import { FC } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import FavoritesGuard from "./guards/favorites.guard";
 import HistoryGuard from "./guards/history.guard";
@@ -6,7 +6,7 @@ import Favorites from "./pages/favorites/favorites.lazy";
 import History from "./pages/history/history.lazy";
 import Home from "./pages/home/home.lazy";
 
-const AppRouting: VFC = () => {
+const AppRouting: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />

@@ -1,4 +1,4 @@
-import { VFC, useEffect, useMemo } from "react";
+import { FC, useEffect, useMemo } from "react";
 import { Button, Card, CardContent } from "@mui/material";
 import Forecast from "../../components/forecast/forecast";
 import {
