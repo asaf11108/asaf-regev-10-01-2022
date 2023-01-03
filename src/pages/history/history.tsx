@@ -1,4 +1,4 @@
-import { VFC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Table from '../../components/table/table';
@@ -13,7 +13,7 @@ import { filter } from 'lodash/fp';
 import * as S from "./history.style";
 import { TableProps } from '../../components/table/table.model';
 
-const History: VFC = () => {
+const History: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
