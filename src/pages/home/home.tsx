@@ -1,4 +1,4 @@
-import { VFC, useEffect, useMemo } from "react";
+import { FC, useEffect, useMemo } from "react";
 import { Button, Card, CardContent } from "@mui/material";
 import Forecast from "../../components/forecast/forecast";
 import {
@@ -27,7 +27,7 @@ import Autocomplete from "../../components/autocomplete/autocomplete";
 import { AutocompleteProps } from "../../components/autocomplete/autocomplete.model";
 import * as S from "./home.style";
 
-const Home: VFC = () => {
+const Home: FC = () => {
   const dispatch = useDispatch();
   const loadingLocation = useSelector(FavoriteLocationSelectLoading);
   const errorLocation = useSelector(FavoriteLocationSelectError);
@@ -44,7 +44,7 @@ const Home: VFC = () => {
   } = useHomeQuery();
 
   useEffect(() => {
-    dispatch(fetchFavoriteLocation(activeLocation));
+    dispatch(fetchFavoriteLocation(activeLocation) as any);
   }, [dispatch, activeLocation]);
 
   const onLocationSelect: AutocompleteProps<Location>["onSelect"] = (

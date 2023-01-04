@@ -1,10 +1,10 @@
-import { VFC } from 'react';
+import { FC } from 'react';
 import { ForecastProps } from './forecast.model';
 import { Typography } from '@mui/material';
 import * as S from "./forecast.style";
 import usePromise from 'react-use-promise';
 
-const Forecast: VFC<ForecastProps> = ({ forecast, onClick }) => {
+const Forecast: FC<ForecastProps> = ({ forecast, onClick }) => {
   const [icon] = usePromise(
     () => forecast.icon ?
       import(`../../assets/weather-icons/${forecast.icon}.png`).then(res => res.default) :

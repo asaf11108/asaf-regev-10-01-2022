@@ -1,4 +1,7 @@
-import { ChangeHandler, FieldError, FieldValues, RefCallBack, SetValueConfig, UseFormHandleSubmit, UseFormRegisterReturn } from "react-hook-form";
+import { FC, ReactNode } from "react";
+import { FieldError, FieldValues, RefCallBack, SetValueConfig, UseFormHandleSubmit, UseFormRegisterReturn } from "react-hook-form";
+
+export type FCC<P = {}> = FC<{ children: ReactNode } & P>;
 
 export type ISOString = string;
 

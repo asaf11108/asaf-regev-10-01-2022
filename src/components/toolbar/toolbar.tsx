@@ -1,4 +1,4 @@
-import { VFC } from "react";
+import { FC } from "react";
 import { useNavigate, useMatch } from "react-router-dom";
 import { IconButton, MenuItem, useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -10,7 +10,7 @@ import { useMenu } from "../../providers/menu/menu.hook";
 import * as S from "./toolbar.style";
 import { media } from "../../styles/vendors/media";
 
-const Toolbar: VFC = () => {
+const Toolbar: FC = () => {
   const navigate = useNavigate();
   const match = useMatch;
   const { Menu, openMenu, closeMenu } = useMenu();
