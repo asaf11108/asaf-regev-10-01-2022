@@ -8,8 +8,9 @@ import { useDebounce } from "use-debounce";
 import { usePrevious } from "react-use";
 import { get } from "lodash-es";
 import { useAutocompleteInput } from "./autocomplete-input.hook";
+import { ID } from "../../interfaces/general";
 
-const Autocomplete = <T extends {}, Val>({
+const Autocomplete = <T extends any>({
   options = [],
   loading = false,
   placeholder = "option",
@@ -27,11 +28,11 @@ const Autocomplete = <T extends {}, Val>({
   onBlur,
   setValue,
   ...otherProps
-}: AutocompleteProps<T, Val>): ReturnType<FC> => {
+}: AutocompleteProps<T>): ReturnType<FC> => {
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(defaultOption);
 
-  const inputController = useAutocompleteInput(get(defaultOption, nameProp, ""), inputRules);
+  const inputController = useAutocompleteInput(get(defaultOption, nameProp, "") as string, inputRules);
 
   const [inputDebounce] = useDebounce(inputController.field.value, 1000);
   const previousInputDebounce = usePrevious(inputDebounce);
@@ -50,11 +51,11 @@ const Autocomplete = <T extends {}, Val>({
   };
 
   const _onSelect = (event: SyntheticEvent, option: T) => {
-    _onInput(get(option, nameProp, ""));
+    _onInput(get(option, nameProp, "") as string);
     if (option) {
       setOption(option);
       onChange?.(event);
-      setValue?.(get(option, idProp, option));
+      setValue?.(get(option, idProp, option) as ID);
       onSelect(option);
     }
   };
@@ -78,7 +79,7 @@ const Autocomplete = <T extends {}, Val>({
       onChange={(event, option) => _onSelect(event, option!)}
       onInputChange={(_, query) => _onInput(query)}
       onBlur={_onBlur}
-      getOptionLabel={(option) => get(option, nameProp, option)}
+      getOptionLabel={(option) => get(option, nameProp, option) as string}
       isOptionEqualToValue={(option, value) =>
         get(option, idProp, option) === get(value, idProp, value)
       }
