@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useInsertionEffect } from "react";
 import getUserLocale from "get-user-locale";
 import { setDefaultOptions } from "date-fns";
 
 export const useLocale = () => {
 
-  useEffect(() => {
+  useInsertionEffect(() => {
     // Get user language from the window navigator service
     const userLocale = getUserLocale();
 
