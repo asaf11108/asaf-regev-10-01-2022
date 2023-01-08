@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { get } from "lodash-es";
 import { FC, useRef } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
+import { ID } from "../interfaces/general";
 
 interface InjectedProps<T> {
   item: T;
@@ -45,7 +46,7 @@ export const ListEntrance = <T extends any>({ list, idProp = 'id', children }: L
   return (
     <StyledTransitionGroup>
       {list.map((item, index) => 
-        <Transition in={true} timeout={ANIMATION_DELAY * index} appear key={get(item, idProp, item)} nodeRef={nodeRef}>
+        <Transition in={true} timeout={ANIMATION_DELAY * index} appear key={get(item, idProp, item) as ID} nodeRef={nodeRef}>
           {(state) => <Animation css={transitionStyles[state]} ref={nodeRef}>{children({ item })}</Animation>}
         </Transition>
       )}

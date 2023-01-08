@@ -72,7 +72,7 @@ const Home: FC = () => {
     <S.Home>
       <S.AutocompleteCard>
         <CardContent>
-          <Autocomplete<Location, Location['key']>
+          <Autocomplete<Location>
             idProp="key"
             nameProp="localizedName"
             placeholder="Search location"

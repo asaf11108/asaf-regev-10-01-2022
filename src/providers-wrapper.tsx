@@ -9,19 +9,17 @@ import { MenuProvider } from "./providers/menu/menu.provider";
 import { SnackbarProvider } from "./providers/snackbar/snackbar.provider";
 
 export const providersWrapper = (component: JSX.Element) => (
-  <StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-            <ThemeProvider theme={theme}>
-              <SnackbarProvider>
-                <MenuProvider>
-                  {component}
-                </MenuProvider>
-              </SnackbarProvider>
-            </ThemeProvider>
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
-  </StrictMode>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <SnackbarProvider>
+              <MenuProvider>
+                {component}
+              </MenuProvider>
+            </SnackbarProvider>
+          </ThemeProvider>
+      </BrowserRouter>
+    </PersistGate>
+  </Provider>
 );

@@ -3,15 +3,17 @@ import App from './app';
 import reportWebVitals from './reportWebVitals';
 import { providersWrapper } from './providers-wrapper';
 import { devTools } from "@ngneat/elf-devtools";
+import { createRoot } from "react-dom/client";
 
 if (process.env.REACT_APP_PRODUCTION !== 'true') {
   devTools();
 }
 
-ReactDOM.render(
-  providersWrapper(<App />),
-  document.getElementById('root')
-);
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  const root = createRoot(rootElement);
+  root.render(providersWrapper(<App />));
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
