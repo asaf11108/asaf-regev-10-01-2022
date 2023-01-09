@@ -4,11 +4,12 @@ import { IconButton, MenuItem, useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { GITHUB_URL, MENU } from "./toolbar.config";
 import ToolbarTemperatureMode from "./toolbar-temperature-mode";
-import { useSelector } from "react-redux";
-import { FavoriteLocationSelectors } from "../../store/favorite-locations/favorite-locations.selector";
 import { useMenu } from "../../providers/menu/menu.hook";
 import * as S from "./toolbar.style";
 import { media } from "../../styles/vendors/media";
+import { favoriteLocationsStore } from "../../store-elf/favorite-locations/favorite-locations.state";
+import { selectAllEntities } from "@ngneat/elf-entities";
+import { useObservable } from "@ngneat/react-rxjs";
 
 const Toolbar: FC = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Toolbar: FC = () => {
   const { Menu, openMenu, closeMenu } = useMenu();
   const matches = useMediaQuery(media.up("sm"));
 
-  const favoriteLocations = useSelector(FavoriteLocationSelectors.selectAll);
+  const [favoriteLocations] = useObservable(favoriteLocationsStore.pipe(selectAllEntities()));
 
   const onMenuItemClick = (navigatePath: string) => {
     closeMenu();
