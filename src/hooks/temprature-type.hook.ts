@@ -1,4 +1,4 @@
-import { FavoriteLocation } from './../store/favorite-locations/favorite-locations.model';
+import { FavoriteLocation } from '../store-elf/favorite-locations/favorite-locations.model';
 import { GeneralTemperatureModeSelect } from './../store/general/general.selector';
 import { useSelector } from 'react-redux';
 import { useMemo } from 'react';

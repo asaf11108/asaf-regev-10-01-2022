@@ -2,7 +2,7 @@ import { createStore } from '@ngneat/elf';
 import { updateEntities, withActiveId, withEntities } from '@ngneat/elf-entities';
 import { withRequestsStatus } from '@ngneat/elf-requests';
 import { _Forecast,  } from '../../components/forecast/forecast.model';
-import { FavoriteLocation } from '../../store/favorite-locations/favorite-locations.model';
+import { FavoriteLocation } from './favorite-locations.model';
 
 export const DEAFUALT_LOCATION: FavoriteLocation = {
   key: '215854',

@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import API from "../../api/api";
 import { _Forecast } from "../../components/forecast/forecast.model";
-import { FavoriteLocation, Location } from '../../store/favorite-locations/favorite-locations.model';
+import { FavoriteLocation, Location } from './favorite-locations.model';
 import { favoriteLocationsStore } from "./favorite-locations.state";
 import { createEffectFn } from '@ngneat/effects';
 import { forkJoin, Observable } from "rxjs";

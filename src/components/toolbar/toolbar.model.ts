@@ -1,4 +1,4 @@
-import { FavoriteLocation } from "../../store/favorite-locations/favorite-locations.model";
+import { FavoriteLocation } from "../../store-elf/favorite-locations/favorite-locations.model";
 
 export interface IMenuItem {
     label: string;

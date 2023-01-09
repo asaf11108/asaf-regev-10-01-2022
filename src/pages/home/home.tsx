@@ -3,7 +3,7 @@ import { Button, Card, CardContent } from "@mui/material";
 import Forecast from "../../components/forecast/forecast";
 import {
   Location,
-} from "../../store/favorite-locations/favorite-locations.model";
+} from "../../store-elf/favorite-locations/favorite-locations.model";
 import Favorite from "../../components/favorite/favorite";
 import Loader from "../../components/loader/loader";
 import { CONTROLLER_LOCATION_INPUT_RULES, HOME_FORM_REG_EXP } from "./home-form.hook";

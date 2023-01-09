@@ -3,7 +3,7 @@ import { filter } from 'lodash/fp';
 import { FavoriteLocationSelectors } from '../store/favorite-locations/favorite-locations.selector';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { FavoriteLocation } from '../store/favorite-locations/favorite-locations.model';
+import { FavoriteLocation } from '../store-elf/favorite-locations/favorite-locations.model';
 import { FCC } from '../interfaces/general';
 
 const FavoritesGuard: FCC = ({ children }) => {

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Forecast from "../../components/forecast/forecast";
 import { _Forecast } from "../../components/forecast/forecast.model";
-import { FavoriteLocation } from "../../store/favorite-locations/favorite-locations.model";
+import { FavoriteLocation } from "../../store-elf/favorite-locations/favorite-locations.model";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { favoriteLocationsActive } from "../../store/favorite-locations/favorite-locations.action";
