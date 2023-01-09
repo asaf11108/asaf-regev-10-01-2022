@@ -1,19 +1,10 @@
-import { FC, useEffect, useMemo } from "react";
+import { FC, useMemo } from "react";
 import { Button, Card, CardContent } from "@mui/material";
 import Forecast from "../../components/forecast/forecast";
 import {
-  FavoriteLocation,
   Location,
 } from "../../store/favorite-locations/favorite-locations.model";
-import {
-  FavoriteLocationSelectActive,
-  FavoriteLocationSelectActiveEntity,
-  FavoriteLocationSelectError,
-  FavoriteLocationSelectLoading,
-} from "../../store/favorite-locations/favorite-locations.selector";
 import Favorite from "../../components/favorite/favorite";
-import { useOneTemperatureType } from "../../hooks/temprature-type.hook";
-import { flow } from "lodash-es";
 import Loader from "../../components/loader/loader";
 import { CONTROLLER_LOCATION_INPUT_RULES, HOME_FORM_REG_EXP } from "./home-form.hook";
 import useHomeQuery from "./home-query.hook";
@@ -22,10 +13,10 @@ import { AutocompleteProps } from "../../components/autocomplete/autocomplete.mo
 import * as S from "./home.style";
 import { useEffectFn } from "@ngneat/effects-hooks";
 import { activeFavoriteLocationsDataSource, loadFavoriteLocation$ } from "../../store-elf/favorite-locations/favorite-locations.effect";
-import { DEAFUALT_LOCATION, favoriteLocationsStore } from "../../store-elf/favorite-locations/favorite-locations.state";
-import { selectActiveEntity, setActiveId } from "@ngneat/elf-entities";
+import { favoriteLocationsStore, updateFavoriteLocationFavoriteToggle } from "../../store-elf/favorite-locations/favorite-locations.state";
+import { selectActiveEntity } from "@ngneat/elf-entities";
 import { useObservable } from "@ngneat/react-rxjs";
-import { tap } from "rxjs";
+import { tap, distinctUntilKeyChanged, map } from "rxjs";
 
 const Home: FC = () => {
   const [{ favoriteLocation, loading, error }] = useObservable(activeFavoriteLocationsDataSource.data$());
@@ -34,12 +25,10 @@ const Home: FC = () => {
 
   const [activeLocation] = useObservable(favoriteLocationsStore.pipe(
     selectActiveEntity(),
+    map(activeLocation => activeLocation!),
+    distinctUntilKeyChanged('key'),
     tap(activeLocation => {
-      if (!activeLocation) {
-        favoriteLocationsStore.update(setActiveId(DEAFUALT_LOCATION.key));
-      } else {
-        loadFavoriteLocation(activeLocation)
-      }
+      loadFavoriteLocation(activeLocation);
     })
   ));
   
@@ -56,7 +45,7 @@ const Home: FC = () => {
   };
 
   const onFavoriteClick = (): void => {
-    // dispatch(favoriteLocationsToggleFavorite());
+    updateFavoriteLocationFavoriteToggle(activeLocation.key);
   };
 
   const options = useMemo<Location[]>(() => {
