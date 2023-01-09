@@ -1,22 +1,20 @@
 import { flow } from 'lodash-es';
-import { FavoriteLocationSelectors } from '../store/favorite-locations/favorite-locations.selector';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FavoriteLocation } from '../store-elf/favorite-locations/favorite-locations.model';
 import { FCC } from '../interfaces/general';
+import { useObservable } from '@ngneat/react-rxjs';
+import { favoriteLocationsStore } from '../store-elf/favorite-locations/favorite-locations.state';
+import { selectAllEntities } from '@ngneat/elf-entities/lib/all.query';
+import { tap } from "rxjs";
 
 const HistoryGuard: FCC = ({ children }) => {
     const navigate = useNavigate();
 
-    const canActivate = (favoriteLocations: FavoriteLocation[]): void => {
-        !favoriteLocations.length && setTimeout(() => navigate('/'));
-    };
-
-    flow([
-        useSelector,
-        canActivate
-    ])(FavoriteLocationSelectors.selectAll);
-
+    useObservable(favoriteLocationsStore.pipe(
+        selectAllEntities(),
+        tap((favoriteLocations) => !favoriteLocations.length && setTimeout(() => navigate('/')))
+    ));
 
     return (
         <>
