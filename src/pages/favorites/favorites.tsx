@@ -2,27 +2,25 @@ import { FC } from "react";
 import Forecast from "../../components/forecast/forecast";
 import { _Forecast } from "../../components/forecast/forecast.model";
 import { FavoriteLocation } from "../../store-elf/favorite-locations/favorite-locations.model";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { favoriteLocationsActive } from "../../store/favorite-locations/favorite-locations.action";
-import { FavoriteLocationSelectors } from "../../store/favorite-locations/favorite-locations.selector";
 import { useManyTemperatureType } from "../../hooks/temprature-type.hook";
-import { flow } from "lodash-es";
-import { filter } from "lodash/fp";
 import * as S from "./favorites.style";
 import { ListEntrance } from "../../animations/list-entrance";
+import { favoriteLocationsStore, updateSetActiveId } from "../../store-elf/favorite-locations/favorite-locations.state";
+import { useObservable } from "@ngneat/react-rxjs";
+import { selectAllEntities } from "@ngneat/elf-entities";
+import { map } from "rxjs";
 
 const Favorites: FC = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const favoriteLocations: FavoriteLocation[] = flow([
-    useSelector,
-    useManyTemperatureType,
-    filter("isFavorite"),
-  ])(FavoriteLocationSelectors.selectAll);
+  const [favoriteLocations] = useObservable(favoriteLocationsStore.pipe(
+    selectAllEntities(),
+    map(favoriteLocations => useManyTemperatureType(favoriteLocations)),
+    map(favoriteLocations => favoriteLocations.filter((favoriteLocation) => favoriteLocation.isFavorite))
+  ))
 
   const onLocationClick = (favoriteLocation: FavoriteLocation): void => {
-    dispatch(favoriteLocationsActive(favoriteLocation));
+    updateSetActiveId(favoriteLocation.key);
     navigate("/");
   };
 

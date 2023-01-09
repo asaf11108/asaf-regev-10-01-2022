@@ -1,5 +1,5 @@
 import { createStore } from '@ngneat/elf';
-import { updateEntities, withActiveId, withEntities } from '@ngneat/elf-entities';
+import { setActiveId, updateEntities, withActiveId, withEntities } from '@ngneat/elf-entities';
 import { withRequestsStatus } from '@ngneat/elf-requests';
 import { _Forecast,  } from '../../components/forecast/forecast.model';
 import { FavoriteLocation } from './favorite-locations.model';
@@ -22,6 +22,10 @@ export const favoriteLocationsStore = createStore(
   withRequestsStatus()
 );
 
-export function updateFavoriteLocationFavoriteToggle(id: FavoriteLocation['key']) {
-  favoriteLocationsStore.update(updateEntities(id, entity => ({ ...entity, isFavorite: !entity.isFavorite })))
+export function updateFavoriteLocationFavoriteToggle(key: FavoriteLocation['key']) {
+  favoriteLocationsStore.update(updateEntities(key, entity => ({ ...entity, isFavorite: !entity.isFavorite })));
+}
+
+export function updateSetActiveId(key: FavoriteLocation['key']) {
+  favoriteLocationsStore.update(setActiveId(key));
 }
