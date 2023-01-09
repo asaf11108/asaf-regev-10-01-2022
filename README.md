@@ -32,20 +32,21 @@ The app supports all devices and most browsers.
     SASS: cleaner style code, easy to manipulate style, strong utility libraries (I needed to make conversion from SASS to JS of 'include-media-spread').<br/>
     css-in-js: The code is cleaner (in the HTML part), it's easy to pass variable from js to css.<br/>
     Material Ui kinds of forces the use of styled components.
-2. Init interceptors. There is no way to initialize the interceptors without wrapping them in first render logic and taking into account that the initialization needs to be happen before any rendering and also pass setState of snackbar to interceptor.
-3. The route guard inefficient. There isn't build-in tool to implement route guard, so the solution is to load the page and in case that the route can't be activated the app will redirect to home page. This causes two page renders.
-4. `RxJS` doesn't go along well with React. For example making a polling mechanism is easy with RxJS.
-5. In material UI [Textfield](https://mui.com/components/text-fields/#components) is very powerful and easy to customise in respect to Angular material form field, [article](https://medium.com/geekculture/what-really-happens-when-you-use-the-textfield-component-in-material-ui-1e62652196f).
-6. React is much `simpler`! there are no modules / services / pipes / ... like Angular.
-7. `Rendering` in React is more complex compared to Angular (on push).<br/>
+2. `RxJS` doesn't go along well with React. For example making a polling mechanism is easy with RxJS.
+3. In material UI [Textfield](https://mui.com/components/text-fields/#components) is easy to customise in respect to Angular material form field, [article](https://medium.com/geekculture/what-really-happens-when-you-use-the-textfield-component-in-material-ui-1e62652196f).
+4. React is much `simpler`! there are no modules / services / pipes / ... like Angular.
+5. `Rendering` in React is more complex compared to Angular (on push).<br/>
 React component re-rendering when: update in State, update in prop, re-rendering of the parent component.<br/>
 Angular component re-rendering when: input / output changed, async event (click / mouse move...).<br/>
-Angular change detection is simplier, no need for useMemo / useCallback that make the code ugly.<br/>
+Angular change detection is simplier, no need for hooks (useMemo/useCallback/useEffect) that increase the mental capacity and make the code ugly.<br/>
 Angular onPush kind of forces the developer to separate from business to UI components.
-8. Typescript in react is stricter.
-9. Angular's Input/Output is more suitable for web development. In JS the events are propagated up the DOM tree but in React it's only unidirectional.
-10. Elf store management can be supported in Angular and React. It's based on RxJS. It produces very little boilerplate and can make the code simpler.
-11. Easier to make `shallow testing` in Angular.
+6. Typescript in react is stricter.
+7. Angular's Input/Output is more suitable for web development. In JS the events are propagated up the DOM tree but in React it's only unidirectional.
+8. Elf store management can be supported in Angular and React. It's based on RxJS. It produces very little boilerplate and can make the code simpler.
+9. Easier to make `shallow testing` in Angular.
+10. Upgrading from react 17 to 18 broke the application's code and tests.
+
+Conclusion: Both frameworks have the same capabilities. The changes are mainly syntax.
 
 ## Latest developments
 https://www.loom.com/share/319e64b8cd654ee4aff9ad9aa2e62a7a
