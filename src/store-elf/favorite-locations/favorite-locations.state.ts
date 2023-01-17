@@ -22,10 +22,10 @@ export const favoriteLocationsStore = createStore(
   withRequestsStatus()
 );
 
-export function updateFavoriteLocationFavoriteToggle(key: FavoriteLocation['key']) {
+export function updateFavoriteLocationsFavoriteToggle(key: FavoriteLocation['key']) {
   favoriteLocationsStore.update(updateEntities(key, entity => ({ ...entity, isFavorite: !entity.isFavorite })));
 }
 
-export function updateSetActiveId(key: FavoriteLocation['key']) {
+export function updateFavoriteLocationsSetActiveId(key: FavoriteLocation['key']) {
   favoriteLocationsStore.update(setActiveId(key));
 }

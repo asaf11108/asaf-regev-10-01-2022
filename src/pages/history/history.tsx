@@ -8,7 +8,7 @@ import { useManyTemperatureType } from '../../hooks/temprature-type.hook';
 import * as S from "./history.style";
 import { TableProps } from '../../components/table/table.model';
 import { useObservable } from '@ngneat/react-rxjs';
-import { favoriteLocationsStore, updateSetActiveId } from '../../store-elf/favorite-locations/favorite-locations.state';
+import { favoriteLocationsStore, updateFavoriteLocationsSetActiveId } from '../../store-elf/favorite-locations/favorite-locations.state';
 import { selectAllEntities, setActiveId } from '@ngneat/elf-entities';
 import { map } from "rxjs";
 
@@ -23,7 +23,7 @@ const History: FC = () => {
   ));
 
   const onRowClick: TableProps<FavoriteLocation>['rowClick'] = favoriteLocation => {
-    updateSetActiveId(favoriteLocation.key);
+    updateFavoriteLocationsSetActiveId(favoriteLocation.key);
     navigate('/');
   };
 

@@ -13,7 +13,7 @@ import { AutocompleteProps } from "../../components/autocomplete/autocomplete.mo
 import * as S from "./home.style";
 import { useEffectFn } from "@ngneat/effects-hooks";
 import { activeFavoriteLocationsDataSource, loadFavoriteLocation$ } from "../../store-elf/favorite-locations/favorite-locations.effect";
-import { favoriteLocationsStore, updateFavoriteLocationFavoriteToggle } from "../../store-elf/favorite-locations/favorite-locations.state";
+import { favoriteLocationsStore, updateFavoriteLocationsFavoriteToggle } from "../../store-elf/favorite-locations/favorite-locations.state";
 import { selectActiveEntity } from "@ngneat/elf-entities";
 import { useObservable } from "@ngneat/react-rxjs";
 import { tap, distinctUntilKeyChanged, map } from "rxjs";
@@ -45,7 +45,7 @@ const Home: FC = () => {
   };
 
   const onFavoriteClick = (): void => {
-    updateFavoriteLocationFavoriteToggle(activeLocation.key);
+    updateFavoriteLocationsFavoriteToggle(activeLocation.key);
   };
 
   const options = useMemo<Location[]>(() => {

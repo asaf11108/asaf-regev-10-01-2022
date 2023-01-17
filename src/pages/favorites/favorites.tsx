@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useManyTemperatureType } from "../../hooks/temprature-type.hook";
 import * as S from "./favorites.style";
 import { ListEntrance } from "../../animations/list-entrance";
-import { favoriteLocationsStore, updateSetActiveId } from "../../store-elf/favorite-locations/favorite-locations.state";
+import { favoriteLocationsStore, updateFavoriteLocationsSetActiveId } from "../../store-elf/favorite-locations/favorite-locations.state";
 import { useObservable } from "@ngneat/react-rxjs";
 import { selectAllEntities } from "@ngneat/elf-entities";
 import { map } from "rxjs";
@@ -20,7 +20,7 @@ const Favorites: FC = () => {
   ))
 
   const onLocationClick = (favoriteLocation: FavoriteLocation): void => {
-    updateSetActiveId(favoriteLocation.key);
+    updateFavoriteLocationsSetActiveId(favoriteLocation.key);
     navigate("/");
   };
 
