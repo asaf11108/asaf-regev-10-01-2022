@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { TextField } from '@mui/material';
+import { TextField as MatTextField } from '@mui/material';
 
-export const Search = styled(TextField)`
+export const TextField = styled(MatTextField)`
     margin: 20px;
 `;
