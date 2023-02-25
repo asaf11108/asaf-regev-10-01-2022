@@ -32,7 +32,7 @@ const History: VFC = () => {
   return (
     <Card>
 
-      <S.Search label="Search by city" variant="standard" onChange={event => setQuery(event.target.value)} />
+      <S.TextField label="Search by name" autoComplete="off" variant="standard" onChange={event => setQuery(event.target.value)} />
 
       <Table<FavoriteLocation>
         columns={COLUMNS}
