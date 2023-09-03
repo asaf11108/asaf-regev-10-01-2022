@@ -49,3 +49,5 @@ Angular onPush kind of forces the developer to separate from business to UI comp
 
 ## Latest developments
 https://www.loom.com/share/319e64b8cd654ee4aff9ad9aa2e62a7a
+
+https://www.loom.com/share/81c5043b14904b158e7075b50e3f952c
