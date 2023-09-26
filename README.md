@@ -26,6 +26,7 @@ The app supports all devices and most browsers.
 14. `Github actions` - build, test, deploy. [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/.github/workflows/node.js.yml).
 15. Generate `react cli`, [link](https://github.com/asaf11108/asaf-regev-10-01-2022/blob/master/generate-react-cli.json).
 16. Improvements to be done: add `OpenAPI` to the project.
+17. Angular has component /directive docorator which enable the developer to costomize the framework.
 
 ## React vs Angular
 1. `SASS VS css-in-js`.<br/>
