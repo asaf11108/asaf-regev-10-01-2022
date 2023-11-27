@@ -4,6 +4,6 @@
 import { useContext } from "react";
 import { SnackbarContext } from "./snackbar.context";
 
-export const useSnackbar = () => {
+export let useSnackbar = () => {
   return useContext(SnackbarContext);
 };
